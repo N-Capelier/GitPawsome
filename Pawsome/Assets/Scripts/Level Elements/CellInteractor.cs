@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CellInteractor : MonoBehaviour
 {
+	public LevelCell levelCell;
+
 	[Header("References")]
 	[SerializeField] MeshRenderer meshRenderer;
 

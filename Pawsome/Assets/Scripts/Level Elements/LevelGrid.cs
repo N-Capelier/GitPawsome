@@ -33,6 +33,7 @@ public class LevelGrid : MonoBehaviour
 				_cellInteractor.transform.parent = transform;
 				_cellInteractor.gameObject.name = $"[{x}|{y}] Cell Interactor";
 				cells[x, y].cellInteractor = _cellInteractor;
+				_cellInteractor.levelCell = cells[x, y];
 			}
 		}
 	}
