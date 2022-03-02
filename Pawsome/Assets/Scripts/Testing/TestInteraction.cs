@@ -13,7 +13,7 @@ public class TestInteraction : MonoBehaviour
 
 		ReachFinder _finder = new ReachFinder(LevelGrid.Instance);
 
-		Vector2Int[] _reachableCells = _finder.FindCircleReach((int)interactor.levelCell.worldPosition.x, (int)interactor.levelCell.worldPosition.y, 5);
+		Vector2Int[] _reachableCells = _finder.FindDiamondReach((int)interactor.levelCell.worldPosition.x, (int)interactor.levelCell.worldPosition.y, 3);
 
 		foreach (Vector2Int _cell in _reachableCells)
 		{

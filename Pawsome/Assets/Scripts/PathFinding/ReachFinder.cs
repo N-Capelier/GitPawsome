@@ -15,10 +15,23 @@ public class ReachFinder
 	public Vector2Int[] FindDiamondReach(int _startX, int _startY, int _scale)
 	{
 		List<Vector2Int> _result = new List<Vector2Int>();
+		Vector2Int _center = new Vector2Int(_startX, _startY);
 
+		for (int x = 0; x < grid.GetWidth(); x++)
+		{
+			for (int y = 0; y < grid.GetHeigth(); y++)
+			{
+				if (!grid.CheckCell(x, y) || _center == new Vector2Int(x, y))
+					continue;
 
+				if(Mathf.Abs(x - _startX) + Mathf.Abs(y - _startY) <= _scale && grid.CheckCell(x, y))
+				{
+					_result.Add(new Vector2Int(x, y));
+				}
+			}
+		}
 
-		return null;
+		return _result.ToArray();
 	}
 
 	public Vector2Int[] FindCircleReach(int _startX, int _startY, int _radius)
@@ -31,7 +44,7 @@ public class ReachFinder
 		{
 			for (int y = 0; y < grid.GetHeigth(); y++)
 			{
-				if (!LevelGrid.CheckCell(x, y) || new Vector2Int(x, y) == _startPos)
+				if (!grid.CheckCell(x, y) || new Vector2Int(x, y) == _startPos)
 					continue;
 
 				if(Vector2.Distance(new Vector2Int(x, y), _startPos) < _radius)
@@ -52,7 +65,7 @@ public class ReachFinder
 		{
 			for (int _pointer = -_scale; _pointer <= _scale; _pointer++)
 			{
-				if (LevelGrid.CheckCell(_startX + _pointer, _startY - i))
+				if (grid.CheckCell(_startX + _pointer, _startY - i))
 				{
 					if (!grid.cells[_startX + _pointer, _startY - i].isWall)
 					{
@@ -60,7 +73,7 @@ public class ReachFinder
 					}
 				}
 
-				if (LevelGrid.CheckCell(_startX + _pointer, _startY + i))
+				if (grid.CheckCell(_startX + _pointer, _startY + i))
 				{
 					if (!grid.cells[_startX + _pointer, _startY + i].isWall)
 					{
@@ -68,7 +81,7 @@ public class ReachFinder
 					}
 				}
 
-				if (LevelGrid.CheckCell(_startX + i, _startY + _pointer))
+				if (grid.CheckCell(_startX + i, _startY + _pointer))
 				{
 					if (!grid.cells[_startX + i, _startY + _pointer].isWall)
 					{
@@ -76,7 +89,7 @@ public class ReachFinder
 					}
 				}
 
-				if (LevelGrid.CheckCell(_startX - i, _startY + _pointer))
+				if (grid.CheckCell(_startX - i, _startY + _pointer))
 				{
 					if (!grid.cells[_startX - i, _startY + _pointer].isWall)
 					{
@@ -101,7 +114,7 @@ public class ReachFinder
 
 		for (int i = 1; i <= _scale; i++)
 		{
-			if(LevelGrid.CheckCell(_startX + i, _startY))
+			if(grid.CheckCell(_startX + i, _startY))
 			{
 				if (!grid.cells[_startX + i, _startY].isWall && _runXPositive)
 					_xPositive.Add(new Vector2Int(_startX + i, _startY));
@@ -111,7 +124,7 @@ public class ReachFinder
 				_runXPositive = false;
 			}
 
-			if(LevelGrid.CheckCell(_startX - i, _startY))
+			if(grid.CheckCell(_startX - i, _startY))
 			{
 				if (!grid.cells[_startX - i, _startY].isWall && _runXNegative)
 					_xNegative.Add(new Vector2Int(_startX - i, _startY));
@@ -121,7 +134,7 @@ public class ReachFinder
 				_runXNegative = false;
 			}
 
-			if(LevelGrid.CheckCell(_startX, _startY + i))
+			if(grid.CheckCell(_startX, _startY + i))
 			{
 				if (!grid.cells[_startX, _startY + i].isWall && _runYPositive)
 					_yPositive.Add(new Vector2Int(_startX, _startY + i));
@@ -131,7 +144,7 @@ public class ReachFinder
 				_runYPositive = false;
 			}
 
-			if(LevelGrid.CheckCell(_startX, _startY - i))
+			if(grid.CheckCell(_startX, _startY - i))
 			{
 				if (!grid.cells[_startX, _startY - i].isWall && _runYNegative)
 					_yNegative.Add(new Vector2Int(_startX, _startY - i));

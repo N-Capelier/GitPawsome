@@ -39,7 +39,7 @@ public class LevelGrid : Singleton<LevelGrid>
 		}
 	}
 
-	public static bool CheckCell(int x, int y)
+	public bool CheckCell(int x, int y)
 	{
 		if (x >= 0 && x < Instance.gridWidth && y >= 0 && y < Instance.gridHeight)
 			return true;
