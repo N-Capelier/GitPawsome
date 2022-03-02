@@ -470,7 +470,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1634506596}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -620,12 +620,6 @@ MonoBehaviour:
   UIName: {fileID: 1274392514}
   UICatFood: {fileID: 1468630758}
   UICatBell: {fileID: 670744547}
-  UILevel: {fileID: 430515813}
-  UICreationTime: {fileID: 1000956135}
-  UIProduction: {fileID: 43330118}
-  UINextCreationTime: {fileID: 231018087}
-  UINextProduction: {fileID: 1214209725}
-  UIPrice: {fileID: 1649942611}
 --- !u!1 &376812539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,8 +1006,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1152036045}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 1140167759}
+        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
         m_MethodName: ExitCatFood
         m_Mode: 1
         m_Arguments:
@@ -1382,11 +1376,12 @@ MonoBehaviour:
   CreationTime: 10
   FoodsPerCollection: 100
   LevelUpPrice: 40
-  CanCollect: 0
   PriceMultiplier: 2.5
   CatFoodMultiplier: 1.25
   ReducedTime: 2
-  level: 1
+  WorkingCat: {fileID: 0}
+  CatIn: 0
+  CatBoost: 1.5
 --- !u!114 &695618941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1431,8 +1426,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1152036045}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 1140167759}
+        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
         m_MethodName: CatFoodUI
         m_Mode: 1
         m_Arguments:
@@ -1754,8 +1749,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName: Nyan Cat
-  CatFood: 1200
-  CatBell: 666
+  CatFood: 0
+  CatBell: 0
 --- !u!1 &1000956132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,7 +1999,6 @@ Transform:
   - {fileID: 1407264232}
   - {fileID: 242707820}
   - {fileID: 1140167760}
-  - {fileID: 1152036044}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2137,7 +2131,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1284a4a1a276f2e4c97666567c40908f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gm: {fileID: 0}
+  CatFoodMenu: {fileID: 1210240073}
+  CatFoodBuilding: {fileID: 695618940}
+  UILevel: {fileID: 430515813}
+  UICreationTime: {fileID: 1000956135}
+  UIProduction: {fileID: 43330118}
+  UINextCreationTime: {fileID: 231018087}
+  UINextProduction: {fileID: 1214209725}
+  UIPrice: {fileID: 1649942611}
 --- !u!4 &1140167760
 Transform:
   m_ObjectHideFlags: 0
@@ -2152,52 +2153,6 @@ Transform:
   m_Father: {fileID: 1067479476}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1152036043
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1152036044}
-  - component: {fileID: 1152036045}
-  m_Layer: 0
-  m_Name: ButtonManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1152036044
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152036043}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1067479476}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1152036045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152036043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63040fd47c62e01478cca5ac289af6fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OptionsMenu: {fileID: 0}
-  CatFoodMenu: {fileID: 1210240073}
-  NameInput: {fileID: 0}
 --- !u!1 &1210240073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,7 +2290,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1634506596}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2469,7 +2424,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1634506596}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3377,9 +3332,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1258464426}
   - {fileID: 231018085}
   - {fileID: 1214209723}
-  - {fileID: 1258464426}
   m_Father: {fileID: 1210240074}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3779,8 +3734,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1152036045}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 1140167759}
+        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
         m_MethodName: UpgradeCatFood
         m_Mode: 1
         m_Arguments:

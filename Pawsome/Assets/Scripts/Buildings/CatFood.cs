@@ -2,24 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatFood : Singleton<CatFood>
+public class CatFood : MonoBehaviour
 {
+    [Header("Stats")]
     public int CreationTime;
     public int FoodsPerCollection;
     public double LevelUpPrice;
-    public bool CanCollect;
+    private bool CanCollect;
     private float LastTimeCollect;
     public float PriceMultiplier;
     public float CatFoodMultiplier;
     public int ReducedTime;
-    public int level = 1;
-   
+    private int level = 1;
+
+    [Header("Cat")]
+    public GameObject WorkingCat;
+    public bool CatIn;
+    public float CatBoost;
+
 
     // Update is called once per frame
     void Update()
     {
         if(!CanCollect)
         {
+            if (WorkingCat != null || CatIn)
+            {
+
+                CanCollect = (Time.time - LastTimeCollect) > (CreationTime / CatBoost);
+            }
             CanCollect = (Time.time - LastTimeCollect) > CreationTime;
             return;
         }
@@ -29,9 +40,13 @@ public class CatFood : Singleton<CatFood>
         GameManager.Instance.UpdateUI();
     }
 
-    public bool TryUpgrad()
+    public bool TryUpgrade()
     {
         return PlayerManager.Instance.CatFood > LevelUpPrice;
+    }
+    public int GetLevel()
+    {
+        return level;
     }
 
     public void Upgraded()
@@ -41,7 +56,6 @@ public class CatFood : Singleton<CatFood>
         LevelUpPrice = (int)(LevelUpPrice * PriceMultiplier);
         FoodsPerCollection = (int)(CatFoodMultiplier*FoodsPerCollection);
         CreationTime -= ReducedTime;
-        GameManager.Instance.UpdateCatFood();
     }
 
 
