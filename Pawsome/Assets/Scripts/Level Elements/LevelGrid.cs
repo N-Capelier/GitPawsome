@@ -72,6 +72,16 @@ public class LevelGrid : Singleton<LevelGrid>
 
 	#region Get elements
 
+	public int GetWidth()
+	{
+		return gridWidth;
+	}
+
+	public int GetHeigth()
+	{
+		return gridHeight;
+	}
+
 	public LevelCell GetCell(Vector2 _gridPosition)
 	{
 		return GetCell((int)_gridPosition.x, (int)_gridPosition.y);

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TestInteraction : MonoBehaviour
@@ -15,11 +13,11 @@ public class TestInteraction : MonoBehaviour
 
 		ReachFinder _finder = new ReachFinder(LevelGrid.Instance);
 
-		//List<(int x, int y)> _reachableCells = _finder.FindLineReach((int)interactor.levelCell.worldPosition.x, (int)interactor.levelCell.worldPosition.y, 2);
+		Vector2Int[] _reachableCells = _finder.FindCircleReach((int)interactor.levelCell.worldPosition.x, (int)interactor.levelCell.worldPosition.y, 5);
 
-		//foreach((int x, int y) _cell in _reachableCells)
-		//{
-		//	LevelGrid.Instance.cells[_cell.x, _cell.y].interactor.SetRendererColor(Color.red);
-		//}
+		foreach (Vector2Int _cell in _reachableCells)
+		{
+			LevelGrid.Instance.cells[_cell.x, _cell.y].interactor.SetRendererColor(Color.red);
+		}
 	}
 }
