@@ -6,6 +6,7 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
     public GameObject OptionsMenu;
+    public GameObject CatFoodMenu;
     public TextMeshProUGUI NameInput;
 
     public void Play()
@@ -27,5 +28,18 @@ public class MainMenu : MonoBehaviour
     public void ChangeName()
     {
         if (NameInput.text != "") PlayerManager.Instance.PlayerName = NameInput.text;
+    }
+
+    public void CatFoodUI()
+    {
+        CatFoodMenu.SetActive(true);
+    }
+    public void ExitCatFood()
+    {
+        CatFoodMenu.SetActive(false);
+    }
+    public void UpgradeCatFood()
+    {
+        if (CatFood.Instance.TryUpgrad()) CatFood.Instance.Upgraded();
     }
 }

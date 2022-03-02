@@ -13,11 +13,11 @@ public class PlayerManager : Singleton<PlayerManager>
         CreateSingleton(true);
     }
 
-    public void IncrementCatFood(int x)
+    public void IncrementCatFood(double x)
     {
         CatFood += x;
     }
-    public void IncrementCatBell(int x)
+    public void IncrementCatBell(double x)
     {
         CatBell += x;
     }
