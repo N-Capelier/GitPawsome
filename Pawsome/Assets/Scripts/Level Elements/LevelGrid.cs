@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelGrid : MonoBehaviour
+public class LevelGrid : Singleton<LevelGrid>
 {
 	[Header("Params")]
 	[SerializeField] int gridWidth;
@@ -12,10 +12,11 @@ public class LevelGrid : MonoBehaviour
 	[Header("References")]
 	[SerializeField] GameObject cellInteractorPrefab;
 	
-	LevelCell[,] cells;
+	public LevelCell[,] cells;
 
 	private void Start()
 	{
+		CreateSingleton();
 		InitGrid();
 	}
 
@@ -32,10 +33,17 @@ public class LevelGrid : MonoBehaviour
 				CellInteractor _cellInteractor = Instantiate(cellInteractorPrefab, new Vector3(x * cellSize, 0f, y * cellSize), Quaternion.identity).GetComponent<CellInteractor>();
 				_cellInteractor.transform.parent = transform;
 				_cellInteractor.gameObject.name = $"[{x}|{y}] Cell Interactor";
-				cells[x, y].cellInteractor = _cellInteractor;
+				cells[x, y].interactor = _cellInteractor;
 				_cellInteractor.levelCell = cells[x, y];
 			}
 		}
+	}
+
+	public static bool CheckCell(int x, int y)
+	{
+		if (x >= 0 && x < Instance.gridWidth && y >= 0 && y < Instance.gridHeight)
+			return true;
+		else return false;
 	}
 
 	#region Position Conversion

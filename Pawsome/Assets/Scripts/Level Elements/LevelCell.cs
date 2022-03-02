@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class LevelCell
 {
-	public Vector2 position;
+	public Vector2 worldPosition;
 
 	public bool isWall = false;
 
-	public CellInteractor cellInteractor;
+	public CellInteractor interactor;
 	public List<GameObject> objects = new List<GameObject>();
 
-	public LevelCell(float xPos, float yPos)
+	public LevelCell(float worldXPos, float worldYPos)
 	{
-		position = new Vector2(xPos, yPos);
+		worldPosition = new Vector2(worldXPos, worldYPos);
 	}
 }
