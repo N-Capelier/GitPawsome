@@ -6,6 +6,8 @@ public class LevelCell
 {
 	public Vector2 position;
 
+	public bool isWall = false;
+
 	public CellInteractor cellInteractor;
 	public List<GameObject> objects = new List<GameObject>();
 
