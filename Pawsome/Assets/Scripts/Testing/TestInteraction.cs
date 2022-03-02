@@ -7,6 +7,17 @@ public class TestInteraction : MonoBehaviour
 		BattleInputManager.Interaction += OnUserInteract;
 	}
 
+	private void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.R))
+		{
+			foreach(LevelCell _cell in LevelGrid.Instance.cells)
+			{
+				_cell.interactor.SetRendererColor(Color.blue);
+			}
+		}
+	}
+
 	private void OnUserInteract(CellInteractor interactor)
 	{
 		//interactor.SetRendererColor(Color.red);
