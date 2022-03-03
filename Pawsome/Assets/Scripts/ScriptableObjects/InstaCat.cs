@@ -7,6 +7,8 @@ public class InstaCat : ScriptableObject
 	[Space]
 	public Mesh mesh;
 	[Space]
+	public Class catClass;
+	[Space]
 	public int deckSize;
 	[Space]
 	public int baseHealth;
