@@ -39,6 +39,7 @@ public class TestInteraction : MonoBehaviour
 			for (int j = 0; j < LevelGrid.Instance.GetHeigth(); j++)
 			{
 				_cellsList.Add(new Vector2Int(i, j));
+				LevelGrid.Instance.cells[i, j].interactor.SetRendererColor(Color.blue);
 			}
 		}
 
