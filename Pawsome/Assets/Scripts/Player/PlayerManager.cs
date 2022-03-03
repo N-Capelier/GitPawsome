@@ -7,6 +7,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public string PlayerName = "Nyan Cat";
     public double CatFood;
     public double CatBell;
+    public InstaCat[] MesChats;
 
     private void Awake()
     {
