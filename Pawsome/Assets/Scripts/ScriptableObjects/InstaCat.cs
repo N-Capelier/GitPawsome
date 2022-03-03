@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "New InstaCat", menuName = "InstaCat", order = 50)]
 public class InstaCat : ScriptableObject
@@ -26,8 +27,17 @@ public class InstaCat : ScriptableObject
 	public int baseDefense;
 	public int bonusDefense;
 	[Space]
-	public int baseMoveSpeed;
-	public int bonusMoveSpeed;
+	public int baseMovePoints;
+	public int bonusMovePoints;
+
+	public List<Spell> spells = new List<Spell>();
+
+	[HideInInspector] public int health;
+	[HideInInspector] public int mana;
+	[HideInInspector] public int initiative;
+	[HideInInspector] public int attack;
+	[HideInInspector] public int defense;
+	[HideInInspector] public int movePoints;
 
 	public int GetHealth()
 	{
@@ -54,8 +64,8 @@ public class InstaCat : ScriptableObject
 		return baseDefense + bonusDefense;
 	}
 
-	public int GetMoveSpeed()
+	public int GetMovePoints()
 	{
-		return baseMoveSpeed + bonusMoveSpeed;
+		return baseMovePoints + bonusMovePoints;
 	}
 }

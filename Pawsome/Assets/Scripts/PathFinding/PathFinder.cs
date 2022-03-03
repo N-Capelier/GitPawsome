@@ -4,7 +4,7 @@ using UnityEngine;
 public class PathFinder
 {
 	LevelGrid grid;
-	bool canUseDiagonals;
+	bool allowDiagonals;
 
 	const int MOVE_STRAIGHT_COST = 10;
 	const int MOVE_DIAGONAL_COST = 14;
@@ -92,7 +92,7 @@ public class PathFinder
 		{
 			//left
 			_neighbourList.Add(new Vector2Int(_cell.x - 1, _cell.y));
-			if(canUseDiagonals)
+			if(allowDiagonals)
 			{
 				//left down
 				if (_cell.y - 1 >= 0) _neighbourList.Add(new Vector2Int(_cell.x - 1, _cell.y - 1));
@@ -104,7 +104,7 @@ public class PathFinder
 		{
 			//right
 			_neighbourList.Add(new Vector2Int(_cell.x + 1, _cell.y));
-			if(canUseDiagonals)
+			if(allowDiagonals)
 			{
 				//right down
 				if (_cell.y - 1 >= 0) _neighbourList.Add(new Vector2Int(_cell.x + 1, _cell.y - 1));
@@ -145,6 +145,6 @@ public class PathFinder
 	public PathFinder(LevelGrid _grid, bool _canUseDiagonals)
 	{
 		grid = _grid;
-		canUseDiagonals = _canUseDiagonals;
+		allowDiagonals = _canUseDiagonals;
 	}
 }

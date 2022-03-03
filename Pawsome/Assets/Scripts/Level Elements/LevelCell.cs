@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelCell
 {
-	public Vector2 worldPosition;
+	public Vector2 position;
 
 	public bool isWall = false;
 
@@ -21,6 +21,6 @@ public class LevelCell
 
 	public LevelCell(float worldXPos, float worldYPos)
 	{
-		worldPosition = new Vector2(worldXPos, worldYPos);
+		position = new Vector2(worldXPos, worldYPos);
 	}
 }
