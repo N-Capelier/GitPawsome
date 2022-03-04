@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class BuildingManager : Singleton<BuildingManager>
 {
@@ -23,6 +24,17 @@ public class BuildingManager : Singleton<BuildingManager>
     public TextMeshProUGUI UISecondPrice;
     public TextMeshProUGUI UIThirdPrice;
 
+    [Header("SpellGenerator")]
+    public GameObject SpellGeneratorMenu;
+    public SpellGenerator SpellBuilding;
+    public GameObject SpellCollection;
+    public GameObject SpellPrefb;
+
+
+    private void Awake()
+    {
+        CreateSingleton(true);
+    }
 
     //CatFood
     #region 
@@ -45,7 +57,7 @@ public class BuildingManager : Singleton<BuildingManager>
     public void UpdateCatFood()
     {
         GameManager.Instance.UpdateUI();
-        UILevel.text = "Level " + CatFoodBuilding.GetLevel().ToString();
+        UILevel.text = "Level " + CatFoodBuilding.level.ToString();
         UICreationTime.text = "Creation Time : " + CatFoodBuilding.CreationTime.ToString() + "s";
         UIProduction.text = "Production :" + CatFoodBuilding.FoodsPerCollection.ToString() + " Foods";
         UINextCreationTime.text = "Creation Time : " + (CatFoodBuilding.CreationTime - CatFoodBuilding.ReducedTime).ToString() + "s";
@@ -54,6 +66,7 @@ public class BuildingManager : Singleton<BuildingManager>
     }
     #endregion
 
+    //Invocation
     #region
 
     public void InvocationUI()
@@ -91,5 +104,47 @@ public class BuildingManager : Singleton<BuildingManager>
 
     #endregion
 
+    //SpellGenerator
+    #region
+
+    public void SpellGeneratorUI()
+    {
+        SpellGeneratorMenu.SetActive(true);
+    }
+    public void ExitSpellGenerator()
+    {
+        SpellGeneratorMenu.SetActive(false);
+    }
+    public void UpdateSpellGenerator()
+    {
+        if(SpellManager.Instance.Spells.Count < 1)
+        {
+            return;
+        }
+        for(int i = 0; i < SpellManager.Instance.Spells.Count; i++)
+        {
+            GameObject _button =  Instantiate(SpellPrefb, SpellCollection.transform);
+            _button.GetComponent<Image>().sprite = SpellManager.Instance.Spells[i].SpellSprite;
+            _button.GetComponent<SpellButton>().id = i;
+            _button.GetComponentInChildren<TextMeshProUGUI>().text = SpellManager.Instance.Spells[i].ProductionPrice.ToString();
+        }
+    }
+
+    public bool TryProduce(int i)
+    {
+        return SpellBuilding.TryProduce(SpellManager.Instance.Spells[i].ProductionPrice);
+    }
+    public double GetProductionTime(int i)
+    {
+        return SpellManager.Instance.Spells[i].ProductionTime;
+    }
+
+    public void ProductionDone(int i)
+    {
+        SpellBuilding.GenerateSpell(i);
+    }
+
+
+    #endregion
 
 }

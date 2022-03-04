@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
         UIName.text = PlayerManager.Instance.PlayerName;
         BuildingManager.Instance.UpdateCatFood();
         BuildingManager.Instance.UpdateInvocation();
+        BuildingManager.Instance.UpdateSpellGenerator();
     }
 
     public void UpdateUI()
