@@ -7,7 +7,7 @@ public class LevelGrid : Singleton<LevelGrid>
 	[Header("Params")]
 	[SerializeField] int gridWidth;
 	[SerializeField] int gridHeight;
-	[SerializeField] float cellSize = 1f;
+	float cellSize = 1f;
 
 	[Header("References")]
 	[SerializeField] GameObject cellInteractorPrefab;

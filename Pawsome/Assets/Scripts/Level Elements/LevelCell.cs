@@ -9,8 +9,9 @@ public class LevelCell
 	public bool isWall = false;
 
 	public CellInteractor interactor;
-	public List<GameObject> objects = new List<GameObject>();
+	public Entity entityOnCell;
 
+	//pathfinding
 	public int gCost, hCost, fCost;
 	public Vector2Int cameFromCell = new Vector2Int(100, 100);
 

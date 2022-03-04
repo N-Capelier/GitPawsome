@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ab692e4c5629f347ab9fcee926ea81f, type: 3}
-  m_Name: TestCat
+  m_Name: TestCat3
   m_EditorClassIdentifier: 
   catName: 
   mesh: {fileID: 0}
+  catClass: 0
   deckSize: 0
   baseHealth: 0
   bonusHealth: 0
@@ -25,5 +26,12 @@ MonoBehaviour:
   bonusAttack: 0
   baseDefense: 0
   bonusDefense: 0
-  baseMoveSpeed: 0
-  bonusMoveSpeed: 0
+  baseMovePoints: 0
+  bonusMovePoints: 0
+  spells: []
+  health: 0
+  mana: 0
+  initiative: 0
+  attack: 0
+  defense: 0
+  movePoints: 0

@@ -7,7 +7,7 @@ public class TestInteraction : MonoBehaviour
 
 	private void Start()
 	{
-		BattleInputManager.Interaction += OnUserInteract;
+		BattleInputManager.PrimaryInteraction += OnUserInteract;
 	}
 
 	private void Update()

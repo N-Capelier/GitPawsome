@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[System.Serializable]
 [CreateAssetMenu(fileName = "New InstaCat", menuName = "InstaCat", order = 50)]
 public class InstaCat : ScriptableObject
 {
