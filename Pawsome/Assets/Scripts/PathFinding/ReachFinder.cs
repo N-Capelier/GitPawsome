@@ -26,7 +26,8 @@ public class ReachFinder
 
 				if(Mathf.Abs(x - _startX) + Mathf.Abs(y - _startY) <= _scale && grid.CheckCell(x, y))
 				{
-					_result.Add(new Vector2Int(x, y));
+					if(!grid.cells[x, y].isWall && grid.cells[x, y].entityOnCell == null)
+						_result.Add(new Vector2Int(x, y));
 				}
 			}
 		}
@@ -49,7 +50,8 @@ public class ReachFinder
 
 				if(Vector2.Distance(new Vector2Int(x, y), _startPos) < _radius)
 				{
-					_result.Add(new Vector2Int(x, y));
+					if (!grid.cells[x, y].isWall && grid.cells[x, y].entityOnCell == null)
+						_result.Add(new Vector2Int(x, y));
 				}
 			}
 		}
@@ -67,7 +69,7 @@ public class ReachFinder
 			{
 				if (grid.CheckCell(_startX + _pointer, _startY - i))
 				{
-					if (!grid.cells[_startX + _pointer, _startY - i].isWall)
+					if (!grid.cells[_startX + _pointer, _startY - i].isWall && grid.cells[_startX + _pointer, _startY - i].entityOnCell == null)
 					{
 						_result.Add(new Vector2Int(_startX + _pointer, _startY - i));
 					}
@@ -75,7 +77,7 @@ public class ReachFinder
 
 				if (grid.CheckCell(_startX + _pointer, _startY + i))
 				{
-					if (!grid.cells[_startX + _pointer, _startY + i].isWall)
+					if (!grid.cells[_startX + _pointer, _startY + i].isWall && grid.cells[_startX + _pointer, _startY + i].entityOnCell == null)
 					{
 						_result.Add(new Vector2Int(_startX + _pointer, _startY + i));
 					}
@@ -83,7 +85,7 @@ public class ReachFinder
 
 				if (grid.CheckCell(_startX + i, _startY + _pointer))
 				{
-					if (!grid.cells[_startX + i, _startY + _pointer].isWall)
+					if (!grid.cells[_startX + i, _startY + _pointer].isWall && grid.cells[_startX + i, _startY + _pointer].entityOnCell == null)
 					{
 						_result.Add(new Vector2Int(_startX + i, _startY + _pointer));
 					}
@@ -91,7 +93,7 @@ public class ReachFinder
 
 				if (grid.CheckCell(_startX - i, _startY + _pointer))
 				{
-					if (!grid.cells[_startX - i, _startY + _pointer].isWall)
+					if (!grid.cells[_startX - i, _startY + _pointer].isWall && grid.cells[_startX - i, _startY + _pointer].entityOnCell == null)
 					{
 						_result.Add(new Vector2Int(_startX - i, _startY + _pointer));
 					}
@@ -116,7 +118,7 @@ public class ReachFinder
 		{
 			if(grid.CheckCell(_startX + i, _startY))
 			{
-				if (!grid.cells[_startX + i, _startY].isWall && _runXPositive)
+				if (!grid.cells[_startX + i, _startY].isWall && _runXPositive && grid.cells[_startX + i, _startY].entityOnCell == null)
 					_xPositive.Add(new Vector2Int(_startX + i, _startY));
 			}
 			else
@@ -126,7 +128,7 @@ public class ReachFinder
 
 			if(grid.CheckCell(_startX - i, _startY))
 			{
-				if (!grid.cells[_startX - i, _startY].isWall && _runXNegative)
+				if (!grid.cells[_startX - i, _startY].isWall && _runXNegative && grid.cells[_startX - i, _startY].entityOnCell == null)
 					_xNegative.Add(new Vector2Int(_startX - i, _startY));
 			}
 			else
@@ -136,7 +138,7 @@ public class ReachFinder
 
 			if(grid.CheckCell(_startX, _startY + i))
 			{
-				if (!grid.cells[_startX, _startY + i].isWall && _runYPositive)
+				if (!grid.cells[_startX, _startY + i].isWall && _runYPositive && grid.cells[_startX, _startY + i].entityOnCell == null)
 					_yPositive.Add(new Vector2Int(_startX, _startY + i));
 			}
 			else
@@ -146,7 +148,7 @@ public class ReachFinder
 
 			if(grid.CheckCell(_startX, _startY - i))
 			{
-				if (!grid.cells[_startX, _startY - i].isWall && _runYNegative)
+				if (!grid.cells[_startX, _startY - i].isWall && _runYNegative && grid.cells[_startX, _startY - i].entityOnCell == null)
 					_yNegative.Add(new Vector2Int(_startX, _startY - i));
 			}
 			else
