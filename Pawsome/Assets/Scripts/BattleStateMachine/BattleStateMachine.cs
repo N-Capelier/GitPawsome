@@ -30,20 +30,19 @@ public class BattleStateMachine : MonoStateMachine
 
 		turn++;
 		turnIndex++;
-		if(turnIndex > entities.Count)
+		if(turnIndex >= entities.Count)
 		{
 			turnIndex = 0;
 		}
 
 		entities[turnIndex].isPlaying = true;
-
 		if(entities[turnIndex].isPlayerEntity)
 		{
-			SetState("PlayerTurnState");
+			SetState("PlayerTurnState", true);
 		}
 		else
 		{
-			SetState("AITurnState");
+			SetState("AITurnState", true);
 		}
 	}
 
