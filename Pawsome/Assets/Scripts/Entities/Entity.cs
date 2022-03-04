@@ -11,11 +11,15 @@ public abstract class Entity : MonoBehaviour
 	[Header("References")]
 	[SerializeField] MeshRenderer objectRenderer;
 
+	[HideInInspector] public bool isPlayerEntity = false;
+	[HideInInspector] public bool isPlaying = false;
+
 	InstaCat instaCat;
 	public InstaCat InstaCat { get => instaCat; private set => instaCat = value; }
 
 	InstaCat instaCatRef;
 	public InstaCat InstaCatRef { get => instaCatRef; private set => instaCatRef = value; }
+
 
 	Coroutine moveAlongPathCoroutine = null;
 
@@ -30,10 +34,13 @@ public abstract class Entity : MonoBehaviour
 		instaCat.attack = instaCat.GetAttack();
 		instaCat.defense = instaCat.GetDefense();
 		instaCat.movePoints = instaCat.GetMovePoints();
+
+		//set renderer
 	}
 
 	public void MoveAlongPath(Vector2Int[] _path)
 	{
+		LevelGrid.Instance.cells[_path[0].x, _path[0].y].entityOnCell = null;
 		moveAlongPathCoroutine = StartCoroutine(MoveAlongPathCoroutine(_path));
 	}
 
@@ -54,6 +61,8 @@ public abstract class Entity : MonoBehaviour
 				yield return null;
 			}
 		}
+
+		LevelGrid.Instance.cells[_path[_path.Length - 1].x, _path[_path.Length - 1].y].entityOnCell = this;
 
 		yield return null;
 	}
