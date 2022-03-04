@@ -43,14 +43,15 @@ public class PlayerManager : Singleton<PlayerManager>
             MyBagSpell.Add(new SpellBag(TheSpell ,1));
             return;
         }
-        for(int i = 0; i > MyBagSpell.Count; i++)
+        foreach(SpellBag element in MyBagSpell)
         {
-            if(MyBagSpell[i].MySpell == TheSpell)
+            if(element.MySpell == TheSpell)
             {
-                MyBagSpell[i].InBag++;
+                element.InBag++;
                 return;
             }
         }
+        MyBagSpell.Add(new SpellBag(TheSpell, 1));
     }
     public bool UseSpell(Spell TheSpell)
     {
