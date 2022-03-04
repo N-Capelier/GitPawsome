@@ -16,14 +16,21 @@ public class CellInteractor : MonoBehaviour
 		material = meshRenderer.material;
 	}
 
-	public void SetRendererVisibility(bool _isVisible)
+	public void SetRendererVisible(bool _isVisible)
 	{
-		if (_isVisible) material.SetInt("isVisible", 1);
-		else material.SetInt("isVisible", 0);
+		//if (_isVisible) material.SetInt("isVisible", 1);
+		//else material.SetInt("isVisible", 0);
+
+		//if(_isVisible) material.set
 	}
 
 	public void SetRendererColor(Color _color)
 	{
 		material.SetColor("BaseColor", _color);
+	}
+
+	public void SetRendererAlpha(float _opacity)
+	{
+		material.SetFloat("Alpha", _opacity);
 	}
 }

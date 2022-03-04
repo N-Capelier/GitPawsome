@@ -376,7 +376,7 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -684.0,
+            "x": -684.0000610351563,
             "y": 377.0,
             "width": 106.0,
             "height": 34.0
@@ -519,7 +519,7 @@
     },
     "m_Name": "Alpha",
     "m_DefaultReferenceName": "Vector1_8ee95a88ddf2464897f8a5bbbda4a9f2",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "Alpha",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

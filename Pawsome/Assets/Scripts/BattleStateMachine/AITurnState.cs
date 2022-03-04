@@ -5,6 +5,7 @@ using UnityEngine;
 public class AITurnState : MonoState
 {
 	BattleStateMachine fsm;
+
 	public override void OnStateEnter()
 	{
 		Debug.Log("Enemy Turn");
@@ -27,8 +28,8 @@ public class AITurnState : MonoState
 
 	//}
 
-	//public override void OnStateExit()
-	//{
-
-	//}
+	public override void OnStateExit()
+	{
+		Debug.Log("End of Enemy Turn");
+	}
 }

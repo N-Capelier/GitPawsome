@@ -19,8 +19,8 @@ public class BattleInputManager : MonoBehaviour
     {
         CellHovering();
 
-        if (Input.GetMouseButtonDown(0)) OnRightClick();
-        if (Input.GetMouseButtonDown(1)) OnLeftClick();
+        if (Input.GetMouseButtonDown(1)) OnRightClick();
+        if (Input.GetMouseButtonDown(0)) OnLeftClick();
     }
 
     void OnLeftClick()
@@ -45,5 +45,9 @@ public class BattleInputManager : MonoBehaviour
             CellInteractor _interactor = _hit.transform.GetComponent<CellInteractor>();
             hoveredInteractor = _interactor;
         }
+        else
+		{
+            hoveredInteractor = null;
+		}
     }
 }

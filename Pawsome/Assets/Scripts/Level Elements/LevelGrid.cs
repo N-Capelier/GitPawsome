@@ -46,6 +46,17 @@ public class LevelGrid : Singleton<LevelGrid>
 		else return false;
 	}
 
+	public void HideAllInteractors()
+	{
+		for (int x = 0; x < gridWidth; x++)
+		{
+			for (int y = 0; y < gridHeight; y++)
+			{
+				cells[x, y].interactor.SetRendererAlpha(0f);
+			}
+		}
+	}
+
 	#region Position Conversion
 
 	public Vector2 GridToWorldPosition(Vector2 _gridPosition)
