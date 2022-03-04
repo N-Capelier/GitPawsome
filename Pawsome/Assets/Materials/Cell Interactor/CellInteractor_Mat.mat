@@ -32,8 +32,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - IsVisible: 0
+    - Alpha: 0
+    - IsVisible: 1
     - Vector1_8ee95a88ddf2464897f8a5bbbda4a9f2: 0.4
     m_Colors:
-    - BaseColor: {r: 0, g: 0, b: 1, a: 0}
+    - BaseColor: {r: 0, g: 0, b: 1, a: 1}
   m_BuildTextureStacks: []

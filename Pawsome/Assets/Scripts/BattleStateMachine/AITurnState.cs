@@ -7,7 +7,6 @@ public class AITurnState : MonoState
 	BattleStateMachine fsm;
 	public override void OnStateEnter()
 	{
-		Debug.Log("Enemy Turn");
 		fsm = StateMachine as BattleStateMachine;
 		fsm.PlayNextTurn();
 	}

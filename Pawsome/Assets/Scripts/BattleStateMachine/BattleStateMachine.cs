@@ -16,7 +16,12 @@ public class BattleStateMachine : MonoStateMachine
 	[HideInInspector] public List<Entity> entities = new List<Entity>();
 
 	int turn = 0;
-	int turnIndex = -1;
+	[HideInInspector] public int turnIndex = -1;
+
+	public delegate void SpellInputHandler(Spell _spell);
+	public static event SpellInputHandler Spell1;
+	public static event SpellInputHandler Spell2;
+	public static event SpellInputHandler Spell3;
 
 	public void PlayNextTurn()
 	{
@@ -41,4 +46,31 @@ public class BattleStateMachine : MonoStateMachine
 			SetState("AITurnState");
 		}
 	}
+
+	public void EndTurnButton()
+	{
+		if(ActiveState.StateName == "PlayerTurnState")
+		{
+			PlayNextTurn();
+		}
+	}
+
+	public void InputSpell1()
+	{
+		if(ActiveState.StateName == "PlayerTurnState")
+			Spell1?.Invoke(null);
+	}
+
+	public void InputSpell2()
+	{
+		if (ActiveState.StateName == "PlayerTurnState")
+			Spell2?.Invoke(null);
+	}
+
+	public void InputSpell3()
+	{
+		if (ActiveState.StateName == "PlayerTurnState")
+			Spell3?.Invoke(null);
+	}
+
 }
