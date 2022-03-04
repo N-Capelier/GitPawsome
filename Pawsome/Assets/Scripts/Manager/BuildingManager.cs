@@ -35,7 +35,7 @@ public class BuildingManager : Singleton<BuildingManager>
     public GameObject CatPartMenu;
     public GameObject SpellPartMenu;
     public SpellGenerator DeckBuildingBuilding;
-    public GameObject SpellBag;
+    public GameObject spellBag;
     public GameObject SpellCardPrefb;
     public GameObject CatBag;
     public GameObject CatCardPrefb;
@@ -162,26 +162,44 @@ public class BuildingManager : Singleton<BuildingManager>
 
     public void OpenDeckBuildingUI()
     {
-        SpellGeneratorMenu.SetActive(true);
+        DeckBuildingMenu.SetActive(true);
     }
     public void ExitDeckBuilding()
     {
-        SpellGeneratorMenu.SetActive(false);
+        DeckBuildingMenu.SetActive(false);
     }
-    public void UpdateDeckBuilding()
-    {
-        /*
-        if(SpellManager.Instance.Spells.Count < 1)
+    public void UpdateCatDeckBuilding()
+    {  
+        if(CatManager.Instance.Cats.Count < 1)
         {
             return;
         }
-        for(int i = 0; i < SpellManager.Instance.Spells.Count; i++)
+        for(int i = 0; i < CatManager.Instance.Cats.Count; i++)
         {
-            GameObject _button =  Instantiate(SpellPrefb, SpellCollection.transform);
-            _button.GetComponent<Image>().sprite = SpellManager.Instance.Spells[i].SpellSprite;
-            _button.GetComponent<SpellButton>().id = i;
-            _button.GetComponentInChildren<TextMeshProUGUI>().text = SpellManager.Instance.Spells[i].ProductionPrice.ToString();
-        }*/
+            GameObject _button =  Instantiate(CatCardPrefb, CatBag.transform);
+            _button.GetComponent<Image>().sprite = CatManager.Instance.Cats[i].CatSprite;
+        }
+    }
+    public void UpdateSpellDeckBuilding()
+    {
+        Debug.Log(PlayerManager.Instance.MyBagSpell.Count);
+        if(PlayerManager.Instance.MyBagSpell.Count < 1)
+        {
+            return;
+        }
+        for (int i = spellBag.transform.childCount; i > 0; i--)
+        {
+            Destroy(spellBag.transform.GetChild(i-1).gameObject);
+        }
+
+
+        for (int i = 0; i < PlayerManager.Instance.MyBagSpell.Count; i++)
+        {
+            
+            GameObject _button =  Instantiate(SpellCardPrefb, spellBag.transform);
+            _button.GetComponent<Image>().sprite = PlayerManager.Instance.MyBagSpell[i].MySpell.SpellSprite;
+            _button.GetComponentInChildren<TextMeshProUGUI>().text = "x" + PlayerManager.Instance.MyBagSpell[i].InBag.ToString();
+        }
     }
     public void OpenCatPartUI()
     {

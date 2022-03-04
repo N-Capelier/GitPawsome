@@ -16,5 +16,6 @@ public class SpellGenerator : MonoBehaviour
     public void GenerateSpell(int SpellId)
     {
         PlayerManager.Instance.AddSpell(SpellManager.Instance.Spells[SpellId]);
+        BuildingManager.Instance.UpdateSpellDeckBuilding();
     }
 }

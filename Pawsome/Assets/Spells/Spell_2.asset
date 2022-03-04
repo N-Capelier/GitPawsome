@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255d2eebb1fe3f44089b24d629339cc5, type: 3}
   m_Name: Spell_2
   m_EditorClassIdentifier: 
-  SpellName: LightDancer
+  SpellName: Waaa
   SpellSprite: {fileID: 21300000, guid: 1b188b595275ef447a1455c2a416d83d, type: 3}
   ManaUsed: 55
   BaseAttack: 2

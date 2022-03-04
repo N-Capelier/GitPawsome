@@ -17,6 +17,8 @@ public class GameManager : Singleton<GameManager>
         BuildingManager.Instance.UpdateCatFood();
         BuildingManager.Instance.UpdateInvocation();
         BuildingManager.Instance.UpdateSpellGenerator();
+        BuildingManager.Instance.UpdateCatDeckBuilding();
+        BuildingManager.Instance.UpdateSpellDeckBuilding();
     }
 
     public void UpdateUI()
