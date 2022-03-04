@@ -29,6 +29,16 @@ public class BuildingManager : Singleton<BuildingManager>
     public SpellGenerator SpellBuilding;
     public GameObject SpellCollection;
     public GameObject SpellPrefb;
+    
+    [Header("DeckBuilding")]
+    public GameObject DeckBuildingMenu;
+    public GameObject CatPartMenu;
+    public GameObject SpellPartMenu;
+    public SpellGenerator DeckBuildingBuilding;
+    public GameObject SpellBag;
+    public GameObject SpellCardPrefb;
+    public GameObject CatBag;
+    public GameObject CatCardPrefb;
 
 
     private void Awake()
@@ -38,7 +48,7 @@ public class BuildingManager : Singleton<BuildingManager>
 
     //CatFood
     #region 
-    public void CatFoodUI()
+    public void OpenCatFoodUI()
     {
         CatFoodMenu.SetActive(true);
     }
@@ -69,7 +79,7 @@ public class BuildingManager : Singleton<BuildingManager>
     //Invocation
     #region
 
-    public void InvocationUI()
+    public void OpenInvocationUI()
     {
         InvocationMenu.SetActive(true);
     }
@@ -107,7 +117,7 @@ public class BuildingManager : Singleton<BuildingManager>
     //SpellGenerator
     #region
 
-    public void SpellGeneratorUI()
+    public void OpenSpellGeneratorUI()
     {
         SpellGeneratorMenu.SetActive(true);
     }
@@ -144,6 +154,45 @@ public class BuildingManager : Singleton<BuildingManager>
         SpellBuilding.GenerateSpell(i);
     }
 
+
+    #endregion
+
+    //DeckBuilding
+    #region
+
+    public void OpenDeckBuildingUI()
+    {
+        SpellGeneratorMenu.SetActive(true);
+    }
+    public void ExitDeckBuilding()
+    {
+        SpellGeneratorMenu.SetActive(false);
+    }
+    public void UpdateDeckBuilding()
+    {
+        /*
+        if(SpellManager.Instance.Spells.Count < 1)
+        {
+            return;
+        }
+        for(int i = 0; i < SpellManager.Instance.Spells.Count; i++)
+        {
+            GameObject _button =  Instantiate(SpellPrefb, SpellCollection.transform);
+            _button.GetComponent<Image>().sprite = SpellManager.Instance.Spells[i].SpellSprite;
+            _button.GetComponent<SpellButton>().id = i;
+            _button.GetComponentInChildren<TextMeshProUGUI>().text = SpellManager.Instance.Spells[i].ProductionPrice.ToString();
+        }*/
+    }
+    public void OpenCatPartUI()
+    {
+        CatPartMenu.SetActive(true);
+        SpellPartMenu.SetActive(false);
+    }
+    public void OpenSpellPartUI()
+    {
+        CatPartMenu.SetActive(false);
+        SpellPartMenu.SetActive(true);
+    }
 
     #endregion
 
