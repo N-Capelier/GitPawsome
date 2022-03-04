@@ -4,28 +4,31 @@ using UnityEngine;
 
 public class AITurnState : MonoState
 {
-//public override void OnStateEnter()
-//{
+	BattleStateMachine fsm;
+	public override void OnStateEnter()
+	{
+		Debug.Log("Enemy Turn");
+		fsm = StateMachine as BattleStateMachine;
+		fsm.PlayNextTurn();
+	}
 
-//}
+	//public override void OnStateUpdate()
+	//{
 
-//public override void OnStateUpdate()
-//{
+	//}
 
-//}
+	//public override void OnStateFixedUpdate()
+	//{
 
-//public override void OnStateFixedUpdate()
-//{
+	//}
 
-//}
+	//public override void OnStateLateUpdate()
+	//{
 
-//public override void OnStateLateUpdate()
-//{
+	//}
 
-//}
+	//public override void OnStateExit()
+	//{
 
-//public override void OnStateExit()
-//{
-
-//}
+	//}
 }

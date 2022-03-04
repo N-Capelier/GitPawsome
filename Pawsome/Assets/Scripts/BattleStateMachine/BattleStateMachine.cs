@@ -14,4 +14,31 @@ public class BattleStateMachine : MonoStateMachine
 	public InstaCat[] AICats;
 
 	[HideInInspector] public List<Entity> entities = new List<Entity>();
+
+	int turn = 0;
+	int turnIndex = -1;
+
+	public void PlayNextTurn()
+	{
+		if(turnIndex > -1)
+			entities[turnIndex].isPlaying = false;
+
+		turn++;
+		turnIndex++;
+		if(turnIndex > entities.Count)
+		{
+			turnIndex = 0;
+		}
+
+		entities[turnIndex].isPlaying = true;
+
+		if(entities[turnIndex].isPlayerEntity)
+		{
+			SetState("PlayerTurnState");
+		}
+		else
+		{
+			SetState("AITurnState");
+		}
+	}
 }
