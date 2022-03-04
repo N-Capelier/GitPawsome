@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255d2eebb1fe3f44089b24d629339cc5, type: 3}
+  m_Name: Spell_5
+  m_EditorClassIdentifier: 
+  SpellName: LightDancer
+  SpellSprite: {fileID: 21300000, guid: 1b188b595275ef447a1455c2a416d83d, type: 3}
+  ManaUsed: 55
+  BaseAttack: 2
+  RangeType: 1
+  ProductionPrice: 456
+  ProductionTime: 1200
+  Range: 1
+  Description: la carte est trop op
+  SpellClass: 1

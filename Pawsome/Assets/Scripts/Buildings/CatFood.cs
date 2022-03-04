@@ -13,7 +13,7 @@ public class CatFood : MonoBehaviour
     public float PriceMultiplier;
     public float CatFoodMultiplier;
     public int ReducedTime;
-    private int level = 1;
+    public int level = 1;
 
     [Header("Cat")]
     public GameObject WorkingCat;
@@ -37,7 +37,6 @@ public class CatFood : MonoBehaviour
         CanCollect = false;
         LastTimeCollect = Time.time;
         PlayerManager.Instance.IncrementCatFood(FoodsPerCollection);
-        GameManager.Instance.UpdateUI();
     }
 
     public bool TryUpgrade()
@@ -48,7 +47,6 @@ public class CatFood : MonoBehaviour
     {
         return level;
     }
-
     public void Upgraded()
     {
         PlayerManager.Instance.IncrementCatFood(-LevelUpPrice);

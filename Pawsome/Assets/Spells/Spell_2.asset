@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 255d2eebb1fe3f44089b24d629339cc5, type: 3}
-  m_Name: New Spell
+  m_Name: Spell_2
   m_EditorClassIdentifier: 
-  SpellName: 
-  ManaUsed: 0
-  BaseAttack: 0
-  RangeType: 0
-  Range: 0
-  Description: 
-  SpellClass: 0
+  SpellName: LightDancer
+  SpellSprite: {fileID: 21300000, guid: 1b188b595275ef447a1455c2a416d83d, type: 3}
+  ManaUsed: 55
+  BaseAttack: 2
+  RangeType: 1
+  ProductionPrice: 59
+  ProductionTime: 3
+  Range: 1
+  Description: la carte est trop op
+  SpellClass: 1

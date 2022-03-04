@@ -18,7 +18,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public string PlayerName = "Nyan Cat";
     public double CatFood;
     public double CatBell;
-    public InstaCat[] MyCats;
+    public List<InstaCat> MyCats;
     public List<SpellBag> MyBagSpell = new List<SpellBag>();
 
     private void Awake()
@@ -29,10 +29,12 @@ public class PlayerManager : Singleton<PlayerManager>
     public void IncrementCatFood(double x)
     {
         CatFood += x;
+        GameManager.Instance.UpdateUI();
     }
     public void IncrementCatBell(double x)
     {
         CatBell += x;
+        GameManager.Instance.UpdateUI();
     }
     public void AddSpell(Spell TheSpell)
     {
@@ -65,6 +67,10 @@ public class PlayerManager : Singleton<PlayerManager>
             }
         }
         return false;
+    }
+    public void AddCat(InstaCat Cat)
+    {
+        MyCats.Add(Cat);
     }
     
 
