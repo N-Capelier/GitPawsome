@@ -1,30 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class BattleInputManager : MonoBehaviour
 {
-	[SerializeField] LayerMask interactionLayer;
+    [SerializeField] LayerMask interactionLayer;
 
-	public delegate void InteractionHandler(CellInteractor interactor);
-	public static event InteractionHandler Interaction;
+    public delegate void InteractionHandler(CellInteractor interactor);
+    public static event InteractionHandler PrimaryInteraction;
+    public static event InteractionHandler SecondaryInteraction;
 
-	private void Update()
-	{
-		if(Input.GetMouseButtonDown(0))
-		{
-			RayCastFromCamera();
-		}
-	}
-	void RayCastFromCamera()
-	{
-		RaycastHit _hit;
-		Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    [ReadOnly]
+    public CellInteractor hoveredInteractor;
 
-		if(Physics.Raycast(_ray, out _hit, Mathf.Infinity, interactionLayer))
-		{
-			CellInteractor _interactor = _hit.transform.GetComponent<CellInteractor>();
-			Interaction?.Invoke(_interactor);
-		}
-	}
+    private void Update()
+    {
+        CellHovering();
+
+        if (Input.GetMouseButtonDown(0)) OnRightClick();
+        if (Input.GetMouseButtonDown(1)) OnLeftClick();
+    }
+
+    void OnLeftClick()
+    {
+        if (hoveredInteractor != null)
+            PrimaryInteraction?.Invoke(hoveredInteractor);
+    }
+
+    void OnRightClick()
+    {
+        if (hoveredInteractor != null)
+            SecondaryInteraction?.Invoke(hoveredInteractor);
+    }
+
+    void CellHovering()
+    {
+        RaycastHit _hit;
+        Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(_ray, out _hit, Mathf.Infinity, interactionLayer))
+        {
+            CellInteractor _interactor = _hit.transform.GetComponent<CellInteractor>();
+            hoveredInteractor = _interactor;
+        }
+    }
 }

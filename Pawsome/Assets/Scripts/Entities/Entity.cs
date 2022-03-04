@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
+	[Header("Params")]
+	[SerializeField] float moveDuration = 10f;
+
 	[Header("References")]
 	[SerializeField] MeshRenderer objectRenderer;
 
@@ -13,15 +17,84 @@ public abstract class Entity : MonoBehaviour
 	InstaCat instaCatRef;
 	public InstaCat InstaCatRef { get => instaCatRef; private set => instaCatRef = value; }
 
+	Coroutine moveAlongPathCoroutine = null;
+
 	public void Init(InstaCat _instaCat)
 	{
 		instaCat = Instantiate(_instaCat);
+		instaCatRef = _instaCat;
+
+		instaCat.health = instaCat.GetHealth();
+		instaCat.mana = instaCat.GetMana();
+		instaCat.initiative = instaCat.GetInitiative();
+		instaCat.attack = instaCat.GetAttack();
+		instaCat.defense = instaCat.GetDefense();
+		instaCat.movePoints = instaCat.GetMovePoints();
 	}
 
-	public bool TakeDamage(int _damages)
+	public void MoveAlongPath(Vector2Int[] _path)
 	{
+		moveAlongPathCoroutine = StartCoroutine(MoveAlongPathCoroutine(_path));
+	}
 
+	IEnumerator MoveAlongPathCoroutine(Vector2Int[] _path)
+	{
+		for (int i = 1; i < _path.Length; i++)
+		{
+			float _completion = 0f;
+			float _elapsedTime = 0f;
+			Vector3 _startPos = transform.position;
+			Vector3 _targetPos = new Vector3(_path[i].x, 0f, _path[i].y);
 
-		return false;
+			while(_completion <= 1f)
+			{
+				_elapsedTime += Time.deltaTime;
+				_completion = _elapsedTime / moveDuration;
+				transform.position = Vector3.Lerp(_startPos, _targetPos, _completion);
+				yield return null;
+			}
+		}
+
+		yield return null;
+	}
+
+	public bool IsMoving()
+	{
+		if(moveAlongPathCoroutine == null)
+			return false;
+		else
+			return true;
+	}
+
+	public void TakeDamage(int _damages)
+	{
+		//Apply defense to _damages
+
+		if(_damages > instaCat.health)
+		{
+			instaCat.health = 0;
+			Death();
+		}
+		else
+		{ 
+			instaCat.health -= _damages;
+		}
+	}
+
+	public void Heal(int _amount)
+	{
+		if(_amount > instaCatRef.GetHealth())
+		{
+			instaCat.health = instaCatRef.GetHealth();
+		}
+		else
+		{
+			instaCat.health += _amount;
+		}
+	}
+
+	private void Death()
+	{
+		//
 	}
 }

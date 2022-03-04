@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class LevelCell
 {
-	public Vector2 worldPosition;
+	public Vector2 position;
 
 	public bool isWall = false;
 
 	public CellInteractor interactor;
-	public List<GameObject> objects = new List<GameObject>();
+	public Entity entityOnCell;
 
+	//pathfinding
 	public int gCost, hCost, fCost;
 	public Vector2Int cameFromCell = new Vector2Int(100, 100);
 
@@ -21,6 +22,6 @@ public class LevelCell
 
 	public LevelCell(float worldXPos, float worldYPos)
 	{
-		worldPosition = new Vector2(worldXPos, worldYPos);
+		position = new Vector2(worldXPos, worldYPos);
 	}
 }
