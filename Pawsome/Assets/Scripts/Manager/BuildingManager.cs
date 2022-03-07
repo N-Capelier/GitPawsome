@@ -39,6 +39,14 @@ public class BuildingManager : Singleton<BuildingManager>
     public GameObject SpellCardPrefb;
     public GameObject CatBag;
     public GameObject CatCardPrefb;
+    public int WichCat = 1;
+    public List<InstaCat> CatsDeck;
+    public GameObject NoSpellPrefab;
+    public Sprite NoCatPrefab;
+    //CatDeck
+    public List<GameObject> CatUI;
+    public List<GameObject> CatImage;
+    public List<GameObject> CatSpells;
 
 
     private void Awake()
@@ -168,16 +176,26 @@ public class BuildingManager : Singleton<BuildingManager>
     {
         DeckBuildingMenu.SetActive(false);
     }
+
+    //Inventory Part
+    #region
     public void UpdateCatDeckBuilding()
     {  
-        if(CatManager.Instance.Cats.Count < 1)
+        if(PlayerManager.Instance.MyCatBag.Count < 1)
         {
+            Debug.Log(PlayerManager.Instance.MyCatBag.Count);
             return;
         }
-        for(int i = 0; i < CatManager.Instance.Cats.Count; i++)
+        for(int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
         {
-            GameObject _button =  Instantiate(CatCardPrefb, CatBag.transform);
-            _button.GetComponent<Image>().sprite = CatManager.Instance.Cats[i].CatSprite;
+            if(PlayerManager.Instance.MyCatBag[i].InUse == false)
+            {
+
+                Debug.Log("CHEHHHHHHHHHHHHHHH");
+                GameObject _button =  Instantiate(CatCardPrefb, CatBag.transform);
+                _button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
+                _button.GetComponent<CatInventoryButton>().id = i;
+            }
         }
     }
     public void UpdateSpellDeckBuilding()
@@ -203,6 +221,7 @@ public class BuildingManager : Singleton<BuildingManager>
     }
     public void OpenCatPartUI()
     {
+        UpdateCatDeckBuilding();
         CatPartMenu.SetActive(true);
         SpellPartMenu.SetActive(false);
     }
@@ -211,6 +230,81 @@ public class BuildingManager : Singleton<BuildingManager>
         CatPartMenu.SetActive(false);
         SpellPartMenu.SetActive(true);
     }
+    #endregion
+    //DeckPart
+    #region
+
+    public void UpdateCatDeck(int k, bool NoCat)
+    {
+        
+        if (CatsDeck.Count < WichCat || NoCat)
+        {
+            CatImage[k].GetComponent<Image>().sprite = NoCatPrefab;
+            for (int i = 0; i < 8; i++)
+            {
+                GameObject _button = Instantiate(NoSpellPrefab, CatSpells[k].transform);
+            }
+            return;
+        }
+        CatImage[k].GetComponent<Image>().sprite = CatsDeck[k].CatSprite;
+        
+        for (int i = CatSpells[k].transform.childCount; i > 0; i--)
+        {
+            Destroy(CatSpells[k].transform.GetChild(i - 1).gameObject);
+        }
+
+        for (int i = 0; i < CatsDeck[k].spells.Count; i++)
+        {
+            GameObject _button = Instantiate(SpellCardPrefb, CatSpells[k].transform);
+            _button.GetComponent<Image>().sprite = CatsDeck[k].spells[i].SpellSprite;
+        }
+        for (int i = CatsDeck[k].spells.Count; i < CatsDeck[k].deckSize; i++)
+        {
+            GameObject _button = Instantiate(NoSpellPrefab, CatSpells[k].transform);
+        }
+
+
+    }
+    public void OpenCat1UI()
+    {
+        WichCat = 1;
+        CatUI[0].SetActive(true);
+        CatUI[1].SetActive(false);
+        CatUI[2].SetActive(false);
+    }
+    public void OpenCat2UI()
+    {
+        if (CatsDeck.Count >= WichCat)
+        {
+            WichCat = 2;
+            CatUI[0].SetActive(false);
+            CatUI[1].SetActive(true);
+            CatUI[2].SetActive(false);
+        }
+    }
+    public void OpenCat3UI()
+    {
+        if (CatsDeck.Count >= WichCat)
+        {
+            WichCat = 3;
+            CatUI[0].SetActive(false);
+            CatUI[1].SetActive(false);
+            CatUI[2].SetActive(true);
+        }
+    }
+
+    public void CatUse(int i)
+    {
+        PlayerManager.Instance.UseCat(i, true);
+        CatImage[WichCat - 1].GetComponent<CatDeckButton>().ReceieveCat(i);
+    }
+    public void DontWannaUseCat(int i)
+    {
+        PlayerManager.Instance.UseCat(i, false);
+    }
+
+
+    #endregion
 
     #endregion
 
