@@ -12,13 +12,23 @@ public class SpellBag
         this.InBag = i;
     }
 }
+public class CatBag
+{
+    public InstaCat MyCat;
+    public bool InUse;
+    public CatBag(InstaCat theCat, bool used)
+    {
+        this.MyCat = theCat;
+        this.InUse = used;
+    }
+}
 
 public class PlayerManager : Singleton<PlayerManager>
 {
     public string PlayerName = "Nyan Cat";
     public double CatFood;
     public double CatBell;
-    public List<InstaCat> MyCats;
+    public List<CatBag> MyCatBag = new List<CatBag>();
     public List<SpellBag> MyBagSpell = new List<SpellBag>();
 
     private void Awake()
@@ -69,10 +79,20 @@ public class PlayerManager : Singleton<PlayerManager>
         }
         return false;
     }
-    public void AddCat(InstaCat Cat)
+    public void AddCat(InstaCat newCat)
     {
-        MyCats.Add(Cat);
+        MyCatBag.Add(new CatBag(newCat, false));
     }
-    
+
+    public void UseCat(int CatIndice, bool WannaUse)
+    {
+        if(MyCatBag[CatIndice].InUse == !WannaUse)
+        {
+            MyCatBag[CatIndice].InUse = WannaUse;
+            return;
+        }
+        
+    }
+
 
 }
