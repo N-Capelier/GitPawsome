@@ -18,10 +18,8 @@ public class BattleStateMachine : MonoStateMachine
 	int turn = 0;
 	[HideInInspector] public int turnIndex = -1;
 
-	public delegate void SpellInputHandler(Spell _spell);
-	public static event SpellInputHandler Spell1;
-	public static event SpellInputHandler Spell2;
-	public static event SpellInputHandler Spell3;
+	public delegate void SpellInputHandler(int _spellIndex);
+	public static event SpellInputHandler SelectSpell;
 
 	public void PlayNextTurn()
 	{
@@ -57,19 +55,19 @@ public class BattleStateMachine : MonoStateMachine
 	public void InputSpell1()
 	{
 		if(ActiveState.StateName == "PlayerTurnState")
-			Spell1?.Invoke(null);
+			SelectSpell?.Invoke(1);
 	}
 
 	public void InputSpell2()
 	{
 		if (ActiveState.StateName == "PlayerTurnState")
-			Spell2?.Invoke(null);
+			SelectSpell?.Invoke(2);
 	}
 
 	public void InputSpell3()
 	{
 		if (ActiveState.StateName == "PlayerTurnState")
-			Spell3?.Invoke(null);
+			SelectSpell?.Invoke(3);
 	}
 
 }

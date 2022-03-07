@@ -21,6 +21,12 @@ public abstract class Entity : MonoBehaviour
 	public InstaCat InstaCatRef { get => instaCatRef; private set => instaCatRef = value; }
 
 
+	[HideInInspector] public List<Spell> spells = new List<Spell>();
+
+	[HideInInspector] public List<Spell> hand = new List<Spell>();
+
+	[HideInInspector] public List<Spell> discardPile = new List<Spell>();
+
 	Coroutine moveAlongPathCoroutine = null;
 
 	public void Init(InstaCat _instaCat)
@@ -34,6 +40,20 @@ public abstract class Entity : MonoBehaviour
 		instaCat.attack = instaCat.GetAttack();
 		instaCat.defense = instaCat.GetDefense();
 		instaCat.movePoints = instaCat.GetMovePoints();
+
+		foreach(Spell _spell in instaCat.spells)
+		{
+			spells.Add(Instantiate(_spell));
+		}
+		InstaCat.spells = new List<Spell>();
+		spells.Shuffle();
+
+		//create hand
+		for (int i = 0; i < 3; i++)
+		{
+			hand.Add(spells[0]);
+			spells.RemoveAt(0);
+		}
 
 		//set renderer
 	}

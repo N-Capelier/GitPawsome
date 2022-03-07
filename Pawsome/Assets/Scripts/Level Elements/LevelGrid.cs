@@ -30,7 +30,7 @@ public class LevelGrid : Singleton<LevelGrid>
 			{
 				cells[x, y] = new LevelCell(x * cellSize, y * cellSize);
 
-				CellInteractor _cellInteractor = Instantiate(cellInteractorPrefab, new Vector3(x * cellSize, -.5f, y * cellSize), Quaternion.identity).GetComponent<CellInteractor>();
+				CellInteractor _cellInteractor = Instantiate(cellInteractorPrefab, new Vector3(x * cellSize, -0.047f, y * cellSize), Quaternion.identity).GetComponent<CellInteractor>();
 				_cellInteractor.transform.parent = transform;
 				_cellInteractor.gameObject.name = $"[{x}|{y}] Cell Interactor";
 				cells[x, y].interactor = _cellInteractor;
