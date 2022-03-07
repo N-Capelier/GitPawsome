@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using System;
 
 public class BattleStateMachine : MonoStateMachine
 {
 	[Header("References")]
 	public GameObject playerPrefab;
 	public GameObject enemyPrefab;
+	public BattleUIMode battleUIMode;
 
 	[Header("Params")]
 	[HideInInspector] public InstaCat[] playerCats;
@@ -21,10 +23,15 @@ public class BattleStateMachine : MonoStateMachine
 	public delegate void SpellInputHandler(int _spellIndex);
 	public static event SpellInputHandler SelectSpell;
 
+	public Action EnterTurn;
+
 	public void PlayNextTurn()
 	{
 		if(turnIndex > -1)
+		{
 			entities[turnIndex].isPlaying = false;
+			EnterTurn?.Invoke();
+		}
 
 		turn++;
 		turnIndex++;

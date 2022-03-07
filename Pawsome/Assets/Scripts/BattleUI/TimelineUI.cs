@@ -48,11 +48,11 @@ public class TimelineUI : MonoBehaviour
         UpdateTimeLineControl();
     }
 
-    public void OnMount(List<InstaCat> orderedEntities)
+    public void OnMount(List<Entity> orderedEntities)
     {
         allPortraits = new List<TimelinePortrait>();
 
-        foreach (InstaCat entity in orderedEntities)
+        foreach (Entity entity in orderedEntities)
         {
             var por = Instantiate(portraitTemplate, portraitCollectionRoot);
             allPortraits.Add(por);
@@ -69,7 +69,7 @@ public class TimelineUI : MonoBehaviour
         //BattleManager.OnCollectionChanged -= UpDateTimeLine;
     }
 
-    void UpdateTimeline(List<InstaCat> orderedEntities)
+    void UpdateTimeline(List<Entity> orderedEntities)
     {
         var firstPor = allPortraits.First();
 
