@@ -39,6 +39,8 @@ public class InitBattleState : MonoState
 		fsm.entities = fsm.entities.OrderBy(x => x.InstaCat.initiative).ToList();
 		fsm.entities.Reverse();
 
+
+
 		fsm.PlayNextTurn();
 	}
 

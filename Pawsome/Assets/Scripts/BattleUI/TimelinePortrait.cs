@@ -17,9 +17,9 @@ public class TimelinePortrait : MonoBehaviour
     [SerializeField]
     bool isMain;
     [SerializeField, ReadOnly]
-    InstaCat linkedEntity;
+    Entity linkedEntity;
 
-    public void OnMount(InstaCat _linkedEntity)
+    public void OnMount(Entity _linkedEntity)
     {
         //linkedEntity = _linkedEntity;
         //battleManager.TurnChanged += OnTurnChange
