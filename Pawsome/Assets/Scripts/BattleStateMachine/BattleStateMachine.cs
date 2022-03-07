@@ -51,6 +51,18 @@ public class BattleStateMachine : MonoStateMachine
 		}
 	}
 
+	public void RemoveEntity(Entity _entity)
+	{
+		for (int i = 0; i < entities.Count; i++)
+		{
+			if (entities[i] == _entity)
+			{
+				entities.RemoveAt(i);
+				return;
+			}
+		}
+	}
+
 	public void EndTurnButton()
 	{
 		if(ActiveState.StateName == "PlayerTurnState")

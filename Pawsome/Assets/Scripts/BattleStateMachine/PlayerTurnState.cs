@@ -15,7 +15,6 @@ public class PlayerTurnState : MonoState
 
 	public override void OnStateEnter()
 	{
-		Debug.Log("Player Turn");
 		fsm = StateMachine as BattleStateMachine;
 		activeEntity = fsm.entities[fsm.turnIndex] as PlayerEntity;
 
@@ -100,7 +99,11 @@ public class PlayerTurnState : MonoState
 				{
 					//Deal damages to target
 					Debug.Log(interactor.levelCell.entityOnCell.InstaCat.catName + " lost 5 health points");
-					interactor.levelCell.entityOnCell.TakeDamage(5);
+					if(interactor.levelCell.entityOnCell.TakeDamage(5))
+					{
+						fsm.RemoveEntity(interactor.levelCell.entityOnCell);
+						interactor.levelCell.entityOnCell.Death();
+					}
 				}
 				break;
 			}
@@ -202,6 +205,5 @@ public class PlayerTurnState : MonoState
 		BattleInputManager.PrimaryInteraction -= OnClickSelf;
 
 		BattleStateMachine.SelectSpell -= OnEquipSpell;
-		Debug.Log("End of Player Turn");
 	}
 }

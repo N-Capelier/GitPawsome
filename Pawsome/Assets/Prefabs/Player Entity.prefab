@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 0.1
-  objectRenderer: {fileID: 0}
+  objectRenderer: {fileID: 6652235060871519523}
   isPlayerEntity: 0
   isPlaying: 0
-  spells: []
+  deck: []
   hand: []
   discardPile: []
 --- !u!1001 &5445108321038614951
@@ -127,5 +127,10 @@ PrefabInstance:
 --- !u!4 &5483783828079814220 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed7648dfb73e0084c9a8a5718764b114, type: 3}
+  m_PrefabInstance: {fileID: 5445108321038614951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6652235060871519523 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: ed7648dfb73e0084c9a8a5718764b114, type: 3}
   m_PrefabInstance: {fileID: 5445108321038614951}
   m_PrefabAsset: {fileID: 0}
