@@ -86,6 +86,25 @@ public abstract class Entity : MonoBehaviour
 	{
 		for (int i = 1; i < _path.Length; i++)
 		{
+			//Set renderer direction
+			if(_path[i].x > transform.position.x)
+			{
+
+			}
+			else if (_path[i].x < transform.position.x)
+			{
+
+			}
+			else if (_path[i].y > transform.position.z)
+			{
+
+			}
+			else if (_path[i].y < transform.position.z)
+			{
+
+			}
+			objectRenderer.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
 			float _completion = 0f;
 			float _elapsedTime = 0f;
 			Vector3 _startPos = transform.position;
