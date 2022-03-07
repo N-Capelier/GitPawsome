@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255d2eebb1fe3f44089b24d629339cc5, type: 3}
   m_Name: Spell_1
   m_EditorClassIdentifier: 
-  SpellName: ShadowDancer
-  SpellSprite: {fileID: 21300000, guid: c592e42ec18bfcb4384d8a05c9c8ec35, type: 3}
-  ManaUsed: 20
-  BaseAttack: 15
-  RangeType: 2
-  ProductionPrice: 12
-  ProductionTime: 15
-  Range: 2
-  Description: la carte est trop op
-  SpellClass: 0
+  spellName: 
+  spellSprite: {fileID: 21300000, guid: 1b188b595275ef447a1455c2a416d83d, type: 3}
+  description: 
+  spellClass: 0
+  attackPattern: 0
+  attackDamages: 0
+  manaCost: 0
+  attackRange: 0
+  productionPrice: 0
+  productionTime: 0
