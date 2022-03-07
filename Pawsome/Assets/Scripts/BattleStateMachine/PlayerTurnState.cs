@@ -40,7 +40,7 @@ public class PlayerTurnState : MonoState
 
 	private void DrawAttackableCells()
 	{
-		ReachFinder _reachFinder = new ReachFinder(LevelGrid.Instance);
+		ReachFinder _reachFinder = new ReachFinder(LevelGrid.Instance, true);
 
 		CellInteractor _interactor = LevelGrid.Instance.cells[(int)fsm.entities[fsm.turnIndex].transform.position.x, (int)fsm.entities[fsm.turnIndex].transform.position.z].interactor;
 
@@ -93,7 +93,7 @@ public class PlayerTurnState : MonoState
 
 	void DrawMovableCells(CellInteractor _interactor)
 	{
-		ReachFinder _reachFinder = new ReachFinder(LevelGrid.Instance);
+		ReachFinder _reachFinder = new ReachFinder(LevelGrid.Instance, false);
 
 		movableCells = _reachFinder.FindDiamondReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, fsm.entities[fsm.turnIndex].InstaCat.movePoints);
 		

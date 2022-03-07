@@ -18,10 +18,21 @@ public class PathFinder
 		_openList.Add(_startCell);
 		List<Vector2Int> _closedList = new List<Vector2Int>();
 
+		List<Vector2Int> _cellsList = new List<Vector2Int>();
+		_cellsList.Add(_startCell);
+
+		for (int i = 0; i < _cells.Length; i++)
+		{
+			_cellsList.Add(_cells[i]);
+		}
+
+		_cells = _cellsList.ToArray();
+
 		for (int i = 0; i < _cells.Length; i++)
 		{
 			LevelCell _cell = grid.GetCell(_cells[i]);
 			_cell.gCost = 99999999;
+			_cell.hCost = 0;
 			_cell.CalculateFCost();
 			_cell.cameFromCell = new Vector2Int(100, 100);
 		}
