@@ -10,41 +10,69 @@ public class PlayerTurnState : MonoState
 	Vector2Int[] attackableCells;
 	bool alreadyMoved = false;
 	bool alreadyAttacked = false;
+	PlayerEntity activeEntity;
 
 	public override void OnStateEnter()
 	{
 		Debug.Log("Player Turn");
 		fsm = StateMachine as BattleStateMachine;
+		activeEntity = fsm.entities[fsm.turnIndex] as PlayerEntity;
 
-		if(!alreadyMoved)
+		DisplaySpellNames();
+
+		if (!alreadyMoved)
 			BattleInputManager.PrimaryInteraction += OnClickSelf;
 
 		if(!alreadyAttacked)
 		{
-			BattleStateMachine.Spell1 += OnEquipSpell;
-			BattleStateMachine.Spell2 += OnEquipSpell;
-			BattleStateMachine.Spell3 += OnEquipSpell;
+			BattleStateMachine.SelectSpell += OnEquipSpell;
 		}
 	}
 
-	private void OnEquipSpell(Spell _spell)
+	#region Spell
+
+	void DisplaySpellNames()
 	{
-		BattleStateMachine.Spell1 -= OnEquipSpell;
-		BattleStateMachine.Spell2 -= OnEquipSpell;
-		BattleStateMachine.Spell3 -= OnEquipSpell;
+		for (int i = 0; i < 3; i++)
+		{
+			BattleCanvasManager.Instance.spellTexts[i].text = activeEntity.spells[i].SpellName;
+		}
+	}
+
+	private void OnEquipSpell(int _spellIndex)
+	{
+		BattleStateMachine.SelectSpell -= OnEquipSpell;
 
 		BattleInputManager.PrimaryInteraction -= OnClickSelf;
 
-		DrawAttackableCells();
+		//get spell informations
+		Spell _spell = Instantiate(activeEntity.spells[_spellIndex]);
+
+		DrawAttackableCells(_spell.RangeType);
 	}
 
-	private void DrawAttackableCells()
+	// NEED REFACTOR WITH SPELL INFORMATIONS
+	private void DrawAttackableCells(AttackType _attackType)
 	{
 		ReachFinder _reachFinder = new ReachFinder(LevelGrid.Instance, true);
 
-		CellInteractor _interactor = LevelGrid.Instance.cells[(int)fsm.entities[fsm.turnIndex].transform.position.x, (int)fsm.entities[fsm.turnIndex].transform.position.z].interactor;
+		CellInteractor _interactor = LevelGrid.Instance.cells[(int)activeEntity.transform.position.x, (int)activeEntity.transform.position.z].interactor;
 
-		attackableCells = _reachFinder.FindLineReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
+		switch(_attackType)
+		{
+			case AttackType.straight:
+				attackableCells = _reachFinder.FindLineReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
+				break;
+			case AttackType.diamond:
+				attackableCells = _reachFinder.FindDiamondReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
+				break;
+			case AttackType.square:
+				attackableCells = _reachFinder.FindSquareReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
+				break;
+			case AttackType.circle:
+				attackableCells = _reachFinder.FindCircleReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
+				break;
+		}
 
 		foreach(Vector2Int _cellPosition in attackableCells)
 		{
@@ -78,13 +106,15 @@ public class PlayerTurnState : MonoState
 			BattleInputManager.PrimaryInteraction += OnClickSelf;
 	}
 
+	#endregion
+
+	#region Movement
+
 	private void OnClickSelf(CellInteractor _interactor)
 	{
 		if(_interactor.levelCell.entityOnCell == fsm.entities[fsm.turnIndex])
 		{
-			BattleStateMachine.Spell1 -= OnEquipSpell;
-			BattleStateMachine.Spell2 -= OnEquipSpell;
-			BattleStateMachine.Spell3 -= OnEquipSpell;
+			BattleStateMachine.SelectSpell -= OnEquipSpell;
 
 			BattleInputManager.PrimaryInteraction -= OnClickSelf;
 			DrawMovableCells(_interactor);
@@ -123,11 +153,17 @@ public class PlayerTurnState : MonoState
 		}
 		if(!alreadyAttacked)
 		{
-			BattleStateMachine.Spell1 += OnEquipSpell;
-			BattleStateMachine.Spell2 += OnEquipSpell;
-			BattleStateMachine.Spell3 += OnEquipSpell;
+			BattleStateMachine.SelectSpell += OnEquipSpell;
 		}
 	}
+
+	#endregion
+
+	#region UI
+
+	//UI setup and update
+
+	#endregion
 
 	//public override void OnStateUpdate()
 	//{
@@ -148,9 +184,7 @@ public class PlayerTurnState : MonoState
 	{
 		BattleInputManager.PrimaryInteraction -= OnClickSelf;
 
-		BattleStateMachine.Spell1 -= OnEquipSpell;
-		BattleStateMachine.Spell2 -= OnEquipSpell;
-		BattleStateMachine.Spell3 -= OnEquipSpell;
+		BattleStateMachine.SelectSpell -= OnEquipSpell;
 		Debug.Log("End of Player Turn");
 	}
 }

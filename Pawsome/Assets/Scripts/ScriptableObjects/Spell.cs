@@ -6,7 +6,6 @@ public enum AttackType
 	diamond,
 	circle,
 	square,
-	diagonal
 }
 
 public enum Class

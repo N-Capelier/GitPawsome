@@ -48,6 +48,9 @@ MonoBehaviour:
   objectRenderer: {fileID: 0}
   isPlayerEntity: 0
   isPlaying: 0
+  spells: []
+  hand: []
+  discardPile: []
 --- !u!1001 &5445108321038614951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114,6 +117,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ed7648dfb73e0084c9a8a5718764b114, type: 3}
       propertyPath: m_Name
       value: SK_catDps
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ed7648dfb73e0084c9a8a5718764b114, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed7648dfb73e0084c9a8a5718764b114, type: 3}
