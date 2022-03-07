@@ -11,6 +11,7 @@ public class PlayerTurnState : MonoState
 	bool alreadyMoved = false;
 	bool alreadyAttacked = false;
 	PlayerEntity activeEntity;
+	int equipedSpell;
 
 	public override void OnStateEnter()
 	{
@@ -24,9 +25,7 @@ public class PlayerTurnState : MonoState
 			BattleInputManager.PrimaryInteraction += OnClickSelf;
 
 		if(!alreadyAttacked)
-		{
 			BattleStateMachine.SelectSpell += OnEquipSpell;
-		}
 	}
 
 	#region Spell
@@ -35,7 +34,7 @@ public class PlayerTurnState : MonoState
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			BattleCanvasManager.Instance.spellTexts[i].text = activeEntity.spells[i].spellName;
+			BattleCanvasManager.Instance.spellTexts[i].text = activeEntity.hand[i].spellName;
 		}
 	}
 
@@ -45,13 +44,13 @@ public class PlayerTurnState : MonoState
 
 		BattleInputManager.PrimaryInteraction -= OnClickSelf;
 
-		//get spell informations
-		Spell _spell = Instantiate(activeEntity.spells[_spellIndex]);
+		equipedSpell = _spellIndex;
+
+		Spell _spell = Instantiate(activeEntity.deck[_spellIndex]);
 
 		DrawAttackableCells(_spell.attackPattern);
 	}
 
-	// NEED REFACTOR WITH SPELL INFORMATIONS
 	private void DrawAttackableCells(AttackPattern _attackType)
 	{
 		ReachFinder _reachFinder = new ReachFinder(LevelGrid.Instance, true);
@@ -94,14 +93,25 @@ public class PlayerTurnState : MonoState
 
 				LevelGrid.Instance.HideAllInteractors();
 
-				if(interactor.levelCell.entityOnCell != null)
+				activeEntity.DiscardSpell(equipedSpell);
+				DisplaySpellNames();
+
+				if (interactor.levelCell.entityOnCell != null)
 				{
+					//Deal damages to target
 					Debug.Log(interactor.levelCell.entityOnCell.InstaCat.catName + " lost 5 health points");
 					interactor.levelCell.entityOnCell.TakeDamage(5);
 				}
 				break;
 			}
 		}
+
+		if(!alreadyAttacked)
+		{
+			LevelGrid.Instance.HideAllInteractors();
+			BattleStateMachine.SelectSpell += OnEquipSpell;
+		}
+
 		if (!alreadyMoved)
 			BattleInputManager.PrimaryInteraction += OnClickSelf;
 	}
@@ -151,7 +161,14 @@ public class PlayerTurnState : MonoState
 				break;
 			}
 		}
-		if(!alreadyAttacked)
+
+		if (!alreadyMoved)
+		{
+			LevelGrid.Instance.HideAllInteractors();
+			BattleInputManager.PrimaryInteraction += OnClickSelf;
+		}
+
+		if (!alreadyAttacked)
 		{
 			BattleStateMachine.SelectSpell += OnEquipSpell;
 		}
