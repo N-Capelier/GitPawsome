@@ -35,7 +35,7 @@ public class PlayerTurnState : MonoState
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			BattleCanvasManager.Instance.spellTexts[i].text = activeEntity.spells[i].SpellName;
+			BattleCanvasManager.Instance.spellTexts[i].text = activeEntity.spells[i].spellName;
 		}
 	}
 
@@ -48,11 +48,11 @@ public class PlayerTurnState : MonoState
 		//get spell informations
 		Spell _spell = Instantiate(activeEntity.spells[_spellIndex]);
 
-		DrawAttackableCells(_spell.RangeType);
+		DrawAttackableCells(_spell.attackPattern);
 	}
 
 	// NEED REFACTOR WITH SPELL INFORMATIONS
-	private void DrawAttackableCells(AttackType _attackType)
+	private void DrawAttackableCells(AttackPattern _attackType)
 	{
 		ReachFinder _reachFinder = new ReachFinder(LevelGrid.Instance, true);
 
@@ -60,16 +60,16 @@ public class PlayerTurnState : MonoState
 
 		switch(_attackType)
 		{
-			case AttackType.straight:
+			case AttackPattern.Line:
 				attackableCells = _reachFinder.FindLineReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
 				break;
-			case AttackType.diamond:
+			case AttackPattern.Diamond:
 				attackableCells = _reachFinder.FindDiamondReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
 				break;
-			case AttackType.square:
+			case AttackPattern.Square:
 				attackableCells = _reachFinder.FindSquareReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
 				break;
-			case AttackType.circle:
+			case AttackPattern.Circle:
 				attackableCells = _reachFinder.FindCircleReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
 				break;
 		}

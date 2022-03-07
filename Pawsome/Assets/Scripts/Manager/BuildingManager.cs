@@ -142,19 +142,19 @@ public class BuildingManager : Singleton<BuildingManager>
         for(int i = 0; i < SpellManager.Instance.Spells.Count; i++)
         {
             GameObject _button =  Instantiate(SpellPrefb, SpellCollection.transform);
-            _button.GetComponent<Image>().sprite = SpellManager.Instance.Spells[i].SpellSprite;
+            _button.GetComponent<Image>().sprite = SpellManager.Instance.Spells[i].spellSprite;
             _button.GetComponent<SpellButton>().id = i;
-            _button.GetComponentInChildren<TextMeshProUGUI>().text = SpellManager.Instance.Spells[i].ProductionPrice.ToString();
+            _button.GetComponentInChildren<TextMeshProUGUI>().text = SpellManager.Instance.Spells[i].productionPrice.ToString();
         }
     }
 
     public bool TryProduce(int i)
     {
-        return SpellBuilding.TryProduce(SpellManager.Instance.Spells[i].ProductionPrice);
+        return SpellBuilding.TryProduce(SpellManager.Instance.Spells[i].productionPrice);
     }
     public double GetProductionTime(int i)
     {
-        return SpellManager.Instance.Spells[i].ProductionTime;
+        return SpellManager.Instance.Spells[i].productionTime;
     }
 
     public void ProductionDone(int i)
@@ -215,7 +215,7 @@ public class BuildingManager : Singleton<BuildingManager>
         {
             
             GameObject _button =  Instantiate(SpellCardPrefb, spellBag.transform);
-            _button.GetComponent<Image>().sprite = PlayerManager.Instance.MyBagSpell[i].MySpell.SpellSprite;
+            _button.GetComponent<Image>().sprite = PlayerManager.Instance.MyBagSpell[i].MySpell.spellSprite;
             _button.GetComponentInChildren<TextMeshProUGUI>().text = "x" + PlayerManager.Instance.MyBagSpell[i].InBag.ToString();
         }
     }
@@ -256,7 +256,7 @@ public class BuildingManager : Singleton<BuildingManager>
         for (int i = 0; i < CatsDeck[k].spells.Count; i++)
         {
             GameObject _button = Instantiate(SpellCardPrefb, CatSpells[k].transform);
-            _button.GetComponent<Image>().sprite = CatsDeck[k].spells[i].SpellSprite;
+            _button.GetComponent<Image>().sprite = CatsDeck[k].spells[i].spellSprite;
         }
         for (int i = CatsDeck[k].spells.Count; i < CatsDeck[k].deckSize; i++)
         {

@@ -1,40 +1,34 @@
 using UnityEngine;
 
-public enum AttackType
+public enum AttackPattern
 {
-	straight,
-	diamond,
-	circle,
-	square,
+	Line,
+	Diamond,
+	Circle,
+	Square,
 }
 
-public enum Class
+public enum Archetype
 {
 	Support,
-	tank,
+	Tank,
 	Dps,
-	Commun
+	Common
 }
 
 [CreateAssetMenu(fileName = "New Spell", menuName = "Spell", order = 51)]
 public class Spell : ScriptableObject
 {
-	public string SpellName;
+	public string spellName;
+	public Sprite spellSprite;
+	public string description;
 	[Space]
-	public Sprite SpellSprite;
+	public Archetype spellClass;
+	public AttackPattern attackPattern;
+	public int attackDamages;
+	public int manaCost;
+	public int attackRange;
 	[Space]
-	public int ManaUsed;
-	[Space]
-	public int BaseAttack;
-	[Space]
-	public AttackType RangeType;
-	[Space]
-	public int ProductionPrice;
-	public double ProductionTime;
-	[Space]
-	public int Range;
-	[Space]
-	public string Description;
-	[Space]
-	public Class SpellClass;
+	public int productionPrice;
+	public double productionTime;
 }

@@ -11,7 +11,7 @@ public class InstaCat : ScriptableObject
 	[Space]
 	public Mesh mesh;
 	[Space]
-	public Class catClass;
+	public Archetype catClass;
 	[Space]
 	public int deckSize;
 	[Space]

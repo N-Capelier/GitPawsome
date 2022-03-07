@@ -6,6 +6,7 @@ public class SceneManagement : MonoBehaviour
 {
     public static SceneManagement instance;
     private AsyncOperation sceneLoading;
+
     private void Awake()
     {
         if (instance == null)
