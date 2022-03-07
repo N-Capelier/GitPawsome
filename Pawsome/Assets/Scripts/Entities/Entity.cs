@@ -21,7 +21,7 @@ public abstract class Entity : MonoBehaviour
 	public InstaCat InstaCatRef { get => instaCatRef; private set => instaCatRef = value; }
 
 
-	[HideInInspector] public List<Spell> spells = new List<Spell>();
+	[HideInInspector] public List<Spell> deck = new List<Spell>();
 
 	[HideInInspector] public List<Spell> hand = new List<Spell>();
 
@@ -43,19 +43,37 @@ public abstract class Entity : MonoBehaviour
 
 		foreach(Spell _spell in instaCat.spells)
 		{
-			spells.Add(Instantiate(_spell));
+			deck.Add(Instantiate(_spell));
 		}
 		InstaCat.spells = new List<Spell>();
-		spells.Shuffle();
+		deck.Shuffle();
 
 		//create hand
 		for (int i = 0; i < 3; i++)
 		{
-			hand.Add(spells[0]);
-			spells.RemoveAt(0);
+			hand.Add(deck[0]);
+			deck.RemoveAt(0);
 		}
 
 		//set renderer
+	}
+
+	public void DiscardSpell(int _spellIndex)
+	{
+		discardPile.Add(hand[_spellIndex]);
+		if (deck.Count > 0)
+		{
+			hand[_spellIndex] = deck[0];
+			deck.RemoveAt(0);
+		}
+		else
+		{
+			deck = discardPile;
+			discardPile = new List<Spell>();
+			deck.Shuffle();
+			hand[_spellIndex] = deck[0];
+			deck.RemoveAt(0);
+		}
 	}
 
 	public void MoveAlongPath(Vector2Int[] _path)

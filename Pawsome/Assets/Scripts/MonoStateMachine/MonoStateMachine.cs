@@ -63,6 +63,7 @@ public abstract class MonoStateMachine : MonoBehaviour
 
 		if (activeState != null)
 			ActiveState.OnStateExit();
+		Destroy(activeState);
 		activeState = Instantiate(FindStateWithName(_stateName));
 		activeState.SetStateMachine(this);
 		if (isPlaying)

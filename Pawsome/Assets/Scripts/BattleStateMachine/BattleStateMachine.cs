@@ -48,6 +48,7 @@ public class BattleStateMachine : MonoStateMachine
 	{
 		if(ActiveState.StateName == "PlayerTurnState")
 		{
+			LevelGrid.Instance.HideAllInteractors();
 			PlayNextTurn();
 		}
 	}
@@ -55,19 +56,19 @@ public class BattleStateMachine : MonoStateMachine
 	public void InputSpell1()
 	{
 		if(ActiveState.StateName == "PlayerTurnState")
-			SelectSpell?.Invoke(1);
+			SelectSpell?.Invoke(0);
 	}
 
 	public void InputSpell2()
 	{
 		if (ActiveState.StateName == "PlayerTurnState")
-			SelectSpell?.Invoke(2);
+			SelectSpell?.Invoke(1);
 	}
 
 	public void InputSpell3()
 	{
 		if (ActiveState.StateName == "PlayerTurnState")
-			SelectSpell?.Invoke(3);
+			SelectSpell?.Invoke(2);
 	}
 
 }
