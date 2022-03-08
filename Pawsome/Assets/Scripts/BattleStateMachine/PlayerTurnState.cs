@@ -21,7 +21,7 @@ public class PlayerTurnState : MonoState
 		activeEntity = fsm.entities[fsm.turnIndex] as PlayerEntity;
 
 		DisplaySpellNames();
-		activeEntity.SetPossessionRenderer(true);
+		activeEntity.SetPossessionRenderer(true); 
 
 		if (!alreadyMoved)
 			MovementSub(true);
