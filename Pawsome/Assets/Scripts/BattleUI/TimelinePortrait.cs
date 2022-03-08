@@ -7,11 +7,13 @@ using NaughtyAttributes;
 public class TimelinePortrait : MonoBehaviour
 {
     [SerializeField]
+    Image portraitMask;
+    [SerializeField]
     Image portrait;
     [SerializeField]
     Image border;
     [SerializeField]
-    TimelineUI timeLineHandler;
+    TimelineUI timelineHandler;
 
     [Header("Display Logic")]
     [SerializeField]
@@ -19,35 +21,36 @@ public class TimelinePortrait : MonoBehaviour
     [SerializeField, ReadOnly]
     Entity linkedEntity;
 
-    public void OnMount(Entity _linkedEntity)
-    {
-        //linkedEntity = _linkedEntity;
-        //battleManager.TurnChanged += OnTurnChange
-    }
-
-    public void OnUnMount()
-    {
-        //battleManager.TurnChanged += OnTurnChange
-    }
-
     private void OnDestroy()
     {
         OnUnMount();
     }
 
-    public void OnTurnChange()
+    public void OnMount(Entity _linkedEntity)
     {
-        //portrait.sprite = linkedEntity.portrait;
-        //border.color = timeLineHandler.ReturnBorderColor(linkedEntity);
+        linkedEntity = _linkedEntity;
+        UpdatePortrait();
+        timelineHandler.TurnStarted += UpdatePortrait;
+    }
 
-        if (!isMain /*&& linkedEnity == curentTurnEntity*/ )
+    public void OnUnMount()
+    {
+        timelineHandler.TurnStarted -= UpdatePortrait;
+    }
+
+    public void UpdatePortrait()
+    {
+        portrait.sprite = linkedEntity.InstaCatRef.CatSprite;
+        border.color = timelineHandler.ReturnBorderColor(linkedEntity);
+
+        if (!isMain && timelineHandler.mode.IsEntityTurn(linkedEntity))
         {
-            portrait.rectTransform.localScale = Vector3.one * 1.3f;
+            portraitMask.rectTransform.localScale = Vector3.one * 1.3f;
             border.rectTransform.localScale = Vector3.one * 1.3f;
         }
         else
         {
-            portrait.rectTransform.localScale = Vector3.one * 1;
+            portraitMask.rectTransform.localScale = Vector3.one * 1;
             border.rectTransform.localScale = Vector3.one * 1;
         }
     }

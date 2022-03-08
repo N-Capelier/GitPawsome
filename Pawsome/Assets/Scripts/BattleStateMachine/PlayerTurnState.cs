@@ -40,16 +40,16 @@ public class PlayerTurnState : MonoState
 
 	void SetPositionInteractorDisplay(bool value)
 	{
-		CellInteractor _interactor = LevelGrid.Instance.cells[(int)activeEntity.transform.position.x, (int)activeEntity.transform.position.y].interactor;
-		if(value)
-		{
-			_interactor.SetRendererColor(Color.green);
-			_interactor.SetRendererAlpha(1f);
-		}
-		else
-		{
-			_interactor.SetRendererAlpha(0f);
-		}
+		//CellInteractor _interactor = LevelGrid.Instance.cells[(int)activeEntity.transform.position.x, (int)activeEntity.transform.position.y].interactor;
+		//if(value)
+		//{
+		//	_interactor.SetRendererColor(Color.green);
+		//	_interactor.SetRendererAlpha(1f);
+		//}
+		//else
+		//{
+		//	_interactor.SetRendererAlpha(0f);
+		//}
 	}
 
 	private void OnEquipSpell(int _spellIndex)
