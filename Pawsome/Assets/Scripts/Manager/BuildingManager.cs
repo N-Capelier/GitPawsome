@@ -42,6 +42,7 @@ public class BuildingManager : Singleton<BuildingManager>
     public int WichCat = 1;
     public List<InstaCat> CatsDeck;
     public GameObject NoSpellPrefab;
+    public GameObject DeckSpellPrefab;
     public Sprite NoCatPrefab;
     //CatDeck
     public List<GameObject> CatUI;
@@ -104,7 +105,6 @@ public class BuildingManager : Singleton<BuildingManager>
 
     public void Booster1()
     {
-        Debug.Log("help me");
         if(!InvocationBuilding.TryBuy(1)) YouCantPopUp.SetActive(true);
     }
     public void Booster2()
@@ -171,6 +171,7 @@ public class BuildingManager : Singleton<BuildingManager>
     public void OpenDeckBuildingUI()
     {
         DeckBuildingMenu.SetActive(true);
+        UpdateCatDeckBuilding();
     }
     public void ExitDeckBuilding()
     {
@@ -183,15 +184,16 @@ public class BuildingManager : Singleton<BuildingManager>
     {  
         if(PlayerManager.Instance.MyCatBag.Count < 1)
         {
-            Debug.Log(PlayerManager.Instance.MyCatBag.Count);
             return;
         }
-        for(int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
+        for (int i = CatBag.transform.childCount; i > 0; i--)
+        {
+            Destroy(CatBag.transform.GetChild(i - 1).gameObject);
+        }
+        for (int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
         {
             if(PlayerManager.Instance.MyCatBag[i].InUse == false)
             {
-
-                Debug.Log("CHEHHHHHHHHHHHHHHH");
                 GameObject _button =  Instantiate(CatCardPrefb, CatBag.transform);
                 _button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
                 _button.GetComponent<CatInventoryButton>().id = i;
@@ -200,7 +202,6 @@ public class BuildingManager : Singleton<BuildingManager>
     }
     public void UpdateSpellDeckBuilding()
     {
-        Debug.Log(PlayerManager.Instance.MyBagSpell.Count);
         if(PlayerManager.Instance.MyBagSpell.Count < 1)
         {
             return;
@@ -213,10 +214,14 @@ public class BuildingManager : Singleton<BuildingManager>
 
         for (int i = 0; i < PlayerManager.Instance.MyBagSpell.Count; i++)
         {
-            
-            GameObject _button =  Instantiate(SpellCardPrefb, spellBag.transform);
-            _button.GetComponent<Image>().sprite = PlayerManager.Instance.MyBagSpell[i].MySpell.spellSprite;
-            _button.GetComponentInChildren<TextMeshProUGUI>().text = "x" + PlayerManager.Instance.MyBagSpell[i].InBag.ToString();
+            if (PlayerManager.Instance.MyBagSpell[i].InBag > 0)
+            {
+                GameObject _button = Instantiate(SpellCardPrefb, spellBag.transform);
+                _button.GetComponent<Image>().sprite = PlayerManager.Instance.MyBagSpell[i].MySpell.spellSprite;
+                _button.GetComponentInChildren<TextMeshProUGUI>().text = "x" + PlayerManager.Instance.MyBagSpell[i].InBag.ToString();
+                _button.GetComponent<SpellInventoryButton>().id = i;
+                _button.GetComponent<SpellInventoryButton>().spellLink = PlayerManager.Instance.MyBagSpell[i].MySpell;
+            }
         }
     }
     public void OpenCatPartUI()
@@ -236,7 +241,11 @@ public class BuildingManager : Singleton<BuildingManager>
 
     public void UpdateCatDeck(int k, bool NoCat)
     {
-        
+        for (int i = CatSpells[k].transform.childCount; i > 0; i--)
+        {
+            Destroy(CatSpells[k].transform.GetChild(i - 1).gameObject);
+        }
+
         if (CatsDeck.Count < WichCat || NoCat)
         {
             CatImage[k].GetComponent<Image>().sprite = NoCatPrefab;
@@ -244,10 +253,15 @@ public class BuildingManager : Singleton<BuildingManager>
             {
                 GameObject _button = Instantiate(NoSpellPrefab, CatSpells[k].transform);
             }
+
             return;
         }
         CatImage[k].GetComponent<Image>().sprite = CatsDeck[k].CatSprite;
-        
+        UpdateSpellDeck();
+    }
+    public void UpdateSpellDeck()
+    {
+        int k = CatImage[WichCat-1].GetComponent<CatDeckButton>().id;
         for (int i = CatSpells[k].transform.childCount; i > 0; i--)
         {
             Destroy(CatSpells[k].transform.GetChild(i - 1).gameObject);
@@ -255,8 +269,9 @@ public class BuildingManager : Singleton<BuildingManager>
 
         for (int i = 0; i < CatsDeck[k].spells.Count; i++)
         {
-            GameObject _button = Instantiate(SpellCardPrefb, CatSpells[k].transform);
+            GameObject _button = Instantiate(DeckSpellPrefab, CatSpells[k].transform);
             _button.GetComponent<Image>().sprite = CatsDeck[k].spells[i].spellSprite;
+
         }
         for (int i = CatsDeck[k].spells.Count; i < CatsDeck[k].deckSize; i++)
         {
@@ -274,38 +289,75 @@ public class BuildingManager : Singleton<BuildingManager>
     }
     public void OpenCat2UI()
     {
-        if (CatsDeck.Count >= WichCat)
-        {
-            WichCat = 2;
-            CatUI[0].SetActive(false);
-            CatUI[1].SetActive(true);
-            CatUI[2].SetActive(false);
-        }
+        WichCat = 2;
+        CatUI[0].SetActive(false);
+        CatUI[1].SetActive(true);
+        CatUI[2].SetActive(false);
     }
     public void OpenCat3UI()
     {
-        if (CatsDeck.Count >= WichCat)
-        {
-            WichCat = 3;
-            CatUI[0].SetActive(false);
-            CatUI[1].SetActive(false);
-            CatUI[2].SetActive(true);
-        }
+        WichCat = 3;
+        CatUI[0].SetActive(false);
+        CatUI[1].SetActive(false);
+        CatUI[2].SetActive(true);
+        
     }
 
+    //CatPart
+    #region
     public void CatUse(int i)
     {
         PlayerManager.Instance.UseCat(i, true);
+        if (CatsDeck.Count >= WichCat)
+        {
+            CatImage[WichCat - 1].GetComponent<CatDeckButton>().OnClick();
+            CatsDeck[WichCat -1] = PlayerManager.Instance.MyCatBag[i].MyCat;
+        }
+        CatsDeck.Add(PlayerManager.Instance.MyCatBag[i].MyCat);
         CatImage[WichCat - 1].GetComponent<CatDeckButton>().ReceieveCat(i);
+
+        UpdateCatDeckBuilding();
+        UpdateCatDeck(i, false);
     }
     public void DontWannaUseCat(int i)
     {
         PlayerManager.Instance.UseCat(i, false);
+
+        UpdateCatDeckBuilding();
     }
+    #endregion
+
+    //SpellPart
+    #region
+    public void SpellUse(int i)
+    {
+        if (!CatImage[WichCat - 1].GetComponent<CatDeckButton>().DontHaveCat)
+        {
+            if (CatsDeck[WichCat-1].spells.Count < CatsDeck[WichCat-1].deckSize)
+            {
+                CatsDeck[WichCat-1].spells.Add(PlayerManager.Instance.MyBagSpell[i].MySpell);
+                PlayerManager.Instance.MyBagSpell[i].InBag --;
+
+                //Gerer l'initialisation de variables de "SpellDeckButton" dans update UI
+            }
+            UpdateSpellDeckBuilding();
+            UpdateSpellDeck();
+        }
+    }
+    public void DontWannaUseSpell(int i)
+    {
+        PlayerManager.Instance.AddSpell(PlayerManager.Instance.MyBagSpell[i].MySpell);
+
+        //Gerer le retour de cartes "SpellDeckButton"
+        CatsDeck[WichCat - 1].spells.Remove(PlayerManager.Instance.MyBagSpell[i].MySpell);
+        UpdateSpellDeckBuilding();
+        UpdateSpellDeck();
+    }
+    #endregion
+    #endregion
 
 
     #endregion
 
-    #endregion
 
 }

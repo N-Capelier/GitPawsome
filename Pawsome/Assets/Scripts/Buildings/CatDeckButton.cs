@@ -13,8 +13,8 @@ public class CatDeckButton : MonoBehaviour
         if(!DontHaveCat)
         {
             DontHaveCat = true;
-            BuildingManager.Instance.UpdateCatDeck(id, true);
             BuildingManager.Instance.DontWannaUseCat(id);
+            BuildingManager.Instance.UpdateCatDeck(id, true);
 
         }
         
@@ -25,7 +25,6 @@ public class CatDeckButton : MonoBehaviour
         DontHaveCat = false;
         id = i;
         BuildingManager.Instance.UpdateCatDeck(i, false);
-        BuildingManager.Instance.UpdateCatDeckBuilding();
     }
 
 }

@@ -63,21 +63,16 @@ public class PlayerManager : Singleton<PlayerManager>
         }
         MyBagSpell.Add(new SpellBag(TheSpell, 1));
     }
-    public bool UseSpell(Spell TheSpell)
+    public void UseSpell(Spell TheSpell)
     {
-        if(MyBagSpell.Count == 0)
-        {
-            return false;
-        }
         for (int i = 0; i > MyBagSpell.Count; i++)
         {
             if (MyBagSpell[i].MySpell == TheSpell && MyBagSpell[i].InBag > 0)
             {
                 MyBagSpell[i].InBag--;
-                return true;
+                return;
             }
         }
-        return false;
     }
     public void AddCat(InstaCat newCat)
     {
