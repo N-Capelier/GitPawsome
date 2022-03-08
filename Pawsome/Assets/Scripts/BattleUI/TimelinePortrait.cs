@@ -41,7 +41,7 @@ public class TimelinePortrait : MonoBehaviour
     public void UpdatePortrait()
     {
         portrait.sprite = linkedEntity.InstaCatRef.CatSprite;
-        border.color = timelineHandler.ReturnBorderColor(linkedEntity);
+        border.color = BattleUIMode.GetBorderColor(linkedEntity);
 
         if (!isMain && linkedEntity.isPlaying)
         {

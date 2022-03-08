@@ -30,6 +30,8 @@ public abstract class Entity : MonoBehaviour
 	Coroutine moveAlongPathCoroutine = null;
 
 	public static Action<string> EntityDeath;
+	public Action HealthChanged;
+	public Action ManaChanged;
 
 	public void Init(InstaCat _instaCat)
 	{
@@ -155,11 +157,13 @@ public abstract class Entity : MonoBehaviour
 		if(_damages > instaCat.health)
 		{
 			instaCat.health = 0;
+			HealthChanged?.Invoke();
 			return true;
 		}
 		else
 		{
 			instaCat.health -= _damages;
+			HealthChanged?.Invoke();
 			return false;
 		}
 	}
@@ -174,6 +178,8 @@ public abstract class Entity : MonoBehaviour
 		{
 			instaCat.health += _amount;
 		}
+
+		HealthChanged?.Invoke();
 	}
 
 	public void Death()
