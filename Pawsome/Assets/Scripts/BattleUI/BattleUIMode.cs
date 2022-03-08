@@ -18,5 +18,10 @@ public class BattleUIMode : MonoBehaviour
 		timeLineUI.OnMount(fsm.entities, this);
 	}
 
-    public bool IsEntityTurn(Entity _entity) => _entity == fsm.entities[fsm.turnIndex];
+    public bool IsEntityTurn(Entity _entity)
+    {
+        if (fsm.turnIndex >= 0)
+            return _entity == fsm.entities[fsm.turnIndex];
+        else return false;
+    }
 }
