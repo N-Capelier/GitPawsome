@@ -4,6 +4,13 @@ using UnityEngine;
 using NaughtyAttributes;
 using System;
 
+[Serializable]
+public class PlayerInfo
+{
+	public string playerName;
+	public Entity[] entities;
+}
+
 public class BattleStateMachine : MonoStateMachine
 {
 	[Header("References")]
@@ -15,10 +22,14 @@ public class BattleStateMachine : MonoStateMachine
 	[HideInInspector] public InstaCat[] playerCats;
 	public InstaCat[] AICats;
 
-	/*[HideInInspector]*/ public List<Entity> entities = new List<Entity>();
+	[Header("Players")]
+	public PlayerInfo playerInfo;
+	public PlayerInfo enemyInfo;
+
+	[HideInInspector] public List<Entity> entities = new List<Entity>();
 
 	int turn = 0;
-	/*[HideInInspector]*/ public int turnIndex = -1;
+	[HideInInspector] public int turnIndex = -1;
 
 	public delegate void SpellInputHandler(int _spellIndex);
 	public static event SpellInputHandler SelectSpell;
