@@ -1271,6 +1271,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 461942320, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00018310547
+      objectReference: {fileID: 0}
     - target: {fileID: 626947265, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1299,6 +1303,14 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 851398954, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: fsm
+      value: 
+      objectReference: {fileID: 809021532}
     - target: {fileID: 970364512, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1465,8 +1477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b651bf41b769c44ab7fb0ce5d6f1e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLineUI: {fileID: 898317624}
   fsm: {fileID: 809021532}
+  timeLineUI: {fileID: 898317624}
 --- !u!1 &906611019
 GameObject:
   m_ObjectHideFlags: 0

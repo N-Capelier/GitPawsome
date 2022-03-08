@@ -11,7 +11,7 @@ public class CellInteractor : MonoBehaviour
 
 	Material material;
 
-	private void Start()
+	private void Awake()
 	{
 		material = meshRenderer.material;
 	}

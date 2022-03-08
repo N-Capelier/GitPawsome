@@ -40,20 +40,17 @@ public class PlayerTurnState : MonoState
 
 	void SetPositionInteractorDisplay(bool value)
 	{
-		//CellInteractor _interactor = LevelGrid.Instance.cells[(int)activeEntity.transform.position.x, (int)activeEntity.transform.position.y].interactor;
-		//if(value)
-		//{
-		//	_interactor.SetRendererColor(Color.green);
-		//	_interactor.SetRendererAlpha(1f);
-		//}
-		//else
-		//{
-		//	_interactor.SetRendererAlpha(0f);
-		//}
+		activeEntity.SetPositionInteractorDisplay(value);
 	}
 
 	private void OnEquipSpell(int _spellIndex)
 	{
+		if (alreadyAttacked)
+		{
+			BattleStateMachine.SelectSpell -= OnEquipSpell;
+			return;
+		}
+
 		BattleStateMachine.SelectSpell -= OnEquipSpell;
 
 		BattleInputManager.PrimaryInteraction -= OnClickSelf;
@@ -106,6 +103,7 @@ public class PlayerTurnState : MonoState
 				alreadyAttacked = true;
 
 				LevelGrid.Instance.HideAllInteractors();
+				SetPositionInteractorDisplay(true);
 
 				activeEntity.DiscardSpell(equipedSpell);
 				DisplaySpellNames();
@@ -127,6 +125,8 @@ public class PlayerTurnState : MonoState
 		if(!alreadyAttacked)
 		{
 			LevelGrid.Instance.HideAllInteractors();
+			SetPositionInteractorDisplay(true);
+
 			BattleStateMachine.SelectSpell += OnEquipSpell;
 		}
 
@@ -140,7 +140,13 @@ public class PlayerTurnState : MonoState
 
 	private void OnClickSelf(CellInteractor _interactor)
 	{
-		if(_interactor.levelCell.entityOnCell == fsm.entities[fsm.turnIndex])
+		if(alreadyMoved)
+		{
+			BattleInputManager.PrimaryInteraction -= OnClickSelf;
+			return;
+		}
+
+		if (_interactor.levelCell.entityOnCell == fsm.entities[fsm.turnIndex])
 		{
 			BattleStateMachine.SelectSpell -= OnEquipSpell;
 
@@ -174,6 +180,8 @@ public class PlayerTurnState : MonoState
 				alreadyMoved = true;
 
 				LevelGrid.Instance.HideAllInteractors();
+				SetPositionInteractorDisplay(true);
+
 				PathFinder _pathFinder = new PathFinder(LevelGrid.Instance, false);
 				SetPositionInteractorDisplay(false);
 				fsm.entities[fsm.turnIndex].MoveAlongPath(_pathFinder.FindPath(movableCells, (int)fsm.entities[fsm.turnIndex].transform.position.x, (int)fsm.entities[fsm.turnIndex].transform.position.z, _movableCell.x, _movableCell.y));
@@ -184,6 +192,8 @@ public class PlayerTurnState : MonoState
 		if (!alreadyMoved)
 		{
 			LevelGrid.Instance.HideAllInteractors();
+			SetPositionInteractorDisplay(true);
+
 			BattleInputManager.PrimaryInteraction += OnClickSelf;
 		}
 
@@ -218,8 +228,9 @@ public class PlayerTurnState : MonoState
 
 	public override void OnStateExit()
 	{
-		BattleInputManager.PrimaryInteraction -= OnClickSelf;
+		SetPositionInteractorDisplay(false);
 
+		BattleInputManager.PrimaryInteraction -= OnClickSelf;
 		BattleStateMachine.SelectSpell -= OnEquipSpell;
 	}
 }
