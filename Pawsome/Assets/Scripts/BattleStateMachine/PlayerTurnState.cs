@@ -13,19 +13,21 @@ public class PlayerTurnState : MonoState
 	PlayerEntity activeEntity;
 	int equipedSpell;
 
+	int movementSub = 0, attackSub = 0;
+
 	public override void OnStateEnter()
 	{
 		fsm = StateMachine as BattleStateMachine;
 		activeEntity = fsm.entities[fsm.turnIndex] as PlayerEntity;
 
-		SetPositionInteractorDisplay(true);
 		DisplaySpellNames();
+		activeEntity.SetPossessionRenderer(true);
 
 		if (!alreadyMoved)
-			BattleInputManager.PrimaryInteraction += OnClickSelf;
+			MovementSub(true);
 
-		if(!alreadyAttacked)
-			BattleStateMachine.SelectSpell += OnEquipSpell;
+		if (!alreadyAttacked)
+			AttackSub(true);
 	}
 
 	#region Spell
@@ -38,28 +40,20 @@ public class PlayerTurnState : MonoState
 		}
 	}
 
-	void SetPositionInteractorDisplay(bool value)
-	{
-		activeEntity.SetPositionInteractorDisplay(value);
-	}
-
 	private void OnEquipSpell(int _spellIndex)
 	{
+		AttackSub(false);
+
 		if (alreadyAttacked)
 		{
-			BattleStateMachine.SelectSpell -= OnEquipSpell;
 			return;
 		}
 
-		BattleStateMachine.SelectSpell -= OnEquipSpell;
-
-		BattleInputManager.PrimaryInteraction -= OnClickSelf;
+		MovementSub(false);
 
 		equipedSpell = _spellIndex;
 
-		Spell _spell = Instantiate(activeEntity.deck[_spellIndex]);
-
-		DrawAttackableCells(_spell.attackPattern);
+		DrawAttackableCells(activeEntity.deck[_spellIndex].attackPattern);
 	}
 
 	private void DrawAttackableCells(AttackPattern _attackType)
@@ -103,7 +97,6 @@ public class PlayerTurnState : MonoState
 				alreadyAttacked = true;
 
 				LevelGrid.Instance.HideAllInteractors();
-				SetPositionInteractorDisplay(true);
 
 				activeEntity.DiscardSpell(equipedSpell);
 				DisplaySpellNames();
@@ -122,16 +115,52 @@ public class PlayerTurnState : MonoState
 			}
 		}
 
-		if(!alreadyAttacked)
-		{
-			LevelGrid.Instance.HideAllInteractors();
-			SetPositionInteractorDisplay(true);
+		LevelGrid.Instance.HideAllInteractors(); ///Debugging
 
-			BattleStateMachine.SelectSpell += OnEquipSpell;
-		}
+		if (!alreadyAttacked)
+			AttackSub(true);
 
 		if (!alreadyMoved)
+			MovementSub(true);
+	}
+
+	#endregion
+
+	#region events
+
+	void AttackSub(bool value)
+	{
+		if(value)
+		{
+			if (attackSub > 0)
+				return;
+			attackSub++;
+			BattleStateMachine.SelectSpell += OnEquipSpell;
+		}
+		else
+		{
+			if (attackSub == 0)
+				return;
+			attackSub--;
+			BattleStateMachine.SelectSpell -= OnEquipSpell;
+		}
+	}
+	void MovementSub(bool value)
+	{
+		if (value)
+		{
+			if (movementSub > 0)
+				return;
+			movementSub++;
 			BattleInputManager.PrimaryInteraction += OnClickSelf;
+		}
+		else
+		{
+			if (movementSub == 0)
+				return;
+			movementSub--;
+			BattleInputManager.PrimaryInteraction -= OnClickSelf;
+		}
 	}
 
 	#endregion
@@ -142,15 +171,15 @@ public class PlayerTurnState : MonoState
 	{
 		if(alreadyMoved)
 		{
-			BattleInputManager.PrimaryInteraction -= OnClickSelf;
+			MovementSub(false);
 			return;
 		}
 
 		if (_interactor.levelCell.entityOnCell == fsm.entities[fsm.turnIndex])
 		{
-			BattleStateMachine.SelectSpell -= OnEquipSpell;
+			AttackSub(false);
 
-			BattleInputManager.PrimaryInteraction -= OnClickSelf;
+			MovementSub(false);
 			DrawMovableCells(_interactor);
 		}
 	}
@@ -180,10 +209,8 @@ public class PlayerTurnState : MonoState
 				alreadyMoved = true;
 
 				LevelGrid.Instance.HideAllInteractors();
-				SetPositionInteractorDisplay(true);
 
 				PathFinder _pathFinder = new PathFinder(LevelGrid.Instance, false);
-				SetPositionInteractorDisplay(false);
 				fsm.entities[fsm.turnIndex].MoveAlongPath(_pathFinder.FindPath(movableCells, (int)fsm.entities[fsm.turnIndex].transform.position.x, (int)fsm.entities[fsm.turnIndex].transform.position.z, _movableCell.x, _movableCell.y));
 				break;
 			}
@@ -192,22 +219,15 @@ public class PlayerTurnState : MonoState
 		if (!alreadyMoved)
 		{
 			LevelGrid.Instance.HideAllInteractors();
-			SetPositionInteractorDisplay(true);
 
-			BattleInputManager.PrimaryInteraction += OnClickSelf;
+			MovementSub(true);
 		}
 
 		if (!alreadyAttacked)
 		{
-			BattleStateMachine.SelectSpell += OnEquipSpell;
+			AttackSub(true);
 		}
 	}
-
-	#endregion
-
-	#region UI
-
-	//UI setup and update
 
 	#endregion
 
@@ -228,9 +248,9 @@ public class PlayerTurnState : MonoState
 
 	public override void OnStateExit()
 	{
-		SetPositionInteractorDisplay(false);
+		activeEntity.SetPossessionRenderer(false);
 
-		BattleInputManager.PrimaryInteraction -= OnClickSelf;
-		BattleStateMachine.SelectSpell -= OnEquipSpell;
+		AttackSub(false);
+		MovementSub(false);
 	}
 }
