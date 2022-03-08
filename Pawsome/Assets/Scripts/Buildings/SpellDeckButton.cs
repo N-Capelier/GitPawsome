@@ -9,9 +9,10 @@ public class SpellDeckButton : MonoBehaviour
 
     
     public void OnClick()
+
     {
-        BuildingManager.Instance.DontWannaUseSpell(id, idInBag);
         BuildingManager.Instance.UpdateCatDeck(id, false);
+        BuildingManager.Instance.DontWannaUseSpell(id, idInBag);
     }
 
 }
