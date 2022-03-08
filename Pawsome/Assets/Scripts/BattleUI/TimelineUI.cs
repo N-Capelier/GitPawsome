@@ -8,22 +8,7 @@ using System.Linq;
 
 public class TimelineUI : MonoBehaviour
 {
-    [Serializable]
-    internal struct BorderColors
-    {
-        [SerializeField]
-        internal Color allyColor;
-        [SerializeField]
-        internal Color enemyColor;
-        [SerializeField]
-        internal Color currentAllyColor;
-        [SerializeField]
-        internal Color currentEnemyColor;
-    }
-
     [Header("Global references")]
-    [SerializeField]
-    BorderColors borderColors;
     [SerializeField]
     TimelinePortrait mainPortrait;
     [SerializeField]
@@ -113,27 +98,4 @@ public class TimelineUI : MonoBehaviour
         else
             toRightBtton.interactable = true;
     }
-
-    public Color ReturnBorderColor(Entity entity)
-    {
-        Color _color = new Color();
-
-        if (entity.isPlayerEntity)
-        {
-            if (entity.isPlaying)
-                _color = borderColors.currentAllyColor;
-            else
-                _color = borderColors.allyColor;
-        }
-        else
-        {
-            if (entity.isPlaying)
-                _color = borderColors.currentEnemyColor;
-            else
-                _color = borderColors.enemyColor;
-        }
-
-        return _color;
-    }
-
 }
