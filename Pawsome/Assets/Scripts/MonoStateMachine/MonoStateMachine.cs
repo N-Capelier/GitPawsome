@@ -25,10 +25,6 @@ public abstract class MonoStateMachine : MonoBehaviour
 		{
 			DontDestroyOnLoad(gameObject);
 		}
-
-		SetState(startingState.StateName);
-
-		isPlaying = playOnAwake;
 	}
 
 	public void Play()
@@ -62,8 +58,10 @@ public abstract class MonoStateMachine : MonoBehaviour
 		}
 
 		if (activeState != null)
+		{
 			ActiveState.OnStateExit();
-		Destroy(activeState);
+			Destroy(activeState);
+		}
 		activeState = Instantiate(FindStateWithName(_stateName));
 		activeState.SetStateMachine(this);
 		if (isPlaying)
@@ -84,6 +82,12 @@ public abstract class MonoStateMachine : MonoBehaviour
 
 	private void Start()
 	{
+		if(playOnAwake)
+		{
+			SetState(startingState.StateName);
+			isPlaying = true;
+		}
+
 		if (isPlaying)
 		{
 			activeState.playedStateEnter = true;

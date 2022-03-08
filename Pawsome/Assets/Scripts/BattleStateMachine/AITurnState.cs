@@ -8,7 +8,6 @@ public class AITurnState : MonoState
 
 	public override void OnStateEnter()
 	{
-		Debug.Log("Enemy Turn");
 		fsm = StateMachine as BattleStateMachine;
 		fsm.PlayNextTurn();
 	}
@@ -28,8 +27,8 @@ public class AITurnState : MonoState
 
 	//}
 
-	public override void OnStateExit()
-	{
-		Debug.Log("End of Enemy Turn");
-	}
+	//public override void OnStateExit()
+	//{
+
+	//}
 }

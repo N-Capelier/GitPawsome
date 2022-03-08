@@ -63,9 +63,9 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8479571074173389293, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
   m_PrefabInstance: {fileID: 6533126847014018126}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &3388722013843507068 stripped
+--- !u!23 &503040632125899117 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8479571075744062258, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6652235060871519523, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
   m_PrefabInstance: {fileID: 6533126847014018126}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1897444517188461014
@@ -81,4 +81,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 0.1
-  objectRenderer: {fileID: 3388722013843507068}
+  objectRenderer: {fileID: 503040632125899117}
+  isPlayerEntity: 0
+  isPlaying: 0
+  deck: []
+  hand: []
+  discardPile: []

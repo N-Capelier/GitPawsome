@@ -29,6 +29,8 @@ public abstract class Entity : MonoBehaviour
 
 	Coroutine moveAlongPathCoroutine = null;
 
+	public static Action<string> EntityDeath;
+
 	public void Init(InstaCat _instaCat)
 	{
 		instaCat = Instantiate(_instaCat);
@@ -78,7 +80,7 @@ public abstract class Entity : MonoBehaviour
 
 	public void MoveAlongPath(Vector2Int[] _path)
 	{
-		LevelGrid.Instance.cells[_path[0].x, _path[0].y].entityOnCell = null;
+		LevelGrid.Instance.cells[_path[0].x, _path[0].y].entityOnCell = null; //May cause a null ref (:
 		moveAlongPathCoroutine = StartCoroutine(MoveAlongPathCoroutine(_path));
 	}
 
@@ -87,23 +89,22 @@ public abstract class Entity : MonoBehaviour
 		for (int i = 1; i < _path.Length; i++)
 		{
 			//Set renderer direction
-			if(_path[i].x > transform.position.x)
+			if(_path[i].x > transform.position.x) //East
 			{
-
+				objectRenderer.transform.forward = new Vector3(1f, 0f, 0f);
 			}
-			else if (_path[i].x < transform.position.x)
+			else if (_path[i].x < transform.position.x) //West
 			{
-
+				objectRenderer.transform.forward = new Vector3(-1f, 0f, 0f);
 			}
-			else if (_path[i].y > transform.position.z)
+			else if (_path[i].y > transform.position.z) //North
 			{
-
+				objectRenderer.transform.forward = new Vector3(0f, 0f, 1f);
 			}
-			else if (_path[i].y < transform.position.z)
+			else if (_path[i].y < transform.position.z) //South
 			{
-
+				objectRenderer.transform.forward = new Vector3(0f, 0f, -1f);
 			}
-			objectRenderer.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
 			float _completion = 0f;
 			float _elapsedTime = 0f;
@@ -132,18 +133,19 @@ public abstract class Entity : MonoBehaviour
 			return true;
 	}
 
-	public void TakeDamage(int _damages)
+	public bool TakeDamage(int _damages)
 	{
 		//Apply defense to _damages
 
 		if(_damages > instaCat.health)
 		{
 			instaCat.health = 0;
-			Death();
+			return true;
 		}
 		else
-		{ 
+		{
 			instaCat.health -= _damages;
+			return false;
 		}
 	}
 
@@ -159,8 +161,9 @@ public abstract class Entity : MonoBehaviour
 		}
 	}
 
-	private void Death()
+	public void Death()
 	{
-		//
+		EntityDeath?.Invoke(instaCat.catName);
+		Destroy(gameObject);
 	}
 }

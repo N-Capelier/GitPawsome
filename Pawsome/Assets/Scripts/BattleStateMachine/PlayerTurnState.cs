@@ -15,10 +15,10 @@ public class PlayerTurnState : MonoState
 
 	public override void OnStateEnter()
 	{
-		Debug.Log("Player Turn");
 		fsm = StateMachine as BattleStateMachine;
 		activeEntity = fsm.entities[fsm.turnIndex] as PlayerEntity;
 
+		SetPositionInteractorDisplay(true);
 		DisplaySpellNames();
 
 		if (!alreadyMoved)
@@ -35,6 +35,20 @@ public class PlayerTurnState : MonoState
 		for (int i = 0; i < 3; i++)
 		{
 			BattleCanvasManager.Instance.spellTexts[i].text = activeEntity.hand[i].spellName;
+		}
+	}
+
+	void SetPositionInteractorDisplay(bool value)
+	{
+		CellInteractor _interactor = LevelGrid.Instance.cells[(int)activeEntity.transform.position.x, (int)activeEntity.transform.position.y].interactor;
+		if(value)
+		{
+			_interactor.SetRendererColor(Color.green);
+			_interactor.SetRendererAlpha(1f);
+		}
+		else
+		{
+			_interactor.SetRendererAlpha(0f);
 		}
 	}
 
@@ -100,7 +114,11 @@ public class PlayerTurnState : MonoState
 				{
 					//Deal damages to target
 					Debug.Log(interactor.levelCell.entityOnCell.InstaCat.catName + " lost 5 health points");
-					interactor.levelCell.entityOnCell.TakeDamage(5);
+					if(interactor.levelCell.entityOnCell.TakeDamage(5))
+					{
+						fsm.RemoveEntity(interactor.levelCell.entityOnCell);
+						interactor.levelCell.entityOnCell.Death();
+					}
 				}
 				break;
 			}
@@ -157,6 +175,7 @@ public class PlayerTurnState : MonoState
 
 				LevelGrid.Instance.HideAllInteractors();
 				PathFinder _pathFinder = new PathFinder(LevelGrid.Instance, false);
+				SetPositionInteractorDisplay(false);
 				fsm.entities[fsm.turnIndex].MoveAlongPath(_pathFinder.FindPath(movableCells, (int)fsm.entities[fsm.turnIndex].transform.position.x, (int)fsm.entities[fsm.turnIndex].transform.position.z, _movableCell.x, _movableCell.y));
 				break;
 			}
@@ -202,6 +221,5 @@ public class PlayerTurnState : MonoState
 		BattleInputManager.PrimaryInteraction -= OnClickSelf;
 
 		BattleStateMachine.SelectSpell -= OnEquipSpell;
-		Debug.Log("End of Player Turn");
 	}
 }
