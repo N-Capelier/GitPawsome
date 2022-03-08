@@ -17,10 +17,10 @@ MonoBehaviour:
   mesh: {fileID: 0}
   catClass: 0
   deckSize: 8
-  baseHealth: 0
-  bonusHealth: 0
-  baseMana: 0
-  bonusMana: 0
+  baseHealth: 5
+  bonusHealth: 5
+  baseMana: 5
+  bonusMana: 5
   baseInitiative: 2
   bonusInitiative: 0
   baseAttack: 0
