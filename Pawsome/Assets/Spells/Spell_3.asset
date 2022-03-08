@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spell_3
   m_EditorClassIdentifier: 
   spellName: Very cool
-  spellSprite: {fileID: 0}
+  spellSprite: {fileID: 21300000, guid: 1b188b595275ef447a1455c2a416d83d, type: 3}
   description: 
   spellClass: 0
   attackPattern: 0

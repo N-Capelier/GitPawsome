@@ -6,13 +6,11 @@ public class SpellDeckButton : MonoBehaviour
 {
     public int id;
     public int idInBag;
-    public Spell TheSpellWow;
 
     
     public void OnClick()
     {
-        Debug.Log(id);
-        BuildingManager.Instance.DontWannaUseSpell(id);
+        BuildingManager.Instance.DontWannaUseSpell(id, idInBag);
         BuildingManager.Instance.UpdateCatDeck(id, false);
     }
 
