@@ -15,10 +15,10 @@ public class BattleStateMachine : MonoStateMachine
 	[HideInInspector] public InstaCat[] playerCats;
 	public InstaCat[] AICats;
 
-	[HideInInspector] public List<Entity> entities = new List<Entity>();
+	/*[HideInInspector]*/ public List<Entity> entities = new List<Entity>();
 
 	int turn = 0;
-	[HideInInspector] public int turnIndex = -1;
+	/*[HideInInspector]*/ public int turnIndex = -1;
 
 	public delegate void SpellInputHandler(int _spellIndex);
 	public static event SpellInputHandler SelectSpell;
@@ -28,20 +28,20 @@ public class BattleStateMachine : MonoStateMachine
 	public void PlayNextTurn()
 	{
 		if(turnIndex > -1)
-		{
 			entities[turnIndex].isPlaying = false;
-			EnterTurn?.Invoke();
-		}
 
 		turn++;
 		turnIndex++;
-		if(turnIndex >= entities.Count)
+		
+		if (turnIndex >= entities.Count)
 		{
 			turnIndex = 0;
 		}
 
 		entities[turnIndex].isPlaying = true;
-		if(entities[turnIndex].isPlayerEntity)
+		EnterTurn?.Invoke();
+
+		if (entities[turnIndex].isPlayerEntity)
 		{
 			SetState("PlayerTurnState", true);
 		}

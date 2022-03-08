@@ -6,16 +6,11 @@ public class BattleUIMode : MonoBehaviour
 {
 	public BattleStateMachine fsm;
 
-	public TimelineUI timeLineUI;
-
-    private void Start()
-    {
-        Init();
-    }
+	public TimelineUI timelineUI;
 
     public void Init()
 	{
-		timeLineUI.OnMount(fsm.entities, this);
+		timelineUI.OnMount(fsm.entities, this);
 	}
 
     public bool IsEntityTurn(Entity _entity)

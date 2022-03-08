@@ -43,6 +43,7 @@ public class TimelineUI : MonoBehaviour
 
     [HideInInspector]
     public BattleUIMode mode;
+    [SerializeField]
     List<TimelinePortrait> allPortraits;
 
     public Action TurnStarted;
@@ -68,6 +69,8 @@ public class TimelineUI : MonoBehaviour
             count++;
         }
 
+        mainPortrait.OnMount(mode.fsm.entities[0]);
+
         UpdateTimelineControl();
         mode.fsm.EnterTurn += UpdateTimeline;
     }
@@ -79,11 +82,15 @@ public class TimelineUI : MonoBehaviour
 
     void UpdateTimeline()
     {
-        var firstPor = allPortraits.First();
+        int lastIndex = mode.fsm.turnIndex - 1;
+        if (lastIndex < 0) lastIndex = mode.fsm.entities.Count - 1;
 
-        allPortraits.RemoveAt(0);
-        allPortraits.Insert(allPortraits.Count - 1, firstPor);
-        firstPor.transform.SetAsLastSibling();
+        var lastEntity = mode.fsm.entities[lastIndex];
+        var lastPortrait = allPortraits.Where(p => p.linkedEntity == lastEntity).First();
+
+        lastPortrait.transform.SetAsLastSibling();
+
+        mainPortrait.linkedEntity = mode.fsm.entities[mode.fsm.turnIndex];
 
         TurnStarted?.Invoke();
     }
@@ -113,14 +120,14 @@ public class TimelineUI : MonoBehaviour
 
         if (entity.isPlayerEntity)
         {
-            if (mode.IsEntityTurn(entity))
+            if (entity.isPlaying)
                 _color = borderColors.currentAllyColor;
             else
                 _color = borderColors.allyColor;
         }
         else
         {
-            if (mode.IsEntityTurn(entity))
+            if (entity.isPlaying)
                 _color = borderColors.currentEnemyColor;
             else
                 _color = borderColors.enemyColor;

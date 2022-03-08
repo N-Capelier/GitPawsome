@@ -18,8 +18,8 @@ public class TimelinePortrait : MonoBehaviour
     [Header("Display Logic")]
     [SerializeField]
     bool isMain;
-    [SerializeField, ReadOnly]
-    Entity linkedEntity;
+    [ReadOnly]
+    public Entity linkedEntity;
 
     private void OnDestroy()
     {
@@ -43,7 +43,7 @@ public class TimelinePortrait : MonoBehaviour
         portrait.sprite = linkedEntity.InstaCatRef.CatSprite;
         border.color = timelineHandler.ReturnBorderColor(linkedEntity);
 
-        if (!isMain && timelineHandler.mode.IsEntityTurn(linkedEntity))
+        if (!isMain && linkedEntity.isPlaying)
         {
             portraitMask.rectTransform.localScale = Vector3.one * 1.3f;
             border.rectTransform.localScale = Vector3.one * 1.3f;
