@@ -34,7 +34,7 @@ public class BattleStateMachine : MonoStateMachine
 
 	#region Events & Actions
 
-	public Action<bool> CoinFlip;
+	public Action<bool> CoinFlip; //true for player first, false for enemy first
 
 	public delegate void SpellInputHandler(int _spellIndex);
 	public static event SpellInputHandler SelectSpell;
