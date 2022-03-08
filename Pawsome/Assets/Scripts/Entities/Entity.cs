@@ -60,6 +60,21 @@ public abstract class Entity : MonoBehaviour
 		//set renderer
 	}
 
+	public void SetPositionInteractorDisplay(bool value)
+	{
+		CellInteractor _interactor = LevelGrid.Instance.cells[(int)transform.position.x, (int)transform.position.z].interactor;
+
+		if (value)
+		{
+			_interactor.SetRendererColor(Color.green);
+			_interactor.SetRendererAlpha(1f);
+		}
+		else
+		{
+			_interactor.SetRendererAlpha(0f);
+		}
+	}
+
 	public void DiscardSpell(int _spellIndex)
 	{
 		discardPile.Add(hand[_spellIndex]);
