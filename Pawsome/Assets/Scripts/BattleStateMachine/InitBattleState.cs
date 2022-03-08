@@ -14,6 +14,9 @@ public class InitBattleState : MonoState
 		//get player's information
 		fsm.playerCats = BattleInformationManager.Instance.GetInstaCats();
 
+		fsm.playerInfo.entities = new Entity[3];
+		fsm.enemyInfo.entities = new Entity[3];
+
 		//Place entities on playground
 		for (int i = 0; i < 3; i++)
 		{
@@ -24,6 +27,7 @@ public class InitBattleState : MonoState
 			_entityComponent.Init(fsm.playerCats[i]);
 			LevelGrid.Instance.cells[i, i].entityOnCell = _entityComponent;
 			_entityComponent.isPlayerEntity = true;
+			fsm.playerInfo.entities[i] = _entityComponent;
 			fsm.entities.Add(_entityComponent);
 
 			//init enemy entity
@@ -32,6 +36,7 @@ public class InitBattleState : MonoState
 
 			_entityComponent.Init(fsm.AICats[i]);
 			LevelGrid.Instance.cells[LevelGrid.Instance.GetWidth() - i - 1, LevelGrid.Instance.GetHeigth() - i - 1].entityOnCell = _entityComponent;
+			fsm.enemyInfo.entities[i] = _entityComponent;
 			fsm.entities.Add(_entityComponent);
 		}
 

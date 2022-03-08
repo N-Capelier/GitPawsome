@@ -4,6 +4,13 @@ using UnityEngine;
 using NaughtyAttributes;
 using System;
 
+[Serializable]
+public class PlayerInfo
+{
+	public string playerName;
+	public Entity[] entities;
+}
+
 public class BattleStateMachine : MonoStateMachine
 {
 	[Header("References")]
@@ -14,6 +21,10 @@ public class BattleStateMachine : MonoStateMachine
 	[Header("Params")]
 	[HideInInspector] public InstaCat[] playerCats;
 	public InstaCat[] AICats;
+
+	[Header("Players")]
+	public PlayerInfo playerInfo;
+	public PlayerInfo enemyInfo;
 
 	[HideInInspector] public List<Entity> entities = new List<Entity>();
 
