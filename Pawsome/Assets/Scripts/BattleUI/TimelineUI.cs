@@ -12,13 +12,13 @@ public class TimelineUI : MonoBehaviour
     internal struct BorderColors
     {
         [SerializeField]
-        Color AllyColor;
+        internal Color allyColor;
         [SerializeField]
-        Color EnemyColor;
+        internal Color enemyColor;
         [SerializeField]
-        Color CurrentAlly;
+        internal Color currentAllyColor;
         [SerializeField]
-        Color CurrentEnemy;
+        internal Color currentEnemyColor;
     }
 
     [Header("Global references")]
@@ -41,53 +41,67 @@ public class TimelineUI : MonoBehaviour
     [SerializeField, Range(0f,1f)]
     float padding;
 
+    [HideInInspector]
+    public BattleUIMode mode;
+    [SerializeField]
     List<TimelinePortrait> allPortraits;
 
-    public void Start()
+    public Action TurnStarted;
+
+    private void OnDestroy()
     {
-        UpdateTimeLineControl();
+        OnUnMount();
     }
 
-    public void OnMount(List<Entity> orderedEntities)
+    public void OnMount(List<Entity> orderedEntities, BattleUIMode _mode)
     {
+        mode = _mode;
         allPortraits = new List<TimelinePortrait>();
+        int count = 0;
 
         foreach (Entity entity in orderedEntities)
         {
             var por = Instantiate(portraitTemplate, portraitCollectionRoot);
+            por.gameObject.name = "entity_portrait_" + count.ToString();
+            por.gameObject.SetActive(true);
             allPortraits.Add(por);
             por.OnMount(entity);
+            count++;
         }
 
-        UpdateTimeLineControl();
+        mainPortrait.OnMount(mode.fsm.entities[0]);
 
-        //BattleManager.OnCollectionChanged += UpDateTimeLine;
+        UpdateTimelineControl();
+        mode.fsm.EnterTurn += UpdateTimeline;
     }
 
     public void OnUnMount()
     {
-        //BattleManager.OnCollectionChanged -= UpDateTimeLine;
+        mode.fsm.EnterTurn -= UpdateTimeline;
     }
 
-    void UpdateTimeline(List<Entity> orderedEntities)
+    void UpdateTimeline()
     {
-        var firstPor = allPortraits.First();
+        int lastIndex = mode.fsm.turnIndex - 1;
+        if (lastIndex < 0) lastIndex = mode.fsm.entities.Count - 1;
 
-        firstPor.OnUnMount();
-        allPortraits.Remove(firstPor);
+        var lastEntity = mode.fsm.entities[lastIndex];
+        var lastPortrait = allPortraits.Where(p => p.linkedEntity == lastEntity).First();
 
-        firstPor.OnMount(orderedEntities.Last());
-        firstPor.transform.SetAsLastSibling();
-        allPortraits.Add(firstPor);
+        lastPortrait.transform.SetAsLastSibling();
+
+        mainPortrait.linkedEntity = mode.fsm.entities[mode.fsm.turnIndex];
+
+        TurnStarted?.Invoke();
     }
 
     public void MoveTimeline(int steps)
     {
         scroller.value += steps * padding;
-        UpdateTimeLineControl();
+        UpdateTimelineControl();
     }
 
-    public void UpdateTimeLineControl()
+    public void UpdateTimelineControl()
     {
         if (scroller.value <= 0)
             toLeftButton.interactable = false;
@@ -100,12 +114,24 @@ public class TimelineUI : MonoBehaviour
             toRightBtton.interactable = true;
     }
 
-    public Color ReturnBorderColor(InstaCat entity)
+    public Color ReturnBorderColor(Entity entity)
     {
         Color _color = new Color();
 
-        //Logic to test if the entity is either one of the following type:
-        // Ally, Enemy, CurrentAlly, CurrentEnemy
+        if (entity.isPlayerEntity)
+        {
+            if (entity.isPlaying)
+                _color = borderColors.currentAllyColor;
+            else
+                _color = borderColors.allyColor;
+        }
+        else
+        {
+            if (entity.isPlaying)
+                _color = borderColors.currentEnemyColor;
+            else
+                _color = borderColors.enemyColor;
+        }
 
         return _color;
     }
