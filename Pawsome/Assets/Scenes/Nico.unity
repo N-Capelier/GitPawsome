@@ -1317,6 +1317,70 @@ PrefabInstance:
       propertyPath: fsm
       value: 
       objectReference: {fileID: 809021532}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.allyColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.allyColor.b
+      value: 0.61302954
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.allyColor.g
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.allyColor.r
+      value: 0.5186454
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.enemyColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.enemyColor.b
+      value: 0.577093
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.enemyColor.g
+      value: 0.5518868
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.enemyColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.currentAllyColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.currentAllyColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.currentAllyColor.g
+      value: 0.6981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.currentAllyColor.r
+      value: 0.056027263
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.currentEnemyColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.currentEnemyColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.currentEnemyColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898317625, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: playerColors.currentEnemyColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 970364512, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1506,6 +1570,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4591041344762741424, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8198189905359678387, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -10.1223755
+      objectReference: {fileID: 0}
+    - target: {fileID: 8198189905359678387, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
