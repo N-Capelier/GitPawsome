@@ -5,7 +5,7 @@ using UnityEngine;
 public class CatDeckButton : MonoBehaviour
 {
     public int id;
-    public bool DontHaveCat;
+    public bool DontHaveCat = false;
 
     
     public void OnClick()
@@ -14,7 +14,7 @@ public class CatDeckButton : MonoBehaviour
         {
             DontHaveCat = true;
             BuildingManager.Instance.DontWannaUseCat(id);
-            BuildingManager.Instance.UpdateCatDeck(id, true);
+            BuildingManager.Instance.UpdateCatDeck(true);
 
         }
         
@@ -24,7 +24,7 @@ public class CatDeckButton : MonoBehaviour
     {
         DontHaveCat = false;
         id = i;
-        BuildingManager.Instance.UpdateCatDeck(i, false);
+        BuildingManager.Instance.UpdateCatDeck(false);
     }
 
 }

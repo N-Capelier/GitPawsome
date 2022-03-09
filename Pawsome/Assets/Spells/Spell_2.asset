@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Spell_2
   m_EditorClassIdentifier: 
   spellName: Awesome
-  spellSprite: {fileID: 0}
+  spellSprite: {fileID: 21300000, guid: c592e42ec18bfcb4384d8a05c9c8ec35, type: 3}
   description: 
-  spellClass: 0
+  spellClass: 1
   attackPattern: 0
   attackDamages: 0
   manaCost: 0

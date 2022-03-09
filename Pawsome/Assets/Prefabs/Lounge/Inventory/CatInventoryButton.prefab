@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3810396369367019869}
   - component: {fileID: 1955522332355160565}
   m_Layer: 0
-  m_Name: CatDeckButton
+  m_Name: CatInventoryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
