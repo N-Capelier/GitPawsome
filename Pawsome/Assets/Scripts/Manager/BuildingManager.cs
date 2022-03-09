@@ -39,7 +39,6 @@ public class BuildingManager : Singleton<BuildingManager>
 	public GameObject SpellCardPrefb;
 	public GameObject CatBag;
 	public GameObject CatCardPrefb;
-	public int WichCat = 1;
 	public InstaCat CatsDeck;
 	public GameObject NoSpellPrefab;
 	public GameObject DeckSpellPrefab;
@@ -243,6 +242,27 @@ public class BuildingManager : Singleton<BuildingManager>
 	//DeckPart
 	#region
 
+
+
+	
+
+	//CatPart
+	#region
+	public void CatUse(int i)
+	{
+		PlayerManager.Instance.UseCat(i, true);
+		CatImage.GetComponent<CatDeckButton>().OnClick();
+		CatsDeck = PlayerManager.Instance.MyCatBag[i].MyCat;
+		CatImage.GetComponent<CatDeckButton>().ReceieveCat(i);
+
+		UpdateCatDeckBuilding();
+	}
+	public void DontWannaUseCat(int i)
+	{
+		PlayerManager.Instance.UseCat(i, false);
+
+		UpdateCatDeckBuilding();
+	}
 	public void UpdateCatDeck(bool NoCat)
 	{
 		for (int i = CatSpells.transform.childCount; i > 0; i--)
@@ -263,8 +283,10 @@ public class BuildingManager : Singleton<BuildingManager>
 		CatImage.GetComponent<Image>().sprite = CatsDeck.CatSprite;
 		UpdateSpellDeck(false);
 	}
+	#endregion
 
-
+	//SpellPart
+	#region
 	public void UpdateSpellDeck(bool JustReset)
 	{
 		for (int i = CatSpells.transform.childCount; i > 0; i--)
@@ -295,52 +317,6 @@ public class BuildingManager : Singleton<BuildingManager>
 			GameObject _button = Instantiate(NoSpellPrefab, CatSpells.transform);
 		}
 	}
-	public void OpenCat1UI()
-	{
-		WichCat = 1;
-		CatUI.SetActive(true);
-		//CatUI[1].SetActive(false);
-		//CatUI[2].SetActive(false);
-	}
-	/*
-	public void OpenCat2UI()
-	{
-		WichCat = 2;
-		CatUI[0].SetActive(false);
-		CatUI[1].SetActive(true);
-		CatUI[2].SetActive(false);
-	}
-	public void OpenCat3UI()
-	{
-		WichCat = 3;
-		CatUI[0].SetActive(false);
-		CatUI[1].SetActive(false);
-		CatUI[2].SetActive(true);
-
-	}
-	*/
-
-	//CatPart
-	#region
-	public void CatUse(int i)
-	{
-		PlayerManager.Instance.UseCat(i, true);
-		CatImage.GetComponent<CatDeckButton>().OnClick();
-		CatsDeck = PlayerManager.Instance.MyCatBag[i].MyCat;
-		CatImage.GetComponent<CatDeckButton>().ReceieveCat(i);
-
-		UpdateCatDeckBuilding();
-	}
-	public void DontWannaUseCat(int i)
-	{
-		PlayerManager.Instance.UseCat(i, false);
-
-		UpdateCatDeckBuilding();
-	}
-	#endregion
-
-	//SpellPart
-	#region
 	public void SpellUse(int i)
 	{
 		if (!CatImage.GetComponent<CatDeckButton>().DontHaveCat)
