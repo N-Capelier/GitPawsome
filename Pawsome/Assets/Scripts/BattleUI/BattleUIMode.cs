@@ -24,8 +24,9 @@ public class BattleUIMode : MonoBehaviour
         PlayerColors = graphicRessources.entityColorCode;
 		timelineUI.OnMount(fsm.entities, this);
         compositionUI.OnMount(fsm.playerInfo, fsm.enemyInfo, this);
-        detailsUI.OnMout(this);
+        detailsUI.OnMount(this);
         historyUI.OnMount(this);
+        cardHandUI.OnMount(this);
 	}
 
     static public Color GetBorderColor(Entity entity, bool excludePlaying = false)

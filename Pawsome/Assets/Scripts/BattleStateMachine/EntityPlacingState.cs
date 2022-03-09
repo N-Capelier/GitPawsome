@@ -125,6 +125,7 @@ public class EntityPlacingState : MonoState
 		{
 			InitTurn();
 
+			fsm.battleUIMode.gameObject.SetActive(true);
 			fsm.battleUIMode.Init();
 
 			fsm.PlayNextTurn();

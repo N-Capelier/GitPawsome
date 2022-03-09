@@ -21,6 +21,7 @@ public class Spell : ScriptableObject
 {
 	public string spellName;
 	public Sprite spellSprite;
+	public Sprite spellRangeSprite;
 	public string description;
 	[Space]
 	public Archetype spellClass;

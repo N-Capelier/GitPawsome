@@ -72,7 +72,7 @@ public class EntityDetailsUI : MonoBehaviour
         OnUnMount();
     }
 
-    public void OnMout(BattleUIMode _mode)
+    public void OnMount(BattleUIMode _mode)
     {
         mode = _mode;
         mode.fsm.EnterTurn += OnTurnStart;
