@@ -141,7 +141,7 @@ public abstract class Entity : MonoBehaviour
 			return true;
 	}
 
-	public bool TakeDamage(int _damages)
+	public bool TakeDamage(int _damages, Entity _caster)
 	{
 		//Apply defense to _damages
 

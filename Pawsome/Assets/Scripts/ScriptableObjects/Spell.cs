@@ -32,4 +32,14 @@ public class Spell : ScriptableObject
 	[Space]
 	public int productionPrice;
 	public double productionTime;
+
+	public virtual Vector2Int[] GetSpellReach(int fromX, int fromY, int toX, int toY)
+	{
+		return null;
+	}
+
+	public virtual void ExecuteSpell(Entity _caster, Vector2Int _target)
+	{
+		return;
+	}
 }

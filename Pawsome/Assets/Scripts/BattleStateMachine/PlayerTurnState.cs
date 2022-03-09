@@ -105,7 +105,7 @@ public class PlayerTurnState : MonoState
 				{
 					//Deal damages to target
 					Debug.Log(interactor.levelCell.entityOnCell.InstaCat.catName + " lost 5 health points");
-					if(interactor.levelCell.entityOnCell.TakeDamage(5))
+					if(interactor.levelCell.entityOnCell.TakeDamage(5, null))
 					{
 						fsm.RemoveEntity(interactor.levelCell.entityOnCell);
 						interactor.levelCell.entityOnCell.Death();
