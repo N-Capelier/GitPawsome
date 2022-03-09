@@ -41,6 +41,8 @@ public class BattleStateMachine : MonoStateMachine
 
 	public Action EnterTurn;
 
+	public Action<Archetype> PickArchetype;
+
 	#endregion
 
 	public void PlayNextTurn()
@@ -122,5 +124,20 @@ public class BattleStateMachine : MonoStateMachine
 	{
 		if (ActiveState.StateName == "PlayerTurnState")
 			SelectSpell?.Invoke(2);
+	}
+
+	public void InputDPS()
+	{
+		PickArchetype?.Invoke(Archetype.Dps);
+	}
+
+	public void InputTank()
+	{
+		PickArchetype?.Invoke(Archetype.Tank);
+	}
+
+	public void InputSupport()
+	{
+		PickArchetype?.Invoke(Archetype.Support);
 	}
 }

@@ -35,6 +35,10 @@ public class LevelGrid : Singleton<LevelGrid>
 				_cellInteractor.gameObject.name = $"[{x}|{y}] Cell Interactor";
 				cells[x, y].interactor = _cellInteractor;
 				_cellInteractor.levelCell = cells[x, y];
+				if(x + y <= 3)
+				{
+					_cellInteractor.levelCell.isPlayerStartCell = true;
+				}
 			}
 		}
 	}

@@ -4,28 +4,46 @@ using UnityEngine;
 
 public class EntityPlacingState : MonoState
 {
-//public override void OnStateEnter()
-//{
+	BattleStateMachine fsm;
 
-//}
+	public override void OnStateEnter()
+	{
+		fsm = StateMachine as BattleStateMachine;
 
-//public override void OnStateUpdate()
-//{
+		fsm.PickArchetype += PickArchetype;
+	}
 
-//}
+	void PickArchetype(Archetype _archetype)
+	{
+		fsm.PickArchetype -= PickArchetype;
 
-//public override void OnStateFixedUpdate()
-//{
+	}
 
-//}
+	void OnClickInteractor(CellInteractor _interactor)
+	{
+		if(_interactor.levelCell.isPlayerStartCell)
+		{
 
-//public override void OnStateLateUpdate()
-//{
+		}
+	}
 
-//}
+	//public override void OnStateUpdate()
+	//{
 
-//public override void OnStateExit()
-//{
+	//}
 
-//}
+	//public override void OnStateFixedUpdate()
+	//{
+
+	//}
+
+	//public override void OnStateLateUpdate()
+	//{
+
+	//}
+
+	//public override void OnStateExit()
+	//{
+
+	//}
 }
