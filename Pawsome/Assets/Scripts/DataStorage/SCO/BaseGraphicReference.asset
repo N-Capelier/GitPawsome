@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5c693808740f64db528048352e6c73, type: 3}
+  m_Name: BaseGraphicReference
+  m_EditorClassIdentifier: 
+  entityColorCode:
+    allyColor: {r: 0.6974971, g: 1, b: 0.6933962, a: 1}
+    enemyColor: {r: 1, g: 0.5707547, b: 0.5707547, a: 1}
+    currentAllyColor: {r: 0.008103512, g: 0.6320754, b: 0, a: 1}
+    currentEnemyColor: {r: 0.8113208, g: 0, b: 0, a: 1}
+  classIcons:
+    m_keys: 00000000010000000200000003000000
+    m_values:
+    - {fileID: 21300000, guid: e7dcea07a35149747ae070761f18f561, type: 3}
+    - {fileID: 21300000, guid: 7272344ecee03434b99cf2269068e41b, type: 3}
+    - {fileID: 21300000, guid: 1158e5af278389c44a8abdd3f7a96780, type: 3}
+    - {fileID: 21300000, guid: ca2a8f108b0d31746bfb964661d5d6a5, type: 3}
+  cardBackground:
+    m_keys: 00000000020000000300000001000000
+    m_values:
+    - {fileID: 21300000, guid: d1cf12a5524205a46ba02ba15971af2d, type: 3}
+    - {fileID: 21300000, guid: cd61ac7005dac0142b0dbe2aa6a42d89, type: 3}
+    - {fileID: 21300000, guid: ea1960ef32b7b6948a3aa38be06b7d77, type: 3}
+    - {fileID: 21300000, guid: 3599c225c5a0f344f984025ac45f482c, type: 3}
+  statsIcon:
+    m_keys: 00000000010000000200000003000000
+    m_values:
+    - {fileID: 21300000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
+    - {fileID: 21300000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
+    - {fileID: 21300000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
+    - {fileID: 21300000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
