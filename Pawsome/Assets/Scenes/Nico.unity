@@ -721,7 +721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &183150787
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1515,18 +1515,23 @@ MonoBehaviour:
   startingState: {fileID: 11400000, guid: 39e2bd1890d357944b8ae0a81136e6b0, type: 2}
   states:
   - {fileID: 11400000, guid: 39e2bd1890d357944b8ae0a81136e6b0, type: 2}
+  - {fileID: 11400000, guid: 9b0ac2d140ade6242827a712e983e07b, type: 2}
   - {fileID: 11400000, guid: 307c76c8d4a42744bb34db4395159773, type: 2}
   - {fileID: 11400000, guid: e769086e683c31c439745ffdc513aae8, type: 2}
   - {fileID: 11400000, guid: 4480f2846e11b6a4dbdfafd12c5f8147, type: 2}
   playerPrefab: {fileID: 8479571074173389293, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
   enemyPrefab: {fileID: 3388722014404400547, guid: 024476381bc08504e8ad1237cad21270, type: 3}
   battleUIMode: {fileID: 898317626}
+  archetypeButtons:
+  - {fileID: 183150786}
+  - {fileID: 1828410552}
+  - {fileID: 924182433}
   playerCats: []
   AICats:
   - {fileID: 11400000, guid: bc0b4c6d4498f1d4a9a1858e957fbf81, type: 2}
   - {fileID: 11400000, guid: c27f73c46456b534f919dde5a9f4a7d5, type: 2}
   - {fileID: 11400000, guid: c1eff58d12887084298f7b233cbfffdf, type: 2}
-  coinFlipAnimationDuration: 0
+  coinFlipAnimationDuration: 1
   playerInfo:
     playerName: Player
     entities: []
@@ -1534,6 +1539,7 @@ MonoBehaviour:
     playerName: Enemy
     entities: []
   entities: []
+  playerFirst: 0
   turnIndex: -1
 --- !u!4 &809021533
 Transform:
@@ -2032,7 +2038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &924182434
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2749,7 +2755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1828410553
 RectTransform:
   m_ObjectHideFlags: 0
