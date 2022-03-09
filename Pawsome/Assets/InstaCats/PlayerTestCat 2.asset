@@ -17,8 +17,8 @@ MonoBehaviour:
   mesh: {fileID: 0}
   catClass: 1
   deckSize: 8
-  baseHealth: 0
-  bonusHealth: 0
+  baseHealth: 120
+  bonusHealth: 40
   baseMana: 0
   bonusMana: 0
   baseInitiative: 2
@@ -31,7 +31,7 @@ MonoBehaviour:
   bonusMovePoints: 0
   spells: []
   Temp: 
-  health: 0
+  health: 160
   mana: 0
   initiative: 0
   attack: 0

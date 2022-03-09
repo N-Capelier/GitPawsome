@@ -36,7 +36,7 @@ public class InstaCat : ScriptableObject
 	public List<Spell> spells = new List<Spell>();
 	public List<int> Temp = new List<int>();
 
-	[HideInInspector] public int health;
+	public int health;
 	[HideInInspector] public int mana;
 	[HideInInspector] public int initiative;
 	[HideInInspector] public int attack;

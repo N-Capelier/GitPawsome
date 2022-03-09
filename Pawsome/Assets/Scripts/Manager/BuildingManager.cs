@@ -47,7 +47,12 @@ public class BuildingManager : Singleton<BuildingManager>
 	public GameObject CatUI;
 	public GameObject CatImage;
 	public GameObject CatSpells;
-
+	
+	[Header("Infirmary")]
+	public GameObject InfirmaryMenu;
+	public SpellGenerator InfirmaryBuilding;
+	public GameObject InfirmaryBag;
+	public GameObject InfirmaryInventoryPrefb;
 
 	private void Awake()
 	{
@@ -371,5 +376,66 @@ public class BuildingManager : Singleton<BuildingManager>
 
 	#endregion
 
+	//Infirmary
+	#region
+	public void OpenInfirmaryUI()
+	{
+
+		InfirmaryMenu.SetActive(true);
+		UpdateInfirmary();
+	}
+	public void ExitInfirmaryUI()
+	{
+		InfirmaryMenu.SetActive(false);
+	}
+
+	//Inventory Part
+	#region
+	public void UpdateInfirmary()
+	{
+		if (PlayerManager.Instance.MyCatBag.Count < 1)
+		{
+			return;
+		}
+		for (int i = InfirmaryBag.transform.childCount; i > 0; i--)
+		{
+			Destroy(InfirmaryBag.transform.GetChild(i - 1).gameObject);
+		}
+		for (int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
+		{
+			if (PlayerManager.Instance.MyCatBag[i].InUse == false)
+			{
+				GameObject _button = Instantiate(InfirmaryInventoryPrefb, InfirmaryBag.transform);
+				InstaCat _cat = PlayerManager.Instance.MyCatBag[i].MyCat;
+				_button.GetComponent<Image>().sprite = _cat.CatSprite;
+				_button.GetComponent<InfirmaryInventoryButton>().Hp.text = _cat.health.ToString() + " / " + _cat.GetHealth().ToString();
+				_button.GetComponent<InfirmaryInventoryButton>().HpBar.value = (_cat.health*100)/ _cat.GetHealth();
+			}
+		}
+	}
+	
+	#endregion
+	//DeckPart
+	#region
+
+	public void InfirmaryCatUse(int i)
+	{
+		PlayerManager.Instance.UseCat(i, true);
+		CatImage.GetComponent<CatDeckButton>().OnClick();
+		CatsDeck = PlayerManager.Instance.MyCatBag[i].MyCat;
+		CatImage.GetComponent<CatDeckButton>().ReceieveCat(i);
+
+		UpdateCatDeckBuilding();
+	}
+	public void InfirmaryDontWannaUseCat(int i)
+	{
+		PlayerManager.Instance.UseCat(i, false);
+
+		UpdateCatDeckBuilding();
+	}
+	
+	#endregion
+
+	#endregion
 
 }

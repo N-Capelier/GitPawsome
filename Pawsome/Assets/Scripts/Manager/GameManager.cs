@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
         BuildingManager.Instance.UpdateCatDeckBuilding();
         BuildingManager.Instance.UpdateSpellDeckBuilding();
         BuildingManager.Instance.UpdateCatDeck(true);
+        BuildingManager.Instance.UpdateInfirmary();
     }
 
     public void UpdateUI()
