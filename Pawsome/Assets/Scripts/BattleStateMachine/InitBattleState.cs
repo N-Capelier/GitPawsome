@@ -7,6 +7,8 @@ public class InitBattleState : MonoState
 {
 	BattleStateMachine fsm;
 
+	bool playerFirst;
+
 	public override void OnStateEnter()
 	{
 		fsm = StateMachine as BattleStateMachine;
@@ -16,6 +18,12 @@ public class InitBattleState : MonoState
 
 		fsm.playerInfo.entities = new Entity[3];
 		fsm.enemyInfo.entities = new Entity[3];
+
+		//CoinFlip order
+		fsm.CoinFlip += OnCoinFlipCompleted;
+		fsm.StartCoroutine(fsm.CoinFlipCoroutine());
+
+		 //////////////////////////////// Move the following to EntityPlacingState //////////////////////////////////////////////
 
 		//Place entities on playground
 		for (int i = 0; i < 3; i++)
@@ -47,6 +55,15 @@ public class InitBattleState : MonoState
 		fsm.battleUIMode.Init();
 
 		fsm.PlayNextTurn();
+	}
+
+	void OnCoinFlipCompleted(bool _result)
+	{
+		fsm.CoinFlip -= OnCoinFlipCompleted;
+
+		playerFirst = _result;
+
+
 	}
 
 	//public override void OnStateUpdate()

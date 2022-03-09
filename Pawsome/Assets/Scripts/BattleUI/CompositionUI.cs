@@ -17,7 +17,7 @@ public class CompositionUI : MonoBehaviour
         [SerializeField]
         internal Transform portraitRoot;
 
-        public void OnMount(string _playerName, List<Entity> playersEntities, CompositionUI compUI)
+        public void OnMount(string _playerName, Entity[] playersEntities, CompositionUI compUI)
         {
             playerName.text = _playerName;
 
@@ -26,6 +26,8 @@ public class CompositionUI : MonoBehaviour
                 var por = Instantiate(portraitTemplate, portraitRoot);
                 por.OnMount(entity, compUI);
             }
+
+            portraitTemplate.gameObject.SetActive(false);
         }
     }
 
@@ -37,11 +39,11 @@ public class CompositionUI : MonoBehaviour
     [HideInInspector]
     public BattleUIMode mode;
 
-    public void OnMount(PlayerEntity playerOne, PlayerEntity playerTwo, BattleUIMode _mode)
+    public void OnMount(PlayerInfo playerOne, PlayerInfo playerTwo, BattleUIMode _mode)
     {
-        playerOneComp.OnMount(playerOne.name, new List<Entity>(), this);
-        playerTwoComp.OnMount(playerTwo.name, new List<Entity>(), this);
         mode = _mode;
+        playerOneComp.OnMount(playerOne.playerName, playerOne.entities, this);
+        playerTwoComp.OnMount(playerTwo.playerName, playerTwo.entities, this);
     }
 
 }

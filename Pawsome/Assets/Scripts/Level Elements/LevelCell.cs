@@ -7,6 +7,7 @@ public class LevelCell
 	public Vector2 position;
 
 	public bool isWall = false;
+	public bool isPlayerStartCell = false;
 
 	public CellInteractor interactor;
 	public Entity entityOnCell;

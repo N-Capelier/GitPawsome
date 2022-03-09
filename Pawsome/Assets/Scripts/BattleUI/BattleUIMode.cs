@@ -23,32 +23,33 @@ public class BattleUIMode : MonoBehaviour
 	public TimelineUI timelineUI;
     public CompositionUI compositionUI;
 
-    public static BorderColors borderColors;
+    static public BorderColors PlayerColors;
+    public BorderColors playerColors;
 
     public void Init()
 	{
+        PlayerColors = playerColors;
 		timelineUI.OnMount(fsm.entities, this);
-        compositionUI.OnMount(new PlayerEntity(), new PlayerEntity(), this);
+        compositionUI.OnMount(fsm.playerInfo, fsm.enemyInfo, this);
 	}
 
     static public Color GetBorderColor(Entity entity)
     {
-        var borderColors = BattleUIMode.borderColors;
         Color _color = new Color();
 
         if (entity.isPlayerEntity)
         {
             if (entity.isPlaying)
-                _color = borderColors.currentAllyColor;
+                _color = PlayerColors.currentAllyColor;
             else
-                _color = borderColors.allyColor;
+                _color = PlayerColors.allyColor;
         }
         else
         {
             if (entity.isPlaying)
-                _color = borderColors.currentEnemyColor;
+                _color = PlayerColors.currentEnemyColor;
             else
-                _color = borderColors.enemyColor;
+                _color = PlayerColors.enemyColor;
         }
 
         return _color;

@@ -21,6 +21,7 @@ public class BattleStateMachine : MonoStateMachine
 	[Header("Params")]
 	[HideInInspector] public InstaCat[] playerCats;
 	public InstaCat[] AICats;
+	[SerializeField] float coinFlipAnimationDuration;
 
 	[Header("Players")]
 	public PlayerInfo playerInfo;
@@ -31,10 +32,18 @@ public class BattleStateMachine : MonoStateMachine
 	int turn = 0;
 	[HideInInspector] public int turnIndex = -1;
 
+	#region Events & Actions
+
+	public Action<bool> CoinFlip; //true for player first, false for enemy first
+
 	public delegate void SpellInputHandler(int _spellIndex);
 	public static event SpellInputHandler SelectSpell;
 
 	public Action EnterTurn;
+
+	public Action<Archetype> PickArchetype;
+
+	#endregion
 
 	public void PlayNextTurn()
 	{
@@ -74,6 +83,22 @@ public class BattleStateMachine : MonoStateMachine
 		}
 	}
 
+	public IEnumerator CoinFlipCoroutine()
+	{
+		int _random = UnityEngine.Random.Range(0, 2);
+		
+		bool _result;
+
+		if (_random == 0)
+			_result = true;
+		else
+			_result = false;
+
+		yield return new WaitForSeconds(coinFlipAnimationDuration); // Animation time
+
+		CoinFlip?.Invoke(_result);
+	}
+
 	public void EndTurnButton()
 	{
 		if(ActiveState.StateName == "PlayerTurnState")
@@ -101,4 +126,18 @@ public class BattleStateMachine : MonoStateMachine
 			SelectSpell?.Invoke(2);
 	}
 
+	public void InputDPS()
+	{
+		PickArchetype?.Invoke(Archetype.Dps);
+	}
+
+	public void InputTank()
+	{
+		PickArchetype?.Invoke(Archetype.Tank);
+	}
+
+	public void InputSupport()
+	{
+		PickArchetype?.Invoke(Archetype.Support);
+	}
 }

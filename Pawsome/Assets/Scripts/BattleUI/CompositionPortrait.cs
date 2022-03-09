@@ -47,9 +47,16 @@ public class CompositionPortrait : MonoBehaviour
 
     public void OnUnMount()
     {
-        linkedEntity.HealthChanged -= UpdateHealth;
-        linkedEntity.ManaChanged -= UpdateMana;
-        compositionUI.mode.fsm.EnterTurn -= UpdatePortaitsGraphics;
+		try
+		{
+            linkedEntity.HealthChanged -= UpdateHealth;
+            linkedEntity.ManaChanged -= UpdateMana;
+            compositionUI.mode.fsm.EnterTurn -= UpdatePortaitsGraphics;
+        }
+        catch
+		{
+            // Ingénieur informaticien, je suis
+		}
     }
 
     void UpdateHealth()
