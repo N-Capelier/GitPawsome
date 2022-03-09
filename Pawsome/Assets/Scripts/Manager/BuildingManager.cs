@@ -347,11 +347,35 @@ public class BuildingManager : Singleton<BuildingManager>
 		{
 			if (CatsDeck.spells.Count < CatsDeck.deckSize)
 			{
-				CatsDeck.spells.Add(PlayerManager.Instance.MyBagSpell[i].MySpell);
-				PlayerManager.Instance.MyBagSpell[i].InBag--;
-				CatsDeck.Temp.Add(i);
-				UpdateSpellDeckBuilding();
-				UpdateSpellDeck(false);
+				bool isOk = false;
+				if(CatsDeck.catClass == PlayerManager.Instance.MyBagSpell[i].MySpell.spellClass)
+                {
+					int spellClassCount = 0;
+					foreach (Spell element in CatsDeck.spells)
+                    {
+						if (CatsDeck.catClass == element.spellClass) spellClassCount++;
+                    }
+					isOk = spellClassCount < 6;
+
+				}
+				else if (Archetype.Common == PlayerManager.Instance.MyBagSpell[i].MySpell.spellClass)
+				{
+					int spellClassCount = 0;
+					foreach (Spell element in CatsDeck.spells)
+                    {
+						if (Archetype.Common == element.spellClass) spellClassCount++;
+                    }
+					isOk = spellClassCount < 2;
+
+				}
+				if (isOk)
+				{
+					CatsDeck.spells.Add(PlayerManager.Instance.MyBagSpell[i].MySpell);
+					PlayerManager.Instance.MyBagSpell[i].InBag--;
+					CatsDeck.Temp.Add(i);
+					UpdateSpellDeckBuilding();
+					UpdateSpellDeck(false);
+				}
 
 			}
 		}

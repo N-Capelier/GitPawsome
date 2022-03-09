@@ -15,7 +15,7 @@ MonoBehaviour:
   catName: cat 2
   CatSprite: {fileID: 21300000, guid: 7272344ecee03434b99cf2269068e41b, type: 3}
   mesh: {fileID: 0}
-  catClass: 0
+  catClass: 1
   deckSize: 8
   baseHealth: 0
   bonusHealth: 0
