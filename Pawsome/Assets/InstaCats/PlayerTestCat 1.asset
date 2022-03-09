@@ -29,8 +29,8 @@ MonoBehaviour:
   bonusDefense: 0
   baseMovePoints: 3
   bonusMovePoints: 0
-  spells:
-  - {fileID: 11400000, guid: be6b10e689b4c27498ae7a5a55a784b7, type: 2}
+  spells: []
+  Temp: 
   health: 0
   mana: 0
   initiative: 0

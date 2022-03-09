@@ -34,6 +34,7 @@ public class InstaCat : ScriptableObject
 	public int bonusMovePoints;
 
 	public List<Spell> spells = new List<Spell>();
+	public List<int> Temp = new List<int>();
 
 	[HideInInspector] public int health;
 	[HideInInspector] public int mana;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerTestCat 3
   m_EditorClassIdentifier: 
   catName: cat 3
-  CatSprite: {fileID: 21300000, guid: e0bd6529462a14946b5051560f07b23f, type: 3}
+  CatSprite: {fileID: 21300000, guid: 1158e5af278389c44a8abdd3f7a96780, type: 3}
   mesh: {fileID: 0}
   catClass: 0
   deckSize: 8
@@ -30,6 +30,7 @@ MonoBehaviour:
   baseMovePoints: 3
   bonusMovePoints: 0
   spells: []
+  Temp: 
   health: 0
   mana: 0
   initiative: 0

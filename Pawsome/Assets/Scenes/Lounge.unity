@@ -5706,22 +5706,13 @@ MonoBehaviour:
   CatBag: {fileID: 808804468}
   CatCardPrefb: {fileID: 5484298422675182104, guid: c1ba8ecaa2ce95547b9e980f00968a44, type: 3}
   WichCat: 1
-  CatsDeck: []
+  CatsDeck: {fileID: 0}
   NoSpellPrefab: {fileID: 6336600669187776145, guid: f0f433945af305242803001080015ac1, type: 3}
   DeckSpellPrefab: {fileID: 1829121931493784667, guid: d57e9e77d740f0b4d97cae10dcceeca1, type: 3}
   NoCatPrefab: {fileID: 21300000, guid: 7272344ecee03434b99cf2269068e41b, type: 3}
-  CatUI:
-  - {fileID: 261884942}
-  - {fileID: 1168265854}
-  - {fileID: 279319824}
-  CatImage:
-  - {fileID: 39061774}
-  - {fileID: 2068151195}
-  - {fileID: 1337078506}
-  CatSpells:
-  - {fileID: 1012180379}
-  - {fileID: 1237084973}
-  - {fileID: 565616967}
+  CatUI: {fileID: 261884942}
+  CatImage: {fileID: 39061774}
+  CatSpells: {fileID: 1012180379}
 --- !u!4 &1140167760
 Transform:
   m_ObjectHideFlags: 0
@@ -9174,7 +9165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1785099225
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9373,7 +9364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1867156970
 RectTransform:
   m_ObjectHideFlags: 0
