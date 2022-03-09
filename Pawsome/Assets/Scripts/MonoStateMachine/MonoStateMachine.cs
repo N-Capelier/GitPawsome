@@ -49,7 +49,7 @@ public abstract class MonoStateMachine : MonoBehaviour
 	public bool SetState(string _stateName, bool _forceState = false)
 	{
 		if (states.Count == 0)
-			throw new System.ArgumentNullException();
+			throw new System.EmptyCollectionException();
 
 		if (activeState != null)
 		{
@@ -77,7 +77,7 @@ public abstract class MonoStateMachine : MonoBehaviour
 			if (_stateName == _state.StateName)
 				return _state;
 		}
-		throw new System.ArgumentException("");
+		throw new System.ArgumentException();
 	}
 
 	private void Start()
