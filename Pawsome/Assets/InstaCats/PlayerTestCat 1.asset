@@ -29,7 +29,13 @@ MonoBehaviour:
   bonusDefense: 0
   baseMovePoints: 3
   bonusMovePoints: 0
-  spells: []
+  spells:
+  - {fileID: 11400000, guid: e0b70684084da624a9c0155a70154999, type: 2}
+  - {fileID: 11400000, guid: be6b10e689b4c27498ae7a5a55a784b7, type: 2}
+  - {fileID: 11400000, guid: a79b6d4304911a14f83e810fb2a0b6e1, type: 2}
+  - {fileID: 11400000, guid: 908b5ed3f6e076347a687bf3cea7c3b1, type: 2}
+  - {fileID: 11400000, guid: 65d3e5f1b959a784ea14338ccf420fcf, type: 2}
+  - {fileID: 11400000, guid: a6a141f067d1dad44a0d3608afb96d86, type: 2}
   Temp: 
   health: 62
   mana: 0
