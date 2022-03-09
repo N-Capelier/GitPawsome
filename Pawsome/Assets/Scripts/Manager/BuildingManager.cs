@@ -50,9 +50,13 @@ public class BuildingManager : Singleton<BuildingManager>
 	
 	[Header("Infirmary")]
 	public GameObject InfirmaryMenu;
-	public SpellGenerator InfirmaryBuilding;
-	public GameObject InfirmaryBag;
+	public Infirmary InfirmaryBuilding;
+	public GameObject InfirmaryInventoryBag;
 	public GameObject InfirmaryInventoryPrefb;
+	//infirmary
+	public GameObject InfirmaryBag;
+	public GameObject InfirmaryPrefb;
+	public GameObject NoCatInInfirmaryPrefb;
 
 	private void Awake()
 	{
@@ -382,7 +386,8 @@ public class BuildingManager : Singleton<BuildingManager>
 	{
 
 		InfirmaryMenu.SetActive(true);
-		UpdateInfirmary();
+		UpdateInfirmaryInventory();
+		UpdateInfirmary(false);
 	}
 	public void ExitInfirmaryUI()
 	{
@@ -391,49 +396,118 @@ public class BuildingManager : Singleton<BuildingManager>
 
 	//Inventory Part
 	#region
-	public void UpdateInfirmary()
+	public void UpdateInfirmaryInventory()
 	{
 		if (PlayerManager.Instance.MyCatBag.Count < 1)
 		{
 			return;
 		}
-		for (int i = InfirmaryBag.transform.childCount; i > 0; i--)
+		for (int i = InfirmaryInventoryBag.transform.childCount; i > 0; i--)
 		{
-			Destroy(InfirmaryBag.transform.GetChild(i - 1).gameObject);
+			Destroy(InfirmaryInventoryBag.transform.GetChild(i - 1).gameObject);
 		}
 		for (int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
 		{
-			if (PlayerManager.Instance.MyCatBag[i].InUse == false)
+			if (PlayerManager.Instance.MyCatBag[i].InUse == false && PlayerManager.Instance.MyCatBag[i].MyCat.GetHealth() > PlayerManager.Instance.MyCatBag[i].MyCat.health)
 			{
-				GameObject _button = Instantiate(InfirmaryInventoryPrefb, InfirmaryBag.transform);
+				GameObject _button = Instantiate(InfirmaryInventoryPrefb, InfirmaryInventoryBag.transform);
 				InstaCat _cat = PlayerManager.Instance.MyCatBag[i].MyCat;
 				_button.GetComponent<Image>().sprite = _cat.CatSprite;
 				_button.GetComponent<InfirmaryInventoryButton>().Hp.text = _cat.health.ToString() + " / " + _cat.GetHealth().ToString();
 				_button.GetComponent<InfirmaryInventoryButton>().HpBar.value = (_cat.health*100)/ _cat.GetHealth();
+				_button.GetComponent<InfirmaryInventoryButton>().id = i;
 			}
 		}
 	}
 	
 	#endregion
-	//DeckPart
+	//Infirmary part
 	#region
 
 	public void InfirmaryCatUse(int i)
 	{
-		PlayerManager.Instance.UseCat(i, true);
-		CatImage.GetComponent<CatDeckButton>().OnClick();
-		CatsDeck = PlayerManager.Instance.MyCatBag[i].MyCat;
-		CatImage.GetComponent<CatDeckButton>().ReceieveCat(i);
+		if (InfirmaryBuilding.myInfirmary.Count < 4)
+		{
+			PlayerManager.Instance.UseCat(i, true);
+			InfirmaryBuilding.AddCatToInfirmary(PlayerManager.Instance.MyCatBag[i].MyCat, i);
+			UpdateInfirmary(true);
+			UpdateInfirmaryInventory();
+		}
 
-		UpdateCatDeckBuilding();
 	}
 	public void InfirmaryDontWannaUseCat(int i)
 	{
-		PlayerManager.Instance.UseCat(i, false);
-
-		UpdateCatDeckBuilding();
+		/*for (int j = 0; j < InfirmaryBuilding.myInfirmary.Count; j++)
+		{
+			InfirmaryBag.transform.GetChild(j).GetComponent<NurceButton>().GiveMyData();
+		}*/
+		PlayerManager.Instance.UseCat(InfirmaryBuilding.myInfirmary[i].idInBag, false);
+		InfirmaryBuilding.OutCatToInfirmary(i);
+		UpdateInfirmary(false);
+		UpdateInfirmaryInventory();
 	}
-	
+
+	public void UpdateInfirmary(bool justAddOne)
+	{
+		if (InfirmaryBuilding.myInfirmary.Count > 0)
+		{
+
+			int temp = InfirmaryBuilding.myInfirmary.Count;
+			if (justAddOne)
+			{
+				temp--;
+			}
+
+			for (int i = 0; i < temp; i++)
+			{
+				InfirmaryBag.transform.GetChild(i).GetComponent<NurceButton>().GiveMyData();
+			}
+			for (int i = InfirmaryBag.transform.childCount; i > 0; i--)
+			{
+				Destroy(InfirmaryBag.transform.GetChild(i - 1).gameObject);
+
+			}
+			if (InfirmaryBuilding.myInfirmary.Count > 0)
+			{
+				for (int i = 0; i < InfirmaryBuilding.myInfirmary.Count; i++)
+				{
+					GameObject _button = Instantiate(InfirmaryPrefb, InfirmaryBag.transform);
+					InstaCat _cat = InfirmaryBuilding.myInfirmary[i].CatInInfirmary;
+					_button.GetComponent<Image>().sprite = _cat.CatSprite;
+					_button.GetComponent<NurceButton>().id = i;
+					_button.GetComponent<NurceButton>().health = _cat.health;
+					_button.GetComponent<NurceButton>().maxHealth = _cat.GetHealth();
+					_button.GetComponent<NurceButton>().StartTime = InfirmaryBuilding.myInfirmary[i].StartTime;
+
+				}
+			}
+			if (InfirmaryBuilding.myInfirmary.Count > 0 && InfirmaryBuilding.myInfirmary.Count < 4)
+			{
+				for (int i = InfirmaryBuilding.myInfirmary.Count; i < 4; i++)
+				{
+					GameObject _button = Instantiate(NoCatInInfirmaryPrefb, InfirmaryBag.transform);
+				}
+			}
+			return;
+		}
+		for (int i = InfirmaryBag.transform.childCount; i > 0; i--)
+		{
+			Destroy(InfirmaryBag.transform.GetChild(i - 1).gameObject);
+
+		}
+		for (int i = InfirmaryBuilding.myInfirmary.Count; i < 4; i++)
+		{
+			GameObject _button = Instantiate(NoCatInInfirmaryPrefb, InfirmaryBag.transform);
+		}
+
+	}
+
+	public void GiveInfoToInfirmary(int id, float time, int h)
+    {
+		InfirmaryBuilding.myInfirmary[id].StartTime = time;
+		InfirmaryBuilding.myInfirmary[id].CatInInfirmary.health = h;
+    }
+
 	#endregion
 
 	#endregion

@@ -81,11 +81,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void UseCat(int CatIndice, bool WannaUse)
     {
-        if(MyCatBag[CatIndice].InUse == !WannaUse)
-        {
             MyCatBag[CatIndice].InUse = WannaUse;
             return;
-        }
         
     }
 

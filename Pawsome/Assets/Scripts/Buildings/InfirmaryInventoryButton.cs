@@ -12,42 +12,7 @@ public class InfirmaryInventoryButton : MonoBehaviour
     
     public void OnClick()
     {
-        Debug.Log("clik");
+        BuildingManager.Instance.InfirmaryCatUse(id);
     }
-    /*
-    private void Start()
-    {
-        ProductionTime = BuildingManager.Instance.GetProductionTime(id);
-        ProgressBar.gameObject.SetActive(false);
-    }
-    public void GenerateMySelf()
-    {
-        if (!IsProducing)
-        {
-            if(BuildingManager.Instance.TryProduce(id))
-            {
-                ProgressBar.gameObject.SetActive(true);
-                IsProducing = true;
-                ProgressBar.value = 0;
-                StartTime = Time.time;
-            }
-        }
-    }
-
-    private void Update()
-    {
-        if(!IsProducing)
-        {
-            return;
-        }
-        if((Time.time - StartTime) > ProductionTime)
-        {
-            IsProducing = false;
-            BuildingManager.Instance.ProductionDone(id);
-            ProgressBar.gameObject.SetActive(false);
-            return;
-        }
-        ProgressBar.value = (float)((100 * (Time.time - StartTime)) / ProductionTime);
-    }*/
 
 }
