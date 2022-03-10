@@ -19,9 +19,13 @@ public class NurceButton : MonoBehaviour
     public int health, maxHealth;
     private void Start()
     {
-
-        Hp.text = health.ToString() + " / " + maxHealth.ToString();
         HpBar.value = (health * 100) / maxHealth;
+        if(dead)
+        {
+            Hp.text = "DEAD";
+            return;
+        }
+        Hp.text = health.ToString() + " / " + maxHealth.ToString();
     }
 
     public void OnClick()

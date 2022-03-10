@@ -74,6 +74,18 @@ public class BuildingManager : Singleton<BuildingManager>
 	public GameObject InfirmaryPrefb;
 	public GameObject InfirmaryDeadPrefb;
 	public GameObject NoCatInInfirmaryPrefb;
+	//Cat In Building Adds
+	public GameObject InfirmaryCatMenu;
+	public GameObject InfirmaryHealMenu;
+	public GameObject InfirmaryCatBag;
+	public Sprite InfirmaryNoCatSprite;
+	public GameObject InfirmaryCat;
+	public GameObject InfirmaryInventoryPrefab;
+	public TextMeshProUGUI UIRevivingTime;
+	public TextMeshProUGUI UIRevivingTimeBonus;
+	public TextMeshProUGUI UIHealingTime;
+	public TextMeshProUGUI UIPvRecover;
+	public TextMeshProUGUI UIHealingTimeBonus;
 
 	private void Awake()
 	{
@@ -555,6 +567,7 @@ public class BuildingManager : Singleton<BuildingManager>
 		InfirmaryMenu.SetActive(true);
 		UpdateInfirmaryInventory();
 		UpdateInfirmary(false);
+		UpdateInfirmaryCatInventory();
 	}
 	public void ExitInfirmaryUI()
 	{
@@ -675,6 +688,73 @@ public class BuildingManager : Singleton<BuildingManager>
 			GameObject _button = Instantiate(NoCatInInfirmaryPrefb, InfirmaryBag.transform);
 		}
 
+	}
+
+	//added
+	public void AddCatInInfirmary(int catID)
+	{
+		if (!InfirmaryBuilding.CatIn)
+		{
+			InfirmaryBuilding.CatIn = true;
+			PlayerManager.Instance.UseCat(catID, true);
+			InfirmaryCat.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[catID].MyCat.CatSprite;
+			InfirmaryCat.GetComponent<CatInfirmaryButton>().id = catID;
+			UpdateInfirmaryCatInventory();
+		}
+	}
+	public void OutCatInInfirmary(int catID)
+	{
+		if (InfirmaryBuilding.CatIn)
+		{
+			InfirmaryBuilding.CatIn = false;
+			PlayerManager.Instance.UseCat(catID, false);
+			InfirmaryCat.GetComponent<Image>().sprite = InfirmaryNoCatSprite;
+			UpdateInfirmaryCatInventory();
+		}
+	}
+
+
+	public void OpenInfirmaryInventoryPart()
+	{
+		InfirmaryCatMenu.SetActive(true);
+		InfirmaryHealMenu.SetActive(false);
+		UpdateInfirmaryCatInventory();
+	}
+	public void OpenInfirmaryLevelPart()
+	{
+		InfirmaryCatMenu.SetActive(false);
+		InfirmaryHealMenu.SetActive(true);
+	}
+
+	public void UpdateInfirmaryCatInventory()
+	{
+		if (PlayerManager.Instance.MyCatBag.Count < 1)
+		{
+			return;
+		}
+		for (int i = InfirmaryCatBag.transform.childCount; i > 0; i--)
+		{
+			Destroy(InfirmaryCatBag.transform.GetChild(i - 1).gameObject);
+		}
+		for (int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
+		{
+			if (PlayerManager.Instance.MyCatBag[i].InUse == false && PlayerManager.Instance.MyCatBag[i].MyCat.Dead == false)
+			{
+				GameObject _button = Instantiate(InfirmaryInventoryPrefab, InfirmaryCatBag.transform);
+				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
+				_button.GetComponent<CatInfirmaryInventoryButton>().id = i;
+			}
+		}
+		UIRevivingTime.text = "Reviving Time : " + InfirmaryBuilding.TimeBeforeAlive.ToString() +"s";
+		UIHealingTime.text = "Healing Time : " + InfirmaryBuilding.TimeBeforeRecover.ToString() +"s";
+		UIPvRecover.text = "HP recovered : " + InfirmaryBuilding.HpRecover.ToString() +"s";
+		//specifique au catfood
+
+		if (InfirmaryBuilding.CatIn)
+		{
+			UIRevivingTimeBonus.text = "( -" + InfirmaryBuilding.catBonusTime.ToString() + " )";
+			UIHealingTimeBonus.text = "( -" + InfirmaryBuilding.catBonusTime.ToString() + " )";
+		}
 	}
 
 	#endregion

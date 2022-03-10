@@ -23,6 +23,8 @@ public class Infirmary : MonoBehaviour
     public int TimeBeforeAlive;
     public int TimeBeforeRecover;
     public int HpRecover;
+    public int catBonusTime;
+    public bool CatIn = false;
     public List<InfirmiaryInformations> myInfirmary = new List<InfirmiaryInformations>();
 
     public void AddCatToInfirmary(InstaCat catTemp, int id)
