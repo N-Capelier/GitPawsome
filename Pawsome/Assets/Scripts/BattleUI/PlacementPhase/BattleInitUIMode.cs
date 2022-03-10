@@ -10,6 +10,8 @@ public class BattleInitUIMode : MonoBehaviour
     public UnitPlacementUI placementUI;
     public TossCoinUI coinUI;
 
+    List<InstaCat> placedInstaCats = new List<InstaCat>();
+
     [Header("Ressources")]
     public GraphicReferences graphicRessources;
 
@@ -23,16 +25,29 @@ public class BattleInitUIMode : MonoBehaviour
 
     public void Init()
     {
-        coinUI.OnMount(this);
+        coinUI.gameObject.SetActive(true);
+        coinUI.OnMount(this, fsm.coinFlipAnimationDuration);
     }
 
     public void InitPlacement()
     {
         coinUI.OnUnMount();
         coinUI.gameObject.SetActive(false);
-        //TODO: implement real list of cat
-        placementUI.OnMount(temp, this);
+
+        var allPlayerCat = BattleInformationManager.Instance.GetInstaCats();
+        var catToDisplay = allPlayerCat.Where(c => !placedInstaCats.Contains(c));
+
+        placementUI.gameObject.SetActive(true);
+        placementUI.OnMount(catToDisplay.ToList(), this);
     }
+
+    public void StartGridPlacement(InstaCat catToPlace)
+	{
+        placedInstaCats.Add(catToPlace);
+        placementUI.OnUnMount();
+        placementUI.gameObject.SetActive(false);
+        fsm.PickArchetype?.Invoke(catToPlace.catClass);
+	}
 
     public Sprite GetClassIcon(InstaCat cat)
     {

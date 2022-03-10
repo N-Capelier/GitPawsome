@@ -14,7 +14,7 @@ public class EntityPlacingState : MonoState
 	{
 		fsm = StateMachine as BattleStateMachine;
 
-		fsm.EnableArchetypeButtons();
+		//fsm.EnableArchetypeButtons();
 
 		fsm.PickArchetype += PickArchetype;
 
@@ -41,7 +41,8 @@ public class EntityPlacingState : MonoState
 			if(placed <= 2)
 			{
 				fsm.PickArchetype += PickArchetype;
-				fsm.EnableArchetypeButtons();
+				//fsm.EnableArchetypeButtons();
+				fsm.battleInitUIMode.InitPlacement();
 			}
 		}
 	}

@@ -16,13 +16,14 @@ public class BattleStateMachine : MonoStateMachine
 	public GameObject playerPrefab;
 	public GameObject enemyPrefab;
 	public BattleUIMode battleUIMode;
+	public BattleInitUIMode battleInitUIMode;
 	[SerializeField] GameObject[] archetypeButtons;
 
 	[Header("Params")]
 	[HideInInspector] public InstaCat[] playerCats;
 	[Tooltip("Order must be DPS > TANK > SUPPORT")]
 	public InstaCat[] AICats;
-	[SerializeField] float coinFlipAnimationDuration;
+	public float coinFlipAnimationDuration;
 
 	[Header("Players")]
 	public PlayerInfo playerInfo;
@@ -87,6 +88,8 @@ public class BattleStateMachine : MonoStateMachine
 		}
 	}
 
+	public Action<bool> CoinTossed;
+
 	public IEnumerator CoinFlipCoroutine()
 	{
 		int _random = UnityEngine.Random.Range(0, 2);
@@ -100,6 +103,11 @@ public class BattleStateMachine : MonoStateMachine
 
 		yield return new WaitForSeconds(coinFlipAnimationDuration); // Animation time
 
+		CoinTossed?.Invoke(playerFirst);
+	}
+
+	public void StartPlacingPhase()
+	{
 		CoinFlip?.Invoke();
 	}
 

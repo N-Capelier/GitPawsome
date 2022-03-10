@@ -27,17 +27,17 @@ public class TossCoinUI : MonoBehaviour
         OnUnMount();
     }
 
-    public void OnMount(BattleInitUIMode _mode)
+    public void OnMount(BattleInitUIMode _mode, float _animationDuration)
     {
         mode = _mode;
-        //TODO: subscribe OnTossEnd to correct Event
+        mode.fsm.CoinTossed += OnTossEnd;
         StartCoroutine(TossCoinAnimation(animDuration));
         continueButton.gameObject.SetActive(false);
     }
 
     public void OnUnMount()
     {
-        //TODO: unsubscribe OnTossEnd to correct Event
+        mode.fsm.CoinTossed -= OnTossEnd;
     }
 
     public void OnTossEnd(bool playerPlayingFirst)
@@ -63,6 +63,6 @@ public class TossCoinUI : MonoBehaviour
             yield return new WaitForSeconds(animationDuration / tossCoinAnimationSprites.Length);
         }
 
-        StartCoroutine(TossCoinAnimation(animationDuration));
+        //StartCoroutine(TossCoinAnimation(animationDuration));
     }
 }

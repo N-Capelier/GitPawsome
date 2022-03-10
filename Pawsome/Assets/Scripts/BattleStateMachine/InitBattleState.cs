@@ -14,6 +14,9 @@ public class InitBattleState : MonoState
 		fsm.playerInfo.entities = new Entity[3];
 		fsm.enemyInfo.entities = new Entity[3];
 
+		fsm.battleInitUIMode.gameObject.SetActive(true);
+		fsm.battleInitUIMode.Init();
+
 		//CoinFlip order
 		fsm.CoinFlip += OnCoinFlipCompleted;
 		fsm.StartCoroutine(fsm.CoinFlipCoroutine());

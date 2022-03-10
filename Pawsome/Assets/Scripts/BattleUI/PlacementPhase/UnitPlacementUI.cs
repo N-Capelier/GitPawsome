@@ -30,6 +30,9 @@ public class UnitPlacementUI : MonoBehaviour
 
     public void OnMount(List<InstaCat> units, BattleInitUIMode _mode)
     {
+        mode = _mode;
+        ConfirmPlacement += mode.StartGridPlacement;
+
         allCards = new List<UnitCard>();
 
         foreach(InstaCat unit in units)
@@ -56,16 +59,19 @@ public class UnitPlacementUI : MonoBehaviour
                 break;
         }
         title.text = string.Format("Choose your {0} to play", titleOrderText);
-
         cardTemplate.gameObject.SetActive(false);
-
         placeButton.interactable = false;
     }
 
     public void OnUnMount()
     {
+        ConfirmPlacement -= mode.StartGridPlacement;
         foreach (var card in allCards)
+		{
             card.CardSelected -= SelectUnit;
+            Destroy(card.gameObject);
+        }
+        cardTemplate.gameObject.SetActive(true);
     }
 
     public void SelectUnit(UnitCard card)
