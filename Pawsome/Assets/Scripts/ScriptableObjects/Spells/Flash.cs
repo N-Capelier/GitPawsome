@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Flash", menuName = "Spells/Flash", order = 50)]
+[CreateAssetMenu(fileName = "Flash", menuName = "Spells/Flash", order = 50)]
 public class Flash : Spell
 {
 	public override Vector2Int[] GetSpellReach(int fromX, int fromY, int toX, int toY)

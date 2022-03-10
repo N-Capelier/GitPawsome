@@ -1,8 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New OndeDeChoc", menuName = "Spells/Onde de choc", order = 50)]
-
-public class OndeDeChoc : Spell
+[CreateAssetMenu(fileName = "Shockwave", menuName = "Spells/Shockwave", order = 50)]
+public class Shockwave : Spell
 {
 	int fromX, fromY;
 

@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New VerreDeLait", menuName = "Spells/Verre de lait", order = 50)]
-public class VerreDeLait : Spell
+[CreateAssetMenu(fileName = "NineLives", menuName = "Spells/NineLives", order = 50)]
+public class NineLives : Spell
 {
 	public override Vector2Int[] GetSpellReach(int fromX, int fromY, int toX, int toY)
 	{
@@ -12,6 +12,6 @@ public class VerreDeLait : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
-		_caster.Heal(20);
+		_caster.hasNineLives = true;
 	}
 }

@@ -1,13 +1,5 @@
 using UnityEngine;
 
-public enum AttackPattern
-{
-	Line,
-	Diamond,
-	Circle,
-	Square,
-}
-
 public enum Archetype
 {
 	Support,
@@ -23,12 +15,12 @@ public class Spell : ScriptableObject
 	public Sprite spellSprite;
 	public Sprite spellRangeSprite;
 	public string description;
+	public GameObject particleEffect;
 	[Space]
 	public Archetype spellClass;
-	public AttackPattern attackPattern;
 	public int attackDamages;
+	public int healAmount;
 	public int manaCost;
-	public int attackRange;
 	[Space]
 	public int productionPrice;
 	public double productionTime;

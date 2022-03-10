@@ -53,30 +53,30 @@ public class PlayerTurnState : MonoState
 
 		equipedSpell = _spellIndex;
 
-		DrawAttackableCells(activeEntity.deck[_spellIndex].attackPattern);
+		DrawAttackableCells(activeEntity.deck[_spellIndex]);
 	}
 
-	private void DrawAttackableCells(AttackPattern _attackType)
+	private void DrawAttackableCells(Spell _spell)
 	{
 		ReachFinder _reachFinder = new ReachFinder(LevelGrid.Instance, true);
 
 		CellInteractor _interactor = LevelGrid.Instance.cells[(int)activeEntity.transform.position.x, (int)activeEntity.transform.position.z].interactor;
 
-		switch(_attackType)
-		{
-			case AttackPattern.Line:
-				attackableCells = _reachFinder.FindLineReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
-				break;
-			case AttackPattern.Diamond:
-				attackableCells = _reachFinder.FindDiamondReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
-				break;
-			case AttackPattern.Square:
-				attackableCells = _reachFinder.FindSquareReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
-				break;
-			case AttackPattern.Circle:
-				attackableCells = _reachFinder.FindCircleReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
-				break;
-		}
+		//switch(_attackType)
+		//{
+		//	case AttackPattern.Line:
+		//		attackableCells = _reachFinder.FindLineReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
+		//		break;
+		//	case AttackPattern.Diamond:
+		//		attackableCells = _reachFinder.FindDiamondReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
+		//		break;
+		//	case AttackPattern.Square:
+		//		attackableCells = _reachFinder.FindSquareReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
+		//		break;
+		//	case AttackPattern.Circle:
+		//		attackableCells = _reachFinder.FindCircleReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
+		//		break;
+		//}
 
 		foreach(Vector2Int _cellPosition in attackableCells)
 		{

@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New LancerDePelote", menuName = "Spells/Lancer de pelote", order = 50)]
-public class LancerDePelote : Spell
+[CreateAssetMenu(fileName = "WoolBall", menuName = "Spells/WoolBall", order = 50)]
+public class WoolBall : Spell
 {
 	public override Vector2Int[] GetSpellReach(int fromX, int fromY, int toX, int toY)
 	{
@@ -12,6 +12,7 @@ public class LancerDePelote : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
-		LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell.TakeDamage(20, _caster);
+		if(LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell != null)
+			LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell.TakeDamage(20, _caster);
 	}
 }

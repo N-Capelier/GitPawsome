@@ -16,6 +16,22 @@ public class LevelCell
 	public int gCost, hCost, fCost;
 	public Vector2Int cameFromCell = new Vector2Int(100, 100);
 
+	//spells
+	public int bonAppetit = 0;
+
+	public void BonAppetit()
+	{
+		if (bonAppetit == 0)
+			return;
+
+		bonAppetit--;
+
+		if (entityOnCell == null)
+			return;
+
+		entityOnCell.HealMana(1);
+	}
+
 	public void CalculateFCost()
 	{
 		fCost = gCost + hCost;

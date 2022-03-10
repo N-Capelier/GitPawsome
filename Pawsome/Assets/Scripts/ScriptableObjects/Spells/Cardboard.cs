@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Carton", menuName = "Spells/Carton", order = 50)]
-public class Carton : Spell
+[CreateAssetMenu(fileName = "Cardboard", menuName = "Spells/Cardboard", order = 50)]
+public class Cardboard : Spell
 {
 	public override Vector2Int[] GetSpellReach(int fromX, int fromY, int toX, int toY)
 	{

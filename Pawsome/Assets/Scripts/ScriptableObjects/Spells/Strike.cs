@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Griffe", menuName = "Spells/Griffe", order = 50)]
-public class Griffe : Spell
+[CreateAssetMenu(fileName = "Strike", menuName = "Spells/Strike", order = 50)]
+public class Strike : Spell
 {
 	public override Vector2Int[] GetSpellReach(int fromX, int fromY, int toX, int toY)
 	{

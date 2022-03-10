@@ -34,8 +34,10 @@ public abstract class Entity : MonoBehaviour
 	public Action HealthChanged;
 	public Action ManaChanged;
 
-
+	[HideInInspector] public Entity redirectedDamages = null;
+	[HideInInspector] public int chachacha = 0;
 	bool isInvincible = false;
+	[HideInInspector] public bool hasNineLives = false;
 
 	public void Init(InstaCat _instaCat)
 	{
@@ -166,11 +168,27 @@ public abstract class Entity : MonoBehaviour
 		if (isInvincible)
 			return false;
 
+		if(redirectedDamages != null)
+		{
+			redirectedDamages.TakeDamage(_damages, _caster);
+			return false;
+		}
+
 		if(_damages > instaCat.health)
 		{
-			instaCat.health = 0;
-			HealthChanged?.Invoke();
-			return true;
+			if(hasNineLives)
+			{
+				hasNineLives = false;
+				instaCat.health = 1;
+				HealthChanged?.Invoke();
+				return false;
+			}
+			else
+			{
+				instaCat.health = 0;
+				HealthChanged?.Invoke();
+				return true;
+			}
 		}
 		else
 		{
@@ -192,6 +210,32 @@ public abstract class Entity : MonoBehaviour
 		}
 
 		HealthChanged?.Invoke();
+	}
+
+	public void HealInZone()
+	{
+		if (chachacha == 0)
+			return;
+
+		chachacha--;
+		Vector2Int catPos = GetGridPosition();
+		Heal(20);
+		if(LevelGrid.Instance.cells[catPos.x + 1, catPos.y].entityOnCell != null)
+		{
+			LevelGrid.Instance.cells[catPos.x + 1, catPos.y].entityOnCell.Heal(20);
+		}
+		if (LevelGrid.Instance.cells[catPos.x - 1, catPos.y].entityOnCell != null)
+		{
+			LevelGrid.Instance.cells[catPos.x - 1, catPos.y].entityOnCell.Heal(20);
+		}
+		if (LevelGrid.Instance.cells[catPos.x, catPos.y + 1].entityOnCell != null)
+		{
+			LevelGrid.Instance.cells[catPos.x, catPos.y + 1].entityOnCell.Heal(20);
+		}
+		if (LevelGrid.Instance.cells[catPos.x, catPos.y - 1].entityOnCell != null)
+		{
+			LevelGrid.Instance.cells[catPos.x, catPos.y - 1].entityOnCell.Heal(20);
+		}
 	}
 
 	public void TakeManaDamage(int _amount)

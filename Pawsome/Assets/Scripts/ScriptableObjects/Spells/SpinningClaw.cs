@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New CoupDeGriffeRotatif", menuName = "Spells/Coup de griffe rotatif", order = 50)]
-public class CoupDeGriffeRotatif : Spell
+[CreateAssetMenu(fileName = "SpinningClaw", menuName = "Spells/SpinningClaw", order = 50)]
+public class SpinningClaw : Spell
 {
 	int fromX, fromY;
 
