@@ -164,4 +164,9 @@ public class BattleStateMachine : MonoStateMachine
 		placedSupport = true;
 		PickArchetype?.Invoke(Archetype.Support);
 	}
+
+	public IEnumerator AnimateParticle(GameObject _particle, Vector2Int _position, bool _move, Vector2Int _targetPos)
+	{
+		yield return null;
+	}
 }
