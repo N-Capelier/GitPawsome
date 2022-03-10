@@ -5,11 +5,14 @@ using UnityEngine;
 public class AITurnState : MonoState
 {
 	BattleStateMachine fsm;
+	EnemyEntity activeEntity;
 
 	public override void OnStateEnter()
 	{
 		fsm = StateMachine as BattleStateMachine;
-		fsm.PlayNextTurn();
+		activeEntity = fsm.entities[fsm.turnIndex] as EnemyEntity;
+
+		//fsm.PlayNextTurn();
 	}
 
 	//public override void OnStateUpdate()
