@@ -13,6 +13,10 @@ public class TossCoinUI : MonoBehaviour
     Image coinDisplay;
     [SerializeField]
     Button continueButton;
+    [SerializeField]
+    Sprite[] tossCoinAnimationSprites;
+    [SerializeField]
+    float animDuration;
 
     BattleInitUIMode mode;
 
@@ -27,7 +31,7 @@ public class TossCoinUI : MonoBehaviour
     {
         mode = _mode;
         //TODO: subscribe OnTossEnd to correct Event
-        //TODO: start animation
+        StartCoroutine(TossCoinAnimation(animDuration));
         continueButton.gameObject.SetActive(false);
     }
 
@@ -42,12 +46,23 @@ public class TossCoinUI : MonoBehaviour
             "You play first !" :
             "You play second !";
 
-        //TODO: stop animation;
+        StopAllCoroutines();
         continueButton.gameObject.SetActive(true);
     }
 
     public void OnConfirm()
     {
         ContinueToPlacement?.Invoke();
+    }
+
+    IEnumerator TossCoinAnimation(float animationDuration)
+    {
+        for (int i = 0; i < tossCoinAnimationSprites.Length; i++)
+        {
+            coinDisplay.sprite = tossCoinAnimationSprites[i];
+            yield return new WaitForSeconds(animationDuration / tossCoinAnimationSprites.Length);
+        }
+
+        StartCoroutine(TossCoinAnimation(animationDuration));
     }
 }

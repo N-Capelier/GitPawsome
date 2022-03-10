@@ -9,6 +9,8 @@ public class CardHandUI : MonoBehaviour
 
     public BattleUIMode mode;
 
+    private CardContainer selectedCard;
+
     public void OnMount(BattleUIMode _mode)
     {
         mode = _mode;
@@ -28,6 +30,21 @@ public class CardHandUI : MonoBehaviour
     void ChangeTarget(List<Spell> spells)
     {
         for(int i = 0; i < spells.Count; i++)
+        {
+            allCardContainer[i].OnUnMount();
             allCardContainer[i].OnMount(spells[i], this);
+            allCardContainer[i].CardSelected += SelectCard;
+        }
+    }
+
+    public void SelectCard(CardContainer card)
+    {
+        if (card != selectedCard)
+        {
+            if (selectedCard != null)
+                selectedCard.UpdateState(UnitCard.State.Base);
+
+            selectedCard = card;
+        }
     }
 }
