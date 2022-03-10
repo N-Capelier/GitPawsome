@@ -13,6 +13,7 @@ public class TheWire : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
+		FindObjectOfType<AudioManager>().Play("Slash");
 		Vector2Int _casterPos = _caster.GetGridPosition();
 
 		if(_casterPos.x < _target.x && !LevelGrid.Instance.cells[_casterPos.x + 1, _casterPos.y].isWall && LevelGrid.Instance.cells[_casterPos.x + 1, _casterPos.y].entityOnCell == null)

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpellGenerator : MonoBehaviour
 {
+    public bool CatIn = false;
     public bool TryProduce(int price)
     {
         if(price < PlayerManager.Instance.CatFood)
@@ -15,7 +16,10 @@ public class SpellGenerator : MonoBehaviour
     }
     public void GenerateSpell(int SpellId)
     {
-        PlayerManager.Instance.AddSpell(SpellManager.Instance.Spells[SpellId]);
-        BuildingManager.Instance.UpdateSpellDeckBuilding();
+        if(CatIn)
+        {
+            PlayerManager.Instance.AddSpell(SpellManager.Instance.Spells[SpellId]);
+            BuildingManager.Instance.UpdateSpellDeckBuilding();
+        }
     }
 }

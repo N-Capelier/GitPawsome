@@ -10,11 +10,22 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
+        FindObjectOfType<AudioManager>().StopPlaying("MainThemeMusic");
+        FindObjectOfType<AudioManager>().Play("LobbyMusic");
         SceneManagement.instance.LoadScene(1);
     }
     public void Play2()
     {
+        FindObjectOfType<AudioManager>().StopPlaying("MainThemeMusic");
+        FindObjectOfType<AudioManager>().Play("BattleMusic");
         SceneManagement.instance.LoadScene(2);
+    }
+    public void ReturnToMenu()
+    {
+        FindObjectOfType<AudioManager>().StopPlaying("BattleMusic");
+        FindObjectOfType<AudioManager>().StopPlaying("LobbyMusic");
+        FindObjectOfType<AudioManager>().Play("MenuMusic");
+        SceneManagement.instance.LoadScene(0);
     }
     public void Exit()
     {

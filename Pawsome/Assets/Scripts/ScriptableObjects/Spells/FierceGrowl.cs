@@ -13,6 +13,7 @@ public class FierceGrowl : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
+		FindObjectOfType<AudioManager>().Play("Growling");
 		Entity _targetEntity = LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell;
 
 		if (_targetEntity == null)

@@ -17,6 +17,7 @@ public class SpinningClaw : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
+		FindObjectOfType<AudioManager>().Play("Slash");
 		ReachFinder rf = new ReachFinder(LevelGrid.Instance, true);
 
 		Vector2Int[] reach = rf.FindDiamondReach(fromX, fromY, 2);

@@ -14,6 +14,7 @@ public class WoolBall : Spell
 	{
 		if(LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell != null)
 		{
+		FindObjectOfType<AudioManager>().Play("Slash");
 			LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell.TakeDamage(20, _caster);
 			BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell, true,
 				notificationSprite, spellName, $"{_caster.InstaCat.name} threw a wool ball to {LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell.InstaCat.name}."));

@@ -14,6 +14,7 @@ public class Stomp : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
+		FindObjectOfType<AudioManager>().Play("Impact");
 		Entity _targetEntity = LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell;
 
 		if (_targetEntity == null)

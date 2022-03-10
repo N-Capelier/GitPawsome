@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1307372629582890807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1307372629582890806}
+  - component: {fileID: 1307372629582890805}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1307372629582890806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307372629582890807}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.7786865, y: -0.49326468, z: 6.571537}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1307372629582890805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307372629582890807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ca107ff9f48414289259c97b866877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: MainThemeMusic
+    clip: {fileID: 8300000, guid: e721fa985ed5aa34caa2c603140fe7f8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: LobbyMusic
+    clip: {fileID: 8300000, guid: 5870e41bb85c6d4479aeb4afcf753818, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: BattleMusic
+    clip: {fileID: 8300000, guid: 463c8698e3c75a3469aaa852040fe0cf, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: CardConstruction
+    clip: {fileID: 8300000, guid: fda3bea1bb00ea742846202acc262e22, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CatDeath
+    clip: {fileID: 8300000, guid: c3f0d4c080ae4434bb874c5f55c07a00, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Croquettes
+    clip: {fileID: 8300000, guid: 71278e221c56e634d8b1d5c88dde85bb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Debuff
+    clip: {fileID: 8300000, guid: 76c66eca20301a7449fc6c26442b94fd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Deplacement
+    clip: {fileID: 8300000, guid: 4605da49172e4e448936810f8c65a385, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DrinkingMilk
+    clip: {fileID: 8300000, guid: f5da5020ba7671644bc26ed4b624f386, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FlashPhoto
+    clip: {fileID: 8300000, guid: 84e0960abfa912043abd5a8f047c08c4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Growling
+    clip: {fileID: 8300000, guid: f668482e1e2170c4c931b370a1933812, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Heal
+    clip: {fileID: 8300000, guid: 322de5542b0f35f4cbb975133fe27404, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: HubEntrance
+    clip: {fileID: 8300000, guid: b5dc1062d13b44f4bb352deeddf05cfd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Impact
+    clip: {fileID: 8300000, guid: 64366d48cf5c0a947851d2bcccc3941e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Lick
+    clip: {fileID: 8300000, guid: 54faddf455855b84f85fa1cbb679aa93, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UpgradeBuilding
+    clip: {fileID: 8300000, guid: f69f875ba09b6d1429518a425371d578, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ZoneHeal
+    clip: {fileID: 8300000, guid: 01420fbcd0be16b459c04e16ff48092c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Buff
+    clip: {fileID: 8300000, guid: 8a6f6dd5b57fde94db85478b1d7f5a3c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fall
+    clip: {fileID: 8300000, guid: 1eff1d95282f1e643a32910446138492, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

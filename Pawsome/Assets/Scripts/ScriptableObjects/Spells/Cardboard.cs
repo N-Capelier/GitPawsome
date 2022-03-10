@@ -12,6 +12,7 @@ public class Cardboard : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
+		FindObjectOfType<AudioManager>().Play("CardConstruction");
 		_caster.SetInvincibility();
 		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, notificationSprite, spellName, $"{_caster} is hiding in a cardboard."));
 	}
