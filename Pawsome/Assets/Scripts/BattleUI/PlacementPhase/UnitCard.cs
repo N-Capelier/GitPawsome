@@ -44,7 +44,7 @@ public class UnitCard : MonoBehaviour
 
     public Action<UnitCard> CardSelected;
 
-    State CurrentState 
+    public State CurrentState 
     {
         get { return _currentState; }
         set 

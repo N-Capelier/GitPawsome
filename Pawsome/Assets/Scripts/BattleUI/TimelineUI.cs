@@ -65,6 +65,12 @@ public class TimelineUI : MonoBehaviour
         mode.fsm.EnterTurn -= UpdateTimeline;
     }
 
+    public void RemovePortrait(TimelinePortrait por)
+    {
+        allPortraits.Remove(por);
+        Destroy(por.gameObject);
+    } 
+
     void UpdateTimeline()
     {
         int lastIndex = mode.fsm.turnIndex - 1;
