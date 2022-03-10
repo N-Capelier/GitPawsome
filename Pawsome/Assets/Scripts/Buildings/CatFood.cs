@@ -12,13 +12,12 @@ public class CatFood : MonoBehaviour
     private float LastTimeCollect;
     public float PriceMultiplier;
     public float CatFoodMultiplier;
-    public int ReducedTime;
     public int level = 1;
 
     [Header("Cat")]
-    public GameObject WorkingCat;
-    public bool CatIn;
-    public float CatBoost;
+    public InstaCat WorkingCat;
+    public bool CatIn = false;
+    public float CatSpeedBoost;
 
 
     // Update is called once per frame
@@ -26,10 +25,10 @@ public class CatFood : MonoBehaviour
     {
         if(!CanCollect)
         {
-            if (WorkingCat != null || CatIn)
+            if (CatIn)
             {
 
-                CanCollect = (Time.time - LastTimeCollect) > (CreationTime / CatBoost);
+                CanCollect = (Time.time - LastTimeCollect) > (CreationTime - CatSpeedBoost);
             }
             CanCollect = (Time.time - LastTimeCollect) > CreationTime;
             return;
@@ -53,7 +52,6 @@ public class CatFood : MonoBehaviour
         level++;
         LevelUpPrice = (int)(LevelUpPrice * PriceMultiplier);
         FoodsPerCollection = (int)(CatFoodMultiplier*FoodsPerCollection);
-        CreationTime -= ReducedTime;
     }
 
 

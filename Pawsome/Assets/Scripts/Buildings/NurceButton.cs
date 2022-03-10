@@ -11,6 +11,9 @@ public class NurceButton : MonoBehaviour
     public Slider TimeBar;
     public TextMeshProUGUI Hp;
     public bool StopProduce = false;
+    public bool dead = false;
+    public int TimeBeforeAlive;
+    public int TimeBeforeRecover;
 
     public float StartTime;
     public int health, maxHealth;
@@ -26,18 +29,26 @@ public class NurceButton : MonoBehaviour
         BuildingManager.Instance.InfirmaryDontWannaUseCat(id);
 
     }
-    public void GiveMyData()
-    {
-        BuildingManager.Instance.GiveInfoToInfirmary(id, StartTime, health);
-    }
 
     void Update()
     {
-        if (StopProduce) return;
-        if (Time.time - StartTime > 60)
+        if(dead)
+        {
+            if (Time.time - StartTime > TimeBeforeAlive)
             {
+                BuildingManager.Instance.InfirmaryBuilding.GetComponent<Infirmary>().myInfirmary[id].CatInInfirmary.Dead = false;
+                dead = false;
                 StartTime = Time.time;
-                health += BuildingManager.Instance.InfirmaryBuilding.HpRecoverPerMinute;
+            }
+
+            TimeBar.value = ((Time.time - StartTime) * 100) / (StartTime + TimeBeforeRecover);
+        }
+        if (StopProduce) return;
+        if (Time.time - StartTime > TimeBeforeRecover)
+        {
+            health += BuildingManager.Instance.InfirmaryBuilding.HpRecover;
+            BuildingManager.Instance.InfirmaryBuilding.GetComponent<Infirmary>().myInfirmary[id].CatInInfirmary.Heal(BuildingManager.Instance.InfirmaryBuilding.HpRecover);
+
             if (health > maxHealth)
             {
                 health = maxHealth;
@@ -46,9 +57,10 @@ public class NurceButton : MonoBehaviour
 
             Hp.text = health.ToString() + " / " + maxHealth.ToString();
             HpBar.value = (health * 100) / maxHealth;
-
-            TimeBar.value = ((StartTime + 60f)*100) /Time.time ;
+            StartTime = Time.time;
         }
+        TimeBar.value = ((Time.time - StartTime)*100) / (StartTime + TimeBeforeRecover);
+        
         
     }
 }

@@ -18,7 +18,11 @@ public class InfirmiaryInformations
 
 public class Infirmary : MonoBehaviour
 {
-    public int HpRecoverPerMinute;
+    public int RecoverPrice;
+    public int RevivePrice;
+    public int TimeBeforeAlive;
+    public int TimeBeforeRecover;
+    public int HpRecover;
     public List<InfirmiaryInformations> myInfirmary = new List<InfirmiaryInformations>();
 
     public void AddCatToInfirmary(InstaCat catTemp, int id)
