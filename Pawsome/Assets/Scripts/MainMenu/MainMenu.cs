@@ -20,6 +20,13 @@ public class MainMenu : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("BattleMusic");
         SceneManagement.instance.LoadScene(2);
     }
+    public void ReturnToMenu()
+    {
+        FindObjectOfType<AudioManager>().StopPlaying("BattleMusic");
+        FindObjectOfType<AudioManager>().StopPlaying("LobbyMusic");
+        FindObjectOfType<AudioManager>().Play("MenuMusic");
+        SceneManagement.instance.LoadScene(0);
+    }
     public void Exit()
     {
         SceneManagement.instance.Quit();
