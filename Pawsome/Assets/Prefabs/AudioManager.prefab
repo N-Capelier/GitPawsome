@@ -56,3 +56,105 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: BattleMusic
+    clip: {fileID: 8300000, guid: 463c8698e3c75a3469aaa852040fe0cf, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: CardConstruction
+    clip: {fileID: 8300000, guid: fda3bea1bb00ea742846202acc262e22, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CatDeath
+    clip: {fileID: 8300000, guid: c3f0d4c080ae4434bb874c5f55c07a00, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Croquettes
+    clip: {fileID: 8300000, guid: 71278e221c56e634d8b1d5c88dde85bb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Debuff
+    clip: {fileID: 8300000, guid: 76c66eca20301a7449fc6c26442b94fd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Deplacement
+    clip: {fileID: 8300000, guid: 4605da49172e4e448936810f8c65a385, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DrinkingMilk
+    clip: {fileID: 8300000, guid: f5da5020ba7671644bc26ed4b624f386, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FlashPhoto
+    clip: {fileID: 8300000, guid: 84e0960abfa912043abd5a8f047c08c4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Growling
+    clip: {fileID: 8300000, guid: f668482e1e2170c4c931b370a1933812, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Heal
+    clip: {fileID: 8300000, guid: 322de5542b0f35f4cbb975133fe27404, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: HubEntrance
+    clip: {fileID: 8300000, guid: b5dc1062d13b44f4bb352deeddf05cfd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Impact
+    clip: {fileID: 8300000, guid: 64366d48cf5c0a947851d2bcccc3941e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Lick
+    clip: {fileID: 8300000, guid: 54faddf455855b84f85fa1cbb679aa93, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UpgradeBuilding
+    clip: {fileID: 8300000, guid: f69f875ba09b6d1429518a425371d578, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ZoneHeal
+    clip: {fileID: 8300000, guid: 01420fbcd0be16b459c04e16ff48092c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Buff
+    clip: {fileID: 8300000, guid: 8a6f6dd5b57fde94db85478b1d7f5a3c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fall
+    clip: {fileID: 8300000, guid: 1eff1d95282f1e643a32910446138492, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
