@@ -41,6 +41,11 @@ public class LevelGrid : Singleton<LevelGrid>
 				}
 			}
 		}
+
+		cells[2, 2].isWall = true;
+		cells[5, 2].isWall = true;
+		cells[2, 5].isWall = true;
+		cells[5, 5].isWall = true;
 	}
 
 	public bool CheckCell(int x, int y)

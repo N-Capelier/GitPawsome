@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab692e4c5629f347ab9fcee926ea81f, type: 3}
+  m_Name: PlayerTestCat 5
+  m_EditorClassIdentifier: 
+  catName: cat 2
+  CatSprite: {fileID: 21300000, guid: 7272344ecee03434b99cf2269068e41b, type: 3}
+  mesh: {fileID: 0}
+  catClass: 1
+  deckSize: 8
+  baseHealth: 120
+  bonusHealth: 40
+  baseMana: 5
+  bonusMana: 5
+  baseInitiative: 2
+  bonusInitiative: 0
+  baseAttack: 0
+  bonusAttack: 0
+  baseDefense: 0
+  bonusDefense: 0
+  baseMovePoints: 3
+  bonusMovePoints: 0
+  spells:
+  - {fileID: 11400000, guid: 3ccbdfe45737b8a4dbc81f8de688edf3, type: 2}
+  - {fileID: 11400000, guid: f4d92720e7cbf9a43888a87b152aba45, type: 2}
+  - {fileID: 11400000, guid: d3070d8fecc51974791ae1c47226dba1, type: 2}
+  - {fileID: 11400000, guid: 243a5e3fff459ab4dba83d0718054058, type: 2}
+  - {fileID: 11400000, guid: a17d53bcc5a9d2443a03c619c0e161ef, type: 2}
+  - {fileID: 11400000, guid: f704941c89643ba498c334c9bc1d3aa9, type: 2}
+  - {fileID: 11400000, guid: d81894fdb772042419dd9c9da5f263ba, type: 2}
+  Temp: 
+  health: 160
+  mana: 0
+  initiative: 0
+  attack: 0
+  defense: 0
+  movePoints: 0

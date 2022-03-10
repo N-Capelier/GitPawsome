@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CatCall
   m_EditorClassIdentifier: 
   spellName: Cat Call
-  spellSprite: {fileID: 0}
+  spellSprite: {fileID: 21300000, guid: c19b76a47cb49384c9c2a25c24c21d1c, type: 3}
   spellRangeSprite: {fileID: 0}
   description: 
   particleEffect: {fileID: 4271609673118988229, guid: 5b02e71802fbb4c43a5c8ea845516265, type: 3}

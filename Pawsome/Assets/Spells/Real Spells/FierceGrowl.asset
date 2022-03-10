@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FierceGrowl
   m_EditorClassIdentifier: 
   spellName: Fierce Growl
-  spellSprite: {fileID: 0}
+  spellSprite: {fileID: 21300000, guid: c289b8c9b0d20654d86688d8b8f8d3ed, type: 3}
   spellRangeSprite: {fileID: 0}
   description: 
   particleEffect: {fileID: 7883898376288127384, guid: 81f34ec19e00f844390087ea531a18f6, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flash
   m_EditorClassIdentifier: 
   spellName: Flash
-  spellSprite: {fileID: 0}
+  spellSprite: {fileID: 21300000, guid: 3450930d0df18264bbb4a79d37555fef, type: 3}
   spellRangeSprite: {fileID: 0}
   description: 
   particleEffect: {fileID: 7041341600441977794, guid: 93d3df62d4817464eb73b5a91623a6f5, type: 3}

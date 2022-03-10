@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WoolBall
   m_EditorClassIdentifier: 
   spellName: Wool Ball
-  spellSprite: {fileID: 0}
+  spellSprite: {fileID: 21300000, guid: a72f510498b152d44982886bb7d9d270, type: 3}
   spellRangeSprite: {fileID: 0}
   description: 
   particleEffect: {fileID: 2371583623375551179, guid: 4f21aad082b01b249b745d4bf082800c, type: 3}

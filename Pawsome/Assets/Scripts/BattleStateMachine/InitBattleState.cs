@@ -6,6 +6,8 @@ public class InitBattleState : MonoState
 	{
 		fsm = StateMachine as BattleStateMachine;
 
+		Entity.CatDeath += fsm.RemoveEntity;
+
 		//get player's information
 		fsm.playerCats = BattleInformationManager.Instance.GetInstaCats();
 

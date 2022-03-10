@@ -11,6 +11,11 @@ public class Strike : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
+		Entity _targetEntity = LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell;
+
+		if (_targetEntity == null)
+			return;
+
 		LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell.TakeDamage(10, _caster);
 	}
 }

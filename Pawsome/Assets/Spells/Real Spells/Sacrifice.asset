@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sacrifice
   m_EditorClassIdentifier: 
   spellName: Sacrifice
-  spellSprite: {fileID: 0}
+  spellSprite: {fileID: 21300000, guid: b26f462da6e70bc4d8c264a1f0ded1af, type: 3}
   spellRangeSprite: {fileID: 0}
   description: 
   particleEffect: {fileID: 1043626092897839257, guid: 882b6225900975c4ca014fbf63b61d07, type: 3}

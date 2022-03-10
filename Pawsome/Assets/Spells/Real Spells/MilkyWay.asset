@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MilkyWay
   m_EditorClassIdentifier: 
   spellName: Milky Way
-  spellSprite: {fileID: 0}
+  spellSprite: {fileID: 21300000, guid: 512c7260a213a134abfa0648f1e5833c, type: 3}
   spellRangeSprite: {fileID: 0}
   description: 
   particleEffect: {fileID: 611084705517397071, guid: fe9f9cfea82a1f44a94f9aa49f32464a, type: 3}

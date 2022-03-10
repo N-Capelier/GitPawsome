@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TheWire
   m_EditorClassIdentifier: 
   spellName: The Wire
-  spellSprite: {fileID: 0}
+  spellSprite: {fileID: 21300000, guid: 38f3d712aaabc5240b80793af32a3ce6, type: 3}
   spellRangeSprite: {fileID: 0}
   description: 
   particleEffect: {fileID: 4271609673118988229, guid: 5b02e71802fbb4c43a5c8ea845516265, type: 3}

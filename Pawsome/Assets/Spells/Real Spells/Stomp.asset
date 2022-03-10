@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stomp
   m_EditorClassIdentifier: 
   spellName: Stomp
-  spellSprite: {fileID: 0}
+  spellSprite: {fileID: 21300000, guid: 75cf63487f73adf43aa151369b6367c1, type: 3}
   spellRangeSprite: {fileID: 0}
   description: 
   particleEffect: {fileID: 1043626092897839257, guid: 882b6225900975c4ca014fbf63b61d07, type: 3}

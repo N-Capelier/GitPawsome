@@ -73,6 +73,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8425444356055297546, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
   m_PrefabInstance: {fileID: 6533126847014018126}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6933426842010074772 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4220487179463140058, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
+  m_PrefabInstance: {fileID: 6533126847014018126}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5705128152734678973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1551203731276702707, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
+  m_PrefabInstance: {fileID: 6533126847014018126}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1897444517188461014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,8 +98,13 @@ MonoBehaviour:
   moveDuration: 0.1
   objectRenderer: {fileID: 503040632125899117}
   possessionRenderer: {fileID: 3334745377355625028}
+  damageParticle: {fileID: 6933426842010074772}
+  healParticle: {fileID: 5705128152734678973}
   isPlayerEntity: 0
   isPlaying: 0
   deck: []
   hand: []
   discardPile: []
+  redirectedDamages: {fileID: 0}
+  chachacha: 0
+  hasNineLives: 0

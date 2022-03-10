@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cardboard
   m_EditorClassIdentifier: 
   spellName: Cardboard
-  spellSprite: {fileID: 0}
+  spellSprite: {fileID: 21300000, guid: e3154f3f9f812a64d898f9ca19f0943a, type: 3}
   spellRangeSprite: {fileID: 0}
   description: 
   particleEffect: {fileID: 3185347752070244587, guid: 08039d7113aac7c47a83684e2b881771, type: 3}

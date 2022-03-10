@@ -165,6 +165,11 @@ public class BattleStateMachine : MonoStateMachine
 		PickArchetype?.Invoke(Archetype.Support);
 	}
 
+	private void OnDestroy()
+	{
+		Entity.CatDeath -= RemoveEntity;
+	}
+
 	public IEnumerator AnimateParticle(GameObject _particle, Vector2Int _position, bool _move, Vector2Int _targetPos)
 	{
 		yield return null;

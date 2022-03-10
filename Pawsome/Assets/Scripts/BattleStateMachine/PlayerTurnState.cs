@@ -11,6 +11,7 @@ public class PlayerTurnState : MonoState
 	bool alreadyMoved = false;
 	bool alreadyAttacked = false;
 	PlayerEntity activeEntity;
+	Spell activeSpell;
 	int equipedSpell;
 
 	int movementSub = 0, attackSub = 0;
@@ -21,7 +22,12 @@ public class PlayerTurnState : MonoState
 		activeEntity = fsm.entities[fsm.turnIndex] as PlayerEntity;
 
 		DisplaySpellNames();
-		activeEntity.SetPossessionRenderer(true); 
+		activeEntity.SetPossessionRenderer(true);
+
+		foreach(LevelCell _cell in LevelGrid.Instance.cells)
+		{
+			_cell.BonAppetit();
+		}
 
 		if (!alreadyMoved)
 			MovementSub(true);
@@ -53,35 +59,22 @@ public class PlayerTurnState : MonoState
 
 		equipedSpell = _spellIndex;
 
-		DrawAttackableCells(activeEntity.deck[_spellIndex]);
+		activeSpell = activeEntity.hand[_spellIndex];
+		DrawAttackableCells();
 	}
 
-	private void DrawAttackableCells(Spell _spell)
+	private void DrawAttackableCells()
 	{
 		ReachFinder _reachFinder = new ReachFinder(LevelGrid.Instance, true);
 
 		CellInteractor _interactor = LevelGrid.Instance.cells[(int)activeEntity.transform.position.x, (int)activeEntity.transform.position.z].interactor;
 
-		//switch(_attackType)
-		//{
-		//	case AttackPattern.Line:
-		//		attackableCells = _reachFinder.FindLineReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
-		//		break;
-		//	case AttackPattern.Diamond:
-		//		attackableCells = _reachFinder.FindDiamondReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
-		//		break;
-		//	case AttackPattern.Square:
-		//		attackableCells = _reachFinder.FindSquareReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
-		//		break;
-		//	case AttackPattern.Circle:
-		//		attackableCells = _reachFinder.FindCircleReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 3);
-		//		break;
-		//}
+		attackableCells = activeSpell.GetSpellReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, 0, 0);
 
 		foreach(Vector2Int _cellPosition in attackableCells)
 		{
 			LevelGrid.Instance.cells[_cellPosition.x, _cellPosition.y].interactor.SetRendererColor(Color.red);
-			LevelGrid.Instance.cells[_cellPosition.x, _cellPosition.y].interactor.SetRendererAlpha(1f);
+			LevelGrid.Instance.cells[_cellPosition.x, _cellPosition.y].interactor.SetRendererAlpha(.6f);
 		}
 
 		BattleInputManager.PrimaryInteraction += OnClickAttackableCell;
@@ -98,19 +91,11 @@ public class PlayerTurnState : MonoState
 
 				LevelGrid.Instance.HideAllInteractors();
 
+				activeSpell.ExecuteSpell(activeEntity, _attackableCell);
+
 				activeEntity.DiscardSpell(equipedSpell);
 				DisplaySpellNames();
 
-				if (interactor.levelCell.entityOnCell != null)
-				{
-					//Deal damages to target
-					Debug.Log(interactor.levelCell.entityOnCell.InstaCat.catName + " lost 5 health points");
-					if(interactor.levelCell.entityOnCell.TakeDamage(5, null))
-					{
-						fsm.RemoveEntity(interactor.levelCell.entityOnCell);
-						interactor.levelCell.entityOnCell.Death();
-					}
-				}
 				break;
 			}
 		}
@@ -193,7 +178,7 @@ public class PlayerTurnState : MonoState
 		foreach(Vector2Int _cellPosition in movableCells)
 		{
 			LevelGrid.Instance.cells[_cellPosition.x, _cellPosition.y].interactor.SetRendererColor(Color.blue);
-			LevelGrid.Instance.cells[_cellPosition.x, _cellPosition.y].interactor.SetRendererAlpha(1f);
+			LevelGrid.Instance.cells[_cellPosition.x, _cellPosition.y].interactor.SetRendererAlpha(.4f);
 		}
 
 		BattleInputManager.PrimaryInteraction += OnClickMovableCell;
@@ -248,6 +233,11 @@ public class PlayerTurnState : MonoState
 
 	public override void OnStateExit()
 	{
+		activeEntity.ClearInvincibility();
+		activeEntity.redirectedDamages = null;
+		activeEntity.HealInZone();
+		activeEntity.hasNineLives = false;
+
 		activeEntity.SetPossessionRenderer(false);
 
 		AttackSub(false);

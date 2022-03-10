@@ -410,9 +410,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instaCats: []
   fakeInstaCatArray:
-  - {fileID: 11400000, guid: 5ffbe06795a8d6149a4555888c3f7cf1, type: 2}
-  - {fileID: 11400000, guid: 6381fb1732db6b34bb33e88740af8191, type: 2}
-  - {fileID: 11400000, guid: e9853a7814b7dda4bb330c00fab956a6, type: 2}
+  - {fileID: 11400000, guid: 30df7a74277c97a48b66298c34afd26b, type: 2}
+  - {fileID: 11400000, guid: fa53b28e55298a541afab997f480d735, type: 2}
+  - {fileID: 11400000, guid: 9c1400ebc28bf73478b2101bcdde0c4f, type: 2}
 --- !u!4 &62769364
 Transform:
   m_ObjectHideFlags: 0
@@ -1604,6 +1604,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3542356640324367623, guid: ec9fe1aeb8d31db4e8385b08e9d62b97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220960337199374534, guid: ec9fe1aeb8d31db4e8385b08e9d62b97, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 8745259792255711868, guid: ec9fe1aeb8d31db4e8385b08e9d62b97, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8942521733242736276, guid: ec9fe1aeb8d31db4e8385b08e9d62b97, type: 3}

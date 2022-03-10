@@ -42,6 +42,8 @@ public abstract class Entity : MonoBehaviour
 	bool isInvincible = false;
 	[HideInInspector] public bool hasNineLives = false;
 
+	public static Action<Entity> CatDeath;
+
 	public void Init(InstaCat _instaCat)
 	{
 		instaCat = Instantiate(_instaCat);
@@ -101,7 +103,10 @@ public abstract class Entity : MonoBehaviour
 
 	public void MoveAlongPath(Vector2Int[] _path)
 	{
-		LevelGrid.Instance.cells[_path[0].x, _path[0].y].entityOnCell = null; //May cause a null ref (:
+		if(LevelGrid.Instance.cells[_path[0].x, _path[0].y] != null)
+		{
+			LevelGrid.Instance.cells[_path[0].x, _path[0].y].entityOnCell = null; //May cause a null ref, or an armagedon
+		}
 		moveAlongPathCoroutine = StartCoroutine(MoveAlongPathCoroutine(_path));
 	}
 
@@ -164,17 +169,17 @@ public abstract class Entity : MonoBehaviour
 		isInvincible = false;
 	}
 
-	public bool TakeDamage(int _damages, Entity _caster)
+	public void TakeDamage(int _damages, Entity _caster)
 	{
 		//Apply defense to _damages
 
 		if (isInvincible)
-			return false;
+			return;
 
 		if(redirectedDamages != null)
 		{
 			redirectedDamages.TakeDamage(_damages, _caster);
-			return false;
+			return;
 		}
 
 		StartCoroutine(AnimateParticles(damageParticle));
@@ -186,20 +191,22 @@ public abstract class Entity : MonoBehaviour
 				hasNineLives = false;
 				instaCat.health = 1;
 				HealthChanged?.Invoke();
-				return false;
+				return;
 			}
 			else
 			{
 				instaCat.health = 0;
 				HealthChanged?.Invoke();
-				return true;
+				CatDeath?.Invoke(this);
+				Death();
+				return;
 			}
 		}
 		else
 		{
 			instaCat.health -= _damages;
 			HealthChanged?.Invoke();
-			return false;
+			return;
 		}
 	}
 
