@@ -12,6 +12,7 @@ public class MilkyWay : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
+		FindObjectOfType<AudioManager>().Play("DrinkingMilk");
 		_caster.Heal(20);
 	}
 }

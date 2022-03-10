@@ -11,6 +11,7 @@ public class Flash : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
+		FindObjectOfType<AudioManager>().Play("FlashPhoto");
 		Vector2Int _casterPos = _caster.GetGridPosition();
 
 		if(_target.x != _casterPos.x)

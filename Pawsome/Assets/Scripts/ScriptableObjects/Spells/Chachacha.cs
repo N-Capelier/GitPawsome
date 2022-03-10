@@ -10,6 +10,7 @@ public class Chachacha : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
+		FindObjectOfType<AudioManager>().Play("ZoneHeal");
 		_caster.chachacha = 3;
 	}
 }

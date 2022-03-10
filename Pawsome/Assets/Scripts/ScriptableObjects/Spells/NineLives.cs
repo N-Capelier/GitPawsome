@@ -12,6 +12,7 @@ public class NineLives : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
+		FindObjectOfType<AudioManager>().Play("Buff");
 		_caster.hasNineLives = true;
 	}
 }

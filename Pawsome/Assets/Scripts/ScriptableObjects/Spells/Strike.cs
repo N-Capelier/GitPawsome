@@ -11,6 +11,7 @@ public class Strike : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
+		FindObjectOfType<AudioManager>().Play("Slash");
 		LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell.TakeDamage(10, _caster);
 	}
 }

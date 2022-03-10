@@ -12,7 +12,8 @@ public class WoolBall : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
-		if(LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell != null)
+		FindObjectOfType<AudioManager>().Play("Slash");
+		if (LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell != null)
 			LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell.TakeDamage(20, _caster);
 	}
 }

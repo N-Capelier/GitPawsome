@@ -11,6 +11,7 @@ public class BonAppetit : Spell
 
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
+		FindObjectOfType<AudioManager>().Play("ZoneHeal");
 		LevelGrid.Instance.cells[_target.x, _target.y].bonAppetit = 2;
 	}
 }
