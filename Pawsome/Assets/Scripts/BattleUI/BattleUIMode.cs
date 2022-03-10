@@ -87,6 +87,21 @@ public class BattleUIMode : MonoBehaviour
         return sprite;
     }
 
+    public Color GetHighLightColor(UnitCard.State state)
+    {
+        switch (state)
+        {
+            case UnitCard.State.Base:
+                return graphicRessources.cardHighlight.baseColor;
+            case UnitCard.State.Hover:
+                return graphicRessources.cardHighlight.hoverColor;
+            case UnitCard.State.Selected:
+                return graphicRessources.cardHighlight.selectedColor;
+            default:
+                return Color.white;
+        }
+    }
+
 
     //TODO: implement logic 
     public void OpenMenu()

@@ -5,6 +5,14 @@ using UnityEngine.UI;
 using TMPro;
 using NaughtyAttributes;
 
+[System.Serializable]
+public struct StatsCouple
+{
+    public AllStats linkedStat;
+    public Image statImage;
+    public TextMeshProUGUI statValueDisplay;
+}
+
 public class EntityDetailsUI : MonoBehaviour
 {
     [System.Serializable]
@@ -20,14 +28,6 @@ public class EntityDetailsUI : MonoBehaviour
             filler.fillAmount = current / max;
             valueDisplay.text = string.Format("{0} / {1}", current, max);
         }
-    }
-
-    [System.Serializable]
-    internal struct StatsCouple
-    {
-        public AllStats linkedStat;
-        public Image statImage;
-        public TextMeshProUGUI statValueDisplay;
     }
 
     [Header("Entity Presentation")]

@@ -11,6 +11,14 @@ public struct BorderColors
     public Color currentEnemyColor;
 }
 
+[System.Serializable]
+public struct CardHightlightColors
+{
+    public Color baseColor;
+    public Color hoverColor;
+    public Color selectedColor;
+}
+
 public enum AllStats
 {
     Attack,
@@ -33,4 +41,5 @@ public class GraphicReferences : ScriptableObject
     public ClassIconDictionary classIcons;
     public ClassIconDictionary cardBackground;
     public StatsIconDictionary statsIcon;
+    public CardHightlightColors cardHighlight;
 }
