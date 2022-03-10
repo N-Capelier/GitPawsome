@@ -79,7 +79,10 @@ public class UnitPlacementUI : MonoBehaviour
         if (card != selectedCard)
         {
             if(selectedCard != null)
+            {
+                if(selectedCard.CurrentState != UnitCard.State.Hover)
                 selectedCard.UpdateState(UnitCard.State.Base);
+            }
             selectedCard = card;
             if (selectedCard != null)
                 placeButton.interactable = true;

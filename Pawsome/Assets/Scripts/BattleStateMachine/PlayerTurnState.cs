@@ -16,6 +16,15 @@ public class PlayerTurnState : MonoState
 
 	int movementSub = 0, attackSub = 0;
 
+	static Action<int> ForcedSpellCast;
+
+	//We are playing with fire
+	//Hope I dont get burned
+	public static void EmergencySpellCast(int spellIndex)
+    {
+		ForcedSpellCast?.Invoke(spellIndex);
+    }
+
 	public override void OnStateEnter()
 	{
 		fsm = StateMachine as BattleStateMachine;
@@ -28,6 +37,8 @@ public class PlayerTurnState : MonoState
 		{
 			_cell.BonAppetit();
 		}
+
+		ForcedSpellCast += OnEquipSpell;
 
 		if (!alreadyMoved)
 			MovementSub(true);
@@ -84,6 +95,8 @@ public class PlayerTurnState : MonoState
 	{
 		foreach(Vector2Int _attackableCell in attackableCells)
 		{
+			if (interactor == null)
+				break;
 			if(_attackableCell == interactor.levelCell.position)
 			{
 				BattleInputManager.PrimaryInteraction -= OnClickAttackableCell;
@@ -188,6 +201,8 @@ public class PlayerTurnState : MonoState
 	{
 		foreach(Vector2Int _movableCell in movableCells)
 		{
+			if (interactor == null)
+				break;
 			if (_movableCell == interactor.levelCell.position)
 			{
 				BattleInputManager.PrimaryInteraction -= OnClickMovableCell;

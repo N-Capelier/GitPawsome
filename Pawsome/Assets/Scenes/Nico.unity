@@ -1736,6 +1736,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -35.29205
       objectReference: {fileID: 0}
+    - target: {fileID: 617388303446860527, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: cardIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 716552839806416049, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2272,6 +2276,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -315
       objectReference: {fileID: 0}
+    - target: {fileID: 7898385136028819912, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: cardIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8435079984366499148, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2367,6 +2375,10 @@ PrefabInstance:
     - target: {fileID: 9100778059133840646, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -34.292
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127926223784361965, guid: 8bc7f39d221451c41893409327fb7244, type: 3}
+      propertyPath: cardIndex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bc7f39d221451c41893409327fb7244, type: 3}

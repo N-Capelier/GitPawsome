@@ -50,4 +50,11 @@ public class BattleInputManager : MonoBehaviour
             hoveredInteractor = null;
 		}
     }
+
+    //Use this only if you know what you are doing
+    //Currently I dont
+    public static void EmergencyInteractionTrigger()
+    {
+        PrimaryInteraction?.Invoke(null);
+    }
 }

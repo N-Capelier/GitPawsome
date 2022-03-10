@@ -20,6 +20,7 @@ public class CardHandUI : MonoBehaviour
     public void OnUnMount()
     {
         mode.fsm.EnterTurn -= OnTurnStart;
+        //BattleStateMachine.SelectSpell += 
     }
 
     private void OnTurnStart()
@@ -42,7 +43,15 @@ public class CardHandUI : MonoBehaviour
         if (card != selectedCard)
         {
             if (selectedCard != null)
-                selectedCard.UpdateState(UnitCard.State.Base);
+            {
+                if(selectedCard.CurrentState != UnitCard.State.Hover)
+                {
+                    selectedCard.UpdateState(UnitCard.State.Base);
+                }
+                BattleInputManager.EmergencyInteractionTrigger();
+                if(card != null)
+                PlayerTurnState.EmergencySpellCast(card.cardIndex);
+            }
 
             selectedCard = card;
         }

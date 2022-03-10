@@ -31,11 +31,19 @@ public class TimelinePortrait : MonoBehaviour
         linkedEntity = _linkedEntity;
         UpdatePortrait();
         timelineHandler.TurnStarted += UpdatePortrait;
+        Entity.CatDeath += OnCatDeath;
     }
 
     public void OnUnMount()
     {
         timelineHandler.TurnStarted -= UpdatePortrait;
+        Entity.CatDeath += OnCatDeath;
+    }
+
+    void OnCatDeath(Entity dyingEntity)
+    {
+        if (dyingEntity == linkedEntity)
+            timelineHandler.RemovePortrait(this);
     }
 
     public void UpdatePortrait()

@@ -23,6 +23,8 @@ public class CardContainer : MonoBehaviour
     [SerializeField]
     Button cardInterractor;
 
+    public int cardIndex;
+
     [Header("Interractor Elements")]
     [SerializeField]
     Image highlight;
@@ -34,7 +36,7 @@ public class CardContainer : MonoBehaviour
 
     CardHandUI cardHand;
 
-    UnitCard.State CurrentState
+    public UnitCard.State CurrentState
     {
         get { return _currentState; }
         set
@@ -50,7 +52,7 @@ public class CardContainer : MonoBehaviour
     {
         if(CurrentState == UnitCard.State.Selected)
             CurrentState = UnitCard.State.Base;
-        
+
         cardHand = _cardHand;
         linkedSpell = _linkedSpell;
         DrawCard();
@@ -58,6 +60,7 @@ public class CardContainer : MonoBehaviour
 
     public void OnUnMount()
     {
+        CurrentState = UnitCard.State.Base;
         CardSelected = null;
     }
 
@@ -65,16 +68,11 @@ public class CardContainer : MonoBehaviour
     {
         background.sprite = cardHand.mode.GetCardBackground(linkedSpell.spellClass);
         picture.sprite = linkedSpell.spellSprite;
-        //TODO: implemente range once it's included into spell
-        //range.sprite = ;
+        range.sprite = linkedSpell.spellRangeSprite;
         spellName.text = linkedSpell.spellName;
         spellDescription.text = linkedSpell.description;
-    }
 
-    public void OnCardClicked()
-    {
-        //TODO: Link to spell usage logic
-        Debug.Log("CardClicked");
+        highlight.color = cardHand.mode.GetHighLightColor(CurrentState);
     }
 
     public void OnHoverIn()
@@ -122,7 +120,14 @@ public class CardContainer : MonoBehaviour
     {
         if (newState == _currentState)
             return;
-        highlight.color = cardHand.mode.GetHighLightColor(newState);
+        //highlight.color = cardHand.mode.GetHighLightColor(newState);
+        UpdateHighlight(newState);
         _currentState = newState;
+    }
+
+    public void UpdateHighlight(UnitCard.State state)
+    {
+        highlight.color = cardHand.mode.GetHighLightColor(state);
+        
     }
 }

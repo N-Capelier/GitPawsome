@@ -76,6 +76,7 @@ public class EntityDetailsUI : MonoBehaviour
     {
         mode = _mode;
         mode.fsm.EnterTurn += OnTurnStart;
+        InitStatsIcon();
     }
 
     public void OnUnMount()
@@ -94,9 +95,9 @@ public class EntityDetailsUI : MonoBehaviour
     void InitStatsIcon()
     {
         atkDisplay.statImage.sprite = mode.GetStatIcon(atkDisplay.linkedStat);
-        defDisplay.statImage.sprite = mode.GetStatIcon(atkDisplay.linkedStat);
-        powDisplay.statImage.sprite = mode.GetStatIcon(atkDisplay.linkedStat);
-        moveDisplay.statImage.sprite = mode.GetStatIcon(atkDisplay.linkedStat);
+        defDisplay.statImage.sprite = mode.GetStatIcon(defDisplay.linkedStat);
+        powDisplay.statImage.sprite = mode.GetStatIcon(powDisplay.linkedStat);
+        moveDisplay.statImage.sprite = mode.GetStatIcon(moveDisplay.linkedStat);
     }
 
     public void ChangeTarget(Entity newTarget)
