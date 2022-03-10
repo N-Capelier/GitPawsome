@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 747130540613343689, guid: ba7c467ab2a756d498a77c39df069e06, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f23be570a641704a9091ac25e6e01f6, type: 2}
     - target: {fileID: 1251625988911347740, guid: ba7c467ab2a756d498a77c39df069e06, type: 3}
       propertyPath: m_Name
       value: Sm_CanapTroisPlace
