@@ -34,6 +34,9 @@ public abstract class Entity : MonoBehaviour
 	public Action HealthChanged;
 	public Action ManaChanged;
 
+
+	bool isInvincible = false;
+
 	public void Init(InstaCat _instaCat)
 	{
 		instaCat = Instantiate(_instaCat);
@@ -61,6 +64,11 @@ public abstract class Entity : MonoBehaviour
 		}
 
 		//set renderer
+	}
+
+	public Vector2Int GetGridPosition()
+	{
+		return new Vector2Int((int)transform.position.x, (int)transform.position.z);
 	}
 
 	public void SetPossessionRenderer(bool value)
@@ -141,9 +149,22 @@ public abstract class Entity : MonoBehaviour
 			return true;
 	}
 
+	public void SetInvincibility()
+	{
+		isInvincible = true;
+	}
+
+	public void ClearInvincibility()
+	{
+		isInvincible = false;
+	}
+
 	public bool TakeDamage(int _damages, Entity _caster)
 	{
 		//Apply defense to _damages
+
+		if (isInvincible)
+			return false;
 
 		if(_damages > instaCat.health)
 		{
@@ -171,6 +192,30 @@ public abstract class Entity : MonoBehaviour
 		}
 
 		HealthChanged?.Invoke();
+	}
+
+	public void TakeManaDamage(int _amount)
+	{
+		if (instaCat.mana - _amount < 0)
+			instaCat.mana = 0;
+		else
+			instaCat.mana -= _amount;
+
+		ManaChanged?.Invoke();
+	}
+
+	public void HealMana(int _amount)
+	{
+		if (_amount > instaCat.GetMana())
+		{
+			instaCat.mana = instaCatRef.GetMana();
+		}
+		else
+		{
+			instaCat.mana += _amount;
+		}
+
+		ManaChanged?.Invoke();
 	}
 
 	public void Death()
