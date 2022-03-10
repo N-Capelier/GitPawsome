@@ -12,7 +12,7 @@ public class AITurnState : MonoState
 		fsm = StateMachine as BattleStateMachine;
 		activeEntity = fsm.entities[fsm.turnIndex] as EnemyEntity;
 
-		//fsm.PlayNextTurn();
+		fsm.PlayNextTurn();
 	}
 
 	//public override void OnStateUpdate()
