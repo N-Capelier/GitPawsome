@@ -36,5 +36,7 @@ public class CatCall : Spell
 		{
 			_targetEntity.MoveAlongPath(new Vector2Int[] { new Vector2Int(_target.x, _target.y - 1) });
 		}
+
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, notificationSprite, spellName, $"{_caster.InstaCat.name} attracted {_targetEntity.InstaCat.name}."));
 	}
 }

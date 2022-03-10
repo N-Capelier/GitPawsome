@@ -409,6 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instaCats: []
+  battleUIMode: {fileID: 898317626}
   fakeInstaCatArray:
   - {fileID: 11400000, guid: 30df7a74277c97a48b66298c34afd26b, type: 2}
   - {fileID: 11400000, guid: fa53b28e55298a541afab997f480d735, type: 2}

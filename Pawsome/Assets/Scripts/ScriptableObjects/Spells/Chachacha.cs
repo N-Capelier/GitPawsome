@@ -11,5 +11,6 @@ public class Chachacha : Spell
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
 		_caster.chachacha = 3;
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, notificationSprite, spellName, $"{_caster.InstaCat.name} is dancing the Chachacha!"));
 	}
 }

@@ -56,5 +56,7 @@ public class FierceGrowl : Spell
 				_targetEntity.MoveAlongPath(new Vector2Int[] { new Vector2Int(_target.x, _target.y - 1) });
 			}
 		}
+
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, spellSprite, spellName, $"{_caster.InstaCat.name} feared {_targetEntity.InstaCat.name}."));
 	}
 }

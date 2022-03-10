@@ -100,6 +100,7 @@ MonoBehaviour:
   possessionRenderer: {fileID: 3334745377355625028}
   damageParticle: {fileID: 6933426842010074772}
   healParticle: {fileID: 5705128152734678973}
+  deathIcon: {fileID: 21300000, guid: ef9a0ef28b87a0748a833270f9242e0e, type: 3}
   isPlayerEntity: 0
   isPlaying: 0
   deck: []

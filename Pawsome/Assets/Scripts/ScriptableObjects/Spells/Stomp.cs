@@ -20,5 +20,6 @@ public class Stomp : Spell
 			return;
 
 		_targetEntity.TakeDamage(20, _caster);
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, notificationSprite, spellName, $"{_caster.InstaCat.name} stomped {_targetEntity.InstaCat.name}."));
 	}
 }

@@ -1,8 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "Shockwave", menuName = "Spells/Shockwave", order = 50)]
 public class Shockwave : Spell
 {
+	List<Entity> _entities = new List<Entity>();
+
 	int fromX, fromY;
 
 	public override Vector2Int[] GetSpellReach(int fromX, int fromY, int toX, int toY)
@@ -27,10 +30,19 @@ public class Shockwave : Spell
 			
 			if (_entity != null)
 			{
+				_entities.Add(_entity);
 				_entity.TakeDamage(30, _caster);
 			}
 		}
 
 		_caster.TakeDamage(20, _caster);
+
+		if(_entities.Count > 0)
+		{
+			foreach (Entity _orbitedCat in _entities)
+			{
+				BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _orbitedCat, true, notificationSprite, spellName, $"{_caster.InstaCat.name} put {_orbitedCat.InstaCat.name} in orbit!"));
+			}
+		}
 	}
 }

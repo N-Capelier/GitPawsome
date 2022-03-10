@@ -15,6 +15,8 @@ public abstract class Entity : MonoBehaviour
 	[SerializeField] GameObject damageParticle;
 	[SerializeField] GameObject healParticle;
 
+	[SerializeField] Sprite deathIcon;
+
 	[HideInInspector] public bool isPlayerEntity = false;
 	[HideInInspector] public bool isPlaying = false;
 
@@ -198,7 +200,7 @@ public abstract class Entity : MonoBehaviour
 				instaCat.health = 0;
 				HealthChanged?.Invoke();
 				CatDeath?.Invoke(this);
-				Death();
+				Death(_caster);
 				return;
 			}
 		}
@@ -276,8 +278,9 @@ public abstract class Entity : MonoBehaviour
 		ManaChanged?.Invoke();
 	}
 
-	public void Death()
+	public void Death(Entity _caster)
 	{
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, this, true, deathIcon, "Death", $"{_caster.instaCat.name} knocked out {instaCat.name}!"));
 		EntityDeath?.Invoke(instaCat.catName);
 		Destroy(gameObject);
 	}

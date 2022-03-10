@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SuperClaw", menuName = "Spells/SuperClaw", order = 50)]
 public class SuperClaw : Spell
 {
+	bool attacked = false;
+
 	public override Vector2Int[] GetSpellReach(int fromX, int fromY, int toX, int toY)
 	{
 		ReachFinder _rf = new ReachFinder(LevelGrid.Instance, true);
@@ -27,6 +29,7 @@ public class SuperClaw : Spell
 		{
 			if(LevelGrid.Instance.cells[_target.x - 1, _target.y].entityOnCell == null && !LevelGrid.Instance.cells[_target.x - 1, _target.y].isWall)
 			{
+				attacked = true;
 				_targetEntity.MoveAlongPath(new Vector2Int[] { new Vector2Int(_target.x - 1, _target.y) });
 			}
 		}
@@ -34,6 +37,8 @@ public class SuperClaw : Spell
 		{
 			if (LevelGrid.Instance.cells[_target.x + 1, _target.y].entityOnCell == null && !LevelGrid.Instance.cells[_target.x + 1, _target.y].isWall)
 			{
+				attacked = true;
+
 				_targetEntity.MoveAlongPath(new Vector2Int[] { new Vector2Int(_target.x + 1, _target.y) });
 			}
 		}
@@ -41,6 +46,8 @@ public class SuperClaw : Spell
 		{
 			if (LevelGrid.Instance.cells[_target.x, _target.y - 1].entityOnCell == null && !LevelGrid.Instance.cells[_target.x, _target.y - 1].isWall)
 			{
+				attacked = true;
+
 				_targetEntity.MoveAlongPath(new Vector2Int[] { new Vector2Int(_target.x, _target.y - 1) });
 			}
 		}
@@ -48,8 +55,13 @@ public class SuperClaw : Spell
 		{
 			if (LevelGrid.Instance.cells[_target.x, _target.y + 1].entityOnCell == null && !LevelGrid.Instance.cells[_target.x, _target.y + 1].isWall)
 			{
+				attacked = true;
+
 				_targetEntity.MoveAlongPath(new Vector2Int[] { new Vector2Int(_target.x, _target.y + 1) });
 			}
 		}
+
+		if (attacked)
+			BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, spellSprite, spellName, $"{_caster.InstaCat.name} scratched {_targetEntity.InstaCat.name} and pushed him."));
 	}
 }

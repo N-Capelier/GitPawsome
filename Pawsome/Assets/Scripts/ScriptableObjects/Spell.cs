@@ -8,12 +8,13 @@ public enum Archetype
 	Common
 }
 
-[CreateAssetMenu(fileName = "New Spell", menuName = "Spell", order = 51)]
+//[CreateAssetMenu(fileName = "New Spell", menuName = "Spell", order = 51)]
 public class Spell : ScriptableObject
 {
 	public string spellName;
 	public Sprite spellSprite;
 	public Sprite spellRangeSprite;
+	public Sprite notificationSprite;
 	public string description;
 	public GameObject particleEffect;
 	[Space]

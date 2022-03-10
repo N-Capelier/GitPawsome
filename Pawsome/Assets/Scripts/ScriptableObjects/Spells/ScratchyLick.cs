@@ -19,6 +19,8 @@ public class ScratchyLick : Spell
 		if (_targetEntity == null)
 			return;
 
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, notificationSprite, spellName, $"{_caster.InstaCat.name} licked {_targetEntity.InstaCat.name}. Stinky!"));
+
 		_targetEntity.TakeDamage(10, _caster);
 		_targetEntity.TakeManaDamage(1);
 	}

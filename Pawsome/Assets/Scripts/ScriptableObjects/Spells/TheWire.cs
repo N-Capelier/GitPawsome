@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TheWire", menuName = "Spells/TheWire", order = 50)]
 public class TheWire : Spell
 {
+	bool attacked = false;
+
 	public override Vector2Int[] GetSpellReach(int fromX, int fromY, int toX, int toY)
 	{
 		ReachFinder _rf = new ReachFinder(LevelGrid.Instance, true);
@@ -16,18 +18,25 @@ public class TheWire : Spell
 		if(_casterPos.x < _target.x && !LevelGrid.Instance.cells[_casterPos.x + 1, _casterPos.y].isWall && LevelGrid.Instance.cells[_casterPos.x + 1, _casterPos.y].entityOnCell == null)
 		{
 			_caster.MoveAlongPath(new Vector2Int[] { new Vector2Int(_casterPos.x + 1, _casterPos.y) });
+			attacked = true;
 		}
 		else if (_casterPos.x > _target.x && !LevelGrid.Instance.cells[_casterPos.x - 1, _casterPos.y].isWall && LevelGrid.Instance.cells[_casterPos.x - 1, _casterPos.y].entityOnCell == null)
 		{
 			_caster.MoveAlongPath(new Vector2Int[] { new Vector2Int(_casterPos.x - 1, _casterPos.y) });
+			attacked = true;
 		}
 		else if (_casterPos.y < _target.y && !LevelGrid.Instance.cells[_casterPos.x, _casterPos.y + 1].isWall && LevelGrid.Instance.cells[_casterPos.x, _casterPos.y + 1].entityOnCell == null)
 		{
 			_caster.MoveAlongPath(new Vector2Int[] { new Vector2Int(_casterPos.x, _casterPos.y + 1) });
+			attacked = true;
 		}
 		else if (_casterPos.y > _target.y && !LevelGrid.Instance.cells[_casterPos.x, _casterPos.y - 1].isWall && LevelGrid.Instance.cells[_casterPos.x, _casterPos.y - 1].entityOnCell == null)
 		{
 			_caster.MoveAlongPath(new Vector2Int[] { new Vector2Int(_casterPos.x, _casterPos.y - 1) });
+			attacked = true;
 		}
+
+		if (attacked)
+			BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, spellSprite, spellName, $"{_caster.InstaCat.name} catched a wire!"));
 	}
 }

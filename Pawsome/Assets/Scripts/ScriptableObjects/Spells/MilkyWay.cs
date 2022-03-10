@@ -13,5 +13,7 @@ public class MilkyWay : Spell
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
 		_caster.Heal(20);
+
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, notificationSprite, spellName, $"{_caster.InstaCat.name} drank some good milk."));
 	}
 }

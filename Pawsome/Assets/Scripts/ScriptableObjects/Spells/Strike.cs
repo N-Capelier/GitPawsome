@@ -17,5 +17,7 @@ public class Strike : Spell
 			return;
 
 		LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell.TakeDamage(10, _caster);
+
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, notificationSprite, spellName, $"{_caster.InstaCat.name} scratched {_targetEntity.InstaCat.name}."));
 	}
 }

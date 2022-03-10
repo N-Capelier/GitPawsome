@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SneakAttack", menuName = "Spells/SneakAttack", order = 50)]
 public class SneakAttack : Spell
 {
+	bool tp = false;
+
 	public override Vector2Int[] GetSpellReach(int fromX, int fromY, int toX, int toY)
 	{
 		ReachFinder _rf = new ReachFinder(LevelGrid.Instance, true);
@@ -20,6 +22,8 @@ public class SneakAttack : Spell
 
 		if(LevelGrid.Instance.cells[_target.x + 1, _target.y].entityOnCell == null && !LevelGrid.Instance.cells[_target.x + 1, _target.y].isWall)
 		{
+			tp = true;
+
 			Vector2Int _casterPos = _caster.GetGridPosition();
 
 			LevelGrid.Instance.cells[_casterPos.x, _casterPos.y].entityOnCell = null;
@@ -28,6 +32,8 @@ public class SneakAttack : Spell
 		}
 		else if (LevelGrid.Instance.cells[_target.x - 1, _target.y].entityOnCell == null && !LevelGrid.Instance.cells[_target.x - 1, _target.y].isWall)
 		{
+			tp = true;
+
 			Vector2Int _casterPos = _caster.GetGridPosition();
 
 			LevelGrid.Instance.cells[_casterPos.x, _casterPos.y].entityOnCell = null;
@@ -36,6 +42,8 @@ public class SneakAttack : Spell
 		}
 		else if (LevelGrid.Instance.cells[_target.x, _target.y + 1].entityOnCell == null && !LevelGrid.Instance.cells[_target.x, _target.y + 1].isWall)
 		{
+			tp = true;
+
 			Vector2Int _casterPos = _caster.GetGridPosition();
 
 			LevelGrid.Instance.cells[_casterPos.x, _casterPos.y].entityOnCell = null;
@@ -44,11 +52,16 @@ public class SneakAttack : Spell
 		}
 		else if (LevelGrid.Instance.cells[_target.x, _target.y - 1].entityOnCell == null && !LevelGrid.Instance.cells[_target.x, _target.y - 1].isWall)
 		{
+			tp = true;
+
 			Vector2Int _casterPos = _caster.GetGridPosition();
 
 			LevelGrid.Instance.cells[_casterPos.x, _casterPos.y].entityOnCell = null;
 			_caster.transform.position = new Vector3(_target.x, 0f, _target.y - 1);
 			LevelGrid.Instance.cells[_target.x, _target.y - 1].entityOnCell = _caster;
 		}
+
+		if (tp)
+			BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, spellSprite, spellName, $"{_caster.InstaCat.name} reached {_targetEntity.InstaCat.name}."));
 	}
 }

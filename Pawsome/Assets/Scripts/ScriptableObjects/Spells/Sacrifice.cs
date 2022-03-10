@@ -18,6 +18,8 @@ public class Sacrifice : Spell
 		if (_targetEntity == null)
 			return;
 
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, notificationSprite, spellName, $"{_caster.InstaCat.name} protects {_targetEntity.InstaCat.name}."));
+
 		_targetEntity.redirectedDamages = _caster;
 	}
 }
