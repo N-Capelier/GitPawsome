@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using NaughtyAttributes;
+using System;
 
 public class CardContainer : MonoBehaviour
 {
@@ -22,17 +23,42 @@ public class CardContainer : MonoBehaviour
     [SerializeField]
     Button cardInterractor;
 
+    [Header("Interractor Elements")]
+    [SerializeField]
+    Image highlight;
+
     [Space, SerializeField, ReadOnly]
     Spell linkedSpell;
+    [SerializeField, ReadOnly]
+    private UnitCard.State _currentState;
 
     CardHandUI cardHand;
+
+    UnitCard.State CurrentState
+    {
+        get { return _currentState; }
+        set
+        {
+            UpdateState(value);
+        }
+    }
+
+    public Action<CardContainer> CardSelected;
 
 
     public void OnMount(Spell _linkedSpell, CardHandUI _cardHand)
     {
+        if(CurrentState == UnitCard.State.Selected)
+            CurrentState = UnitCard.State.Base;
+        
         cardHand = _cardHand;
         linkedSpell = _linkedSpell;
         DrawCard();
+    }
+
+    public void OnUnMount()
+    {
+        CardSelected = null;
     }
 
     void DrawCard()
@@ -49,5 +75,54 @@ public class CardContainer : MonoBehaviour
     {
         //TODO: Link to spell usage logic
         Debug.Log("CardClicked");
+    }
+
+    public void OnHoverIn()
+    {
+        switch (CurrentState)
+        {
+            case UnitCard.State.Base:
+                CurrentState = UnitCard.State.Hover;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void OnHoverOut()
+    {
+        switch (CurrentState)
+        {
+            case UnitCard.State.Hover:
+                CurrentState = UnitCard.State.Base;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void OnClick()
+    {
+        switch (CurrentState)
+        {
+            case UnitCard.State.Hover:
+                CurrentState = UnitCard.State.Selected;
+                CardSelected.Invoke(this);
+                break;
+            case UnitCard.State.Selected:
+                CurrentState = UnitCard.State.Hover;
+                CardSelected.Invoke(null);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void UpdateState(UnitCard.State newState)
+    {
+        if (newState == _currentState)
+            return;
+        highlight.color = cardHand.mode.GetHighLightColor(newState);
+        _currentState = newState;
     }
 }

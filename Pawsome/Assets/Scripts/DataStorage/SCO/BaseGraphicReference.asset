@@ -23,7 +23,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: e7dcea07a35149747ae070761f18f561, type: 3}
     - {fileID: 21300000, guid: 7272344ecee03434b99cf2269068e41b, type: 3}
     - {fileID: 21300000, guid: 1158e5af278389c44a8abdd3f7a96780, type: 3}
-    - {fileID: 21300000, guid: ca2a8f108b0d31746bfb964661d5d6a5, type: 3}
+    - {fileID: 21300000, guid: 5742d48fdc2eba244a0492c013e2a23b, type: 3}
   cardBackground:
     m_keys: 00000000020000000300000001000000
     m_values:
@@ -34,7 +34,11 @@ MonoBehaviour:
   statsIcon:
     m_keys: 00000000010000000200000003000000
     m_values:
-    - {fileID: 21300000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
-    - {fileID: 21300000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
-    - {fileID: 21300000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
-    - {fileID: 21300000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
+    - {fileID: 21300000, guid: d9563d8b7ef7b3e41a9967b37a4d0142, type: 3}
+    - {fileID: 21300000, guid: df35049613437a24cb6f364978f0f182, type: 3}
+    - {fileID: 21300000, guid: 6c113d4cf232ead409196ad119c4d608, type: 3}
+    - {fileID: 21300000, guid: b92043bf896de8e4e9bd5c6909263f29, type: 3}
+  cardHighlight:
+    baseColor: {r: 0, g: 0, b: 0, a: 0}
+    hoverColor: {r: 1, g: 0.49450058, b: 0, a: 0.6039216}
+    selectedColor: {r: 0.8867924, g: 0.29699183, b: 0.7222801, a: 0.5803922}
