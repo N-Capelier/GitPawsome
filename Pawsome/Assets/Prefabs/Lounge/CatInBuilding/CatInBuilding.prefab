@@ -542,8 +542,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 11 / 120
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9fb84bc9b9cb8a54f8a6847923fbe335, type: 2}
-  m_sharedMaterial: {fileID: -2689151384838214549, guid: 9fb84bc9b9cb8a54f8a6847923fbe335, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0042352d41f36914d87b327888b9a856, type: 2}
+  m_sharedMaterial: {fileID: -2689151384838214549, guid: 0042352d41f36914d87b327888b9a856, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -762,6 +762,9 @@ MonoBehaviour:
   TimeBar: {fileID: 5426626204488358921}
   Hp: {fileID: 5326412588836669984}
   StopProduce: 0
+  dead: 0
+  TimeBeforeAlive: 0
+  TimeBeforeRecover: 0
   StartTime: 0
   health: 0
   maxHealth: 0
