@@ -12,6 +12,9 @@ public abstract class Entity : MonoBehaviour
 	[SerializeField] MeshRenderer objectRenderer;
 	[SerializeField] GameObject possessionRenderer;
 
+	[SerializeField] GameObject damageParticle;
+	[SerializeField] GameObject healParticle;
+
 	[HideInInspector] public bool isPlayerEntity = false;
 	[HideInInspector] public bool isPlaying = false;
 
@@ -174,6 +177,8 @@ public abstract class Entity : MonoBehaviour
 			return false;
 		}
 
+		StartCoroutine(AnimateParticles(damageParticle));
+
 		if(_damages > instaCat.health)
 		{
 			if(hasNineLives)
@@ -200,7 +205,9 @@ public abstract class Entity : MonoBehaviour
 
 	public void Heal(int _amount)
 	{
-		if(_amount > instaCatRef.GetHealth())
+		StartCoroutine(AnimateParticles(healParticle));
+
+		if (_amount > instaCatRef.GetHealth())
 		{
 			instaCat.health = instaCatRef.GetHealth();
 		}
@@ -266,5 +273,12 @@ public abstract class Entity : MonoBehaviour
 	{
 		EntityDeath?.Invoke(instaCat.catName);
 		Destroy(gameObject);
+	}
+
+	IEnumerator AnimateParticles(GameObject _particle)
+	{
+		_particle.SetActive(true);
+		yield return new WaitForSeconds(.4f);
+		_particle.SetActive(false);
 	}
 }

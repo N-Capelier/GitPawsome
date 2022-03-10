@@ -16,6 +16,7 @@ MonoBehaviour:
   spellSprite: {fileID: 0}
   spellRangeSprite: {fileID: 0}
   description: 
+  particleEffect: {fileID: 611084705517397071, guid: fe9f9cfea82a1f44a94f9aa49f32464a, type: 3}
   spellClass: 3
   attackDamages: 0
   healAmount: 20
