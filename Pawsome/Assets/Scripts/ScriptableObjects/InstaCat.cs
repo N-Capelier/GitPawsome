@@ -32,6 +32,8 @@ public class InstaCat : ScriptableObject
 	[Space]
 	public int baseMovePoints;
 	public int bonusMovePoints;
+	[Space]
+	public bool Dead = false;
 
 	public List<Spell> spells = new List<Spell>();
 	public List<int> Temp = new List<int>();
@@ -72,4 +74,13 @@ public class InstaCat : ScriptableObject
 	{
 		return baseMovePoints + bonusMovePoints;
 	}
+	public void Heal(int amount)
+    {
+		if(health + amount > GetHealth())
+        {
+			health = GetHealth();
+			return;
+        }
+		health += amount;
+    }
 }

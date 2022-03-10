@@ -10,11 +10,18 @@ public class BuildingManager : Singleton<BuildingManager>
 	public GameObject CatFoodMenu;
 	public CatFood CatFoodBuilding;
 	public TextMeshProUGUI UILevel;
-	public TextMeshProUGUI UICreationTime;
 	public TextMeshProUGUI UIProduction;
-	public TextMeshProUGUI UINextCreationTime;
 	public TextMeshProUGUI UINextProduction;
 	public TextMeshProUGUI UIPrice;
+	//Cat In Building Adds
+	public GameObject CatFoodCatMenu;
+	public GameObject CatFoodLevelMenu;
+	public GameObject CatFoodCatBag;
+	public Sprite CatFoodNoCatSprite;
+	public GameObject CatFoodCat;
+	public GameObject CatFoodInventoryPrefab;
+	public TextMeshProUGUI UIProductionTime;
+	public TextMeshProUGUI UIProductionTimeBonus;
 
 	[Header("Invocation")]
 	public GameObject InvocationMenu;
@@ -29,6 +36,15 @@ public class BuildingManager : Singleton<BuildingManager>
 	public SpellGenerator SpellBuilding;
 	public GameObject SpellCollection;
 	public GameObject SpellPrefb;
+	//Cat In Building Adds
+	public GameObject GeneratorCatMenu;
+	public GameObject GeneratorMenu;
+	public GameObject GeneratorCatBag;
+	public Sprite GeneratorNoCatSprite;
+	public GameObject GeneratorCat;
+	public GameObject GeneratorInventoryPrefab;
+	public TextMeshProUGUI UINeedCat;
+	public GameObject GoToGeneratorButton;
 
 	[Header("DeckBuilding")]
 	public GameObject DeckBuildingMenu;
@@ -50,9 +66,26 @@ public class BuildingManager : Singleton<BuildingManager>
 	
 	[Header("Infirmary")]
 	public GameObject InfirmaryMenu;
-	public SpellGenerator InfirmaryBuilding;
-	public GameObject InfirmaryBag;
+	public Infirmary InfirmaryBuilding;
+	public GameObject InfirmaryInventoryBag;
 	public GameObject InfirmaryInventoryPrefb;
+	//infirmary
+	public GameObject InfirmaryBag;
+	public GameObject InfirmaryPrefb;
+	public GameObject InfirmaryDeadPrefb;
+	public GameObject NoCatInInfirmaryPrefb;
+	//Cat In Building Adds
+	public GameObject InfirmaryCatMenu;
+	public GameObject InfirmaryHealMenu;
+	public GameObject InfirmaryCatBag;
+	public Sprite InfirmaryNoCatSprite;
+	public GameObject InfirmaryCat;
+	public GameObject InfirmaryInventoryPrefab;
+	public TextMeshProUGUI UIRevivingTime;
+	public TextMeshProUGUI UIRevivingTimeBonus;
+	public TextMeshProUGUI UIHealingTime;
+	public TextMeshProUGUI UIPvRecover;
+	public TextMeshProUGUI UIHealingTimeBonus;
 
 	private void Awake()
 	{
@@ -68,6 +101,7 @@ public class BuildingManager : Singleton<BuildingManager>
 	public void OpenCatFoodUI()
 	{
 		CatFoodMenu.SetActive(true);
+		UpdateCatFoodInventory();
 	}
 	public void ExitCatFood()
 	{
@@ -83,14 +117,89 @@ public class BuildingManager : Singleton<BuildingManager>
 	}
 	public void UpdateCatFood()
 	{
+		
 		GameManager.Instance.UpdateUI();
 		UILevel.text = "Level " + CatFoodBuilding.level.ToString();
-		UICreationTime.text = "Creation Time : " + CatFoodBuilding.CreationTime.ToString() + "s";
-		UIProduction.text = "Production :" + CatFoodBuilding.FoodsPerCollection.ToString() + " Foods";
-		UINextCreationTime.text = "Creation Time : " + (CatFoodBuilding.CreationTime - CatFoodBuilding.ReducedTime).ToString() + "s";
-		UINextProduction.text = "Production :" + ((int)(CatFoodBuilding.FoodsPerCollection * CatFoodBuilding.CatFoodMultiplier)).ToString() + " Foods";
-		UIPrice.text = CatFoodBuilding.LevelUpPrice.ToString() + "CatFood";
+		UIProduction.text = "Production : " + CatFoodBuilding.FoodsPerCollection.ToString() + " Foods";
+		UINextProduction.text = "Production : " + ((int)(CatFoodBuilding.FoodsPerCollection * CatFoodBuilding.CatFoodMultiplier)).ToString() + " Foods";
+		UIPrice.text = CatFoodBuilding.LevelUpPrice.ToString() + " CatFood";
+		UIProductionTime.text = "Production Time : " + CatFoodBuilding.CreationTime.ToString() + "s";
+		if(CatFoodBuilding.CatIn)
+		{
+			UIProductionTimeBonus.text = "( -" + CatFoodBuilding.CreationTime.ToString() + " )";
+			return;
+		}
+		UIProductionTimeBonus.text = "";
 	}
+
+	// Cat in build adds
+	public void AddCatInCatFood(int catID)
+    {
+		if (!CatFoodBuilding.CatIn)
+		{
+			CatFoodBuilding.CatIn = true;
+			PlayerManager.Instance.UseCat(catID, true);
+			CatFoodCat.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[catID].MyCat.CatSprite;
+			CatFoodCat.GetComponent<CatFoodButton>().id = catID;
+			UpdateCatFoodInventory();
+		}
+    }
+	public void OutCatInCatFood(int catID)
+    {
+		if (CatFoodBuilding.CatIn)
+		{
+			CatFoodBuilding.CatIn = false;
+			PlayerManager.Instance.UseCat(catID, false);
+			CatFoodCat.GetComponent<Image>().sprite = CatFoodNoCatSprite;
+			UpdateCatFoodInventory();
+		}
+    }
+
+	
+	public void OpenCatFoodInventoryPart()
+    {
+		CatFoodCatMenu.SetActive(true);
+		CatFoodLevelMenu.SetActive(false);
+		UpdateCatFoodInventory();
+	}
+	public void OpenCatFoodLevelPart()
+    {
+		CatFoodCatMenu.SetActive(false);
+		CatFoodLevelMenu.SetActive(true);
+	}
+
+	public void UpdateCatFoodInventory()
+	{
+		if (PlayerManager.Instance.MyCatBag.Count < 1)
+		{
+			return;
+		}
+		//change bag
+		for (int i = CatFoodCatBag.transform.childCount; i > 0; i--)
+		{
+			//change bag
+			Destroy(CatFoodCatBag.transform.GetChild(i - 1).gameObject);
+		}
+		for (int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
+		{
+			if (PlayerManager.Instance.MyCatBag[i].InUse == false && PlayerManager.Instance.MyCatBag[i].MyCat.Dead == false)
+			{
+				//change bag && prefab
+				GameObject _button = Instantiate(CatFoodInventoryPrefab, CatFoodCatBag.transform);
+				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
+				//changeComonenet
+				_button.GetComponent<CatFoodInventoryButton>().id = i;
+			}
+		}
+
+		//specifique au catfood
+
+		if (CatFoodBuilding.CatIn)
+		{
+			UIProductionTimeBonus.text = "( -" + CatFoodBuilding.CreationTime.ToString() + " )";
+		}
+	}
+
 	#endregion
 
 	//Invocation
@@ -135,7 +244,16 @@ public class BuildingManager : Singleton<BuildingManager>
 
 	public void OpenSpellGeneratorUI()
 	{
+		if(SpellBuilding.CatIn == false)
+        {
+			OpenGeneratorInventoryPart();
+        }
+        else
+        {
+			OpenGeneratorPart();
+        }
 		SpellGeneratorMenu.SetActive(true);
+
 	}
 	public void ExitSpellGenerator()
 	{
@@ -171,6 +289,71 @@ public class BuildingManager : Singleton<BuildingManager>
 	}
 
 
+	public void AddCatInGenerator(int catID)
+	{
+		if (!SpellBuilding.CatIn)
+		{
+			SpellBuilding.CatIn = true;
+			PlayerManager.Instance.UseCat(catID, true);
+			GeneratorCat.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[catID].MyCat.CatSprite;
+			GeneratorCat.GetComponent<GeneratorButton>().id = catID;
+			UpdateGeneratorInventory();
+		}
+	}
+	public void OutCatInCatGenerator(int catID)
+	{
+		if (SpellBuilding.CatIn)
+		{
+			SpellBuilding.CatIn = false;
+			PlayerManager.Instance.UseCat(catID, false);
+			GeneratorCat.GetComponent<Image>().sprite = GeneratorNoCatSprite;
+			UpdateGeneratorInventory();
+		}
+	}
+	public void OpenGeneratorInventoryPart()
+	{
+		GeneratorCatMenu.SetActive(true);
+		GeneratorMenu.SetActive(false);
+		UpdateGeneratorInventory();
+	}
+	public void OpenGeneratorPart()
+	{
+		GeneratorCatMenu.SetActive(false);
+		GeneratorMenu.SetActive(true);
+	}
+
+	public void UpdateGeneratorInventory()
+	{
+		if (PlayerManager.Instance.MyCatBag.Count < 1)
+		{
+			return;
+		}
+		for (int i = GeneratorCatBag.transform.childCount; i > 0; i--)
+		{
+			Destroy(GeneratorCatBag.transform.GetChild(i - 1).gameObject);
+		}
+		for (int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
+		{
+			if (PlayerManager.Instance.MyCatBag[i].InUse == false && PlayerManager.Instance.MyCatBag[i].MyCat.Dead == false)
+			{
+				GameObject _button = Instantiate(GeneratorInventoryPrefab, GeneratorCatBag.transform);
+				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
+				_button.GetComponent<GeneratorInventoryButton>().id = i;
+			}
+		}
+
+		if (SpellBuilding.CatIn)
+		{
+
+			UINeedCat.text = "";
+			GoToGeneratorButton.SetActive(true);
+			return;
+		}
+
+		UINeedCat.text = "You Need A Cat In The Building To Generate Some Spells.";
+		GoToGeneratorButton.SetActive(false);
+	}
+
 	#endregion
 
 	//DeckBuilding
@@ -200,7 +383,7 @@ public class BuildingManager : Singleton<BuildingManager>
 		}
 		for (int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
 		{
-			if (PlayerManager.Instance.MyCatBag[i].InUse == false)
+			if (PlayerManager.Instance.MyCatBag[i].InUse == false && PlayerManager.Instance.MyCatBag[i].MyCat.Dead == false)
 			{
 				GameObject _button = Instantiate(CatCardPrefb, CatBag.transform);
 				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
@@ -382,7 +565,9 @@ public class BuildingManager : Singleton<BuildingManager>
 	{
 
 		InfirmaryMenu.SetActive(true);
-		UpdateInfirmary();
+		UpdateInfirmaryInventory();
+		UpdateInfirmary(false);
+		UpdateInfirmaryCatInventory();
 	}
 	public void ExitInfirmaryUI()
 	{
@@ -391,49 +576,187 @@ public class BuildingManager : Singleton<BuildingManager>
 
 	//Inventory Part
 	#region
-	public void UpdateInfirmary()
+	public void UpdateInfirmaryInventory()
 	{
 		if (PlayerManager.Instance.MyCatBag.Count < 1)
 		{
 			return;
 		}
-		for (int i = InfirmaryBag.transform.childCount; i > 0; i--)
+		for (int i = InfirmaryInventoryBag.transform.childCount; i > 0; i--)
 		{
-			Destroy(InfirmaryBag.transform.GetChild(i - 1).gameObject);
+			Destroy(InfirmaryInventoryBag.transform.GetChild(i - 1).gameObject);
 		}
 		for (int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
 		{
-			if (PlayerManager.Instance.MyCatBag[i].InUse == false)
+			if (PlayerManager.Instance.MyCatBag[i].InUse == false && PlayerManager.Instance.MyCatBag[i].MyCat.GetHealth() > PlayerManager.Instance.MyCatBag[i].MyCat.health)
 			{
-				GameObject _button = Instantiate(InfirmaryInventoryPrefb, InfirmaryBag.transform);
+				GameObject _button = Instantiate(InfirmaryInventoryPrefb, InfirmaryInventoryBag.transform);
 				InstaCat _cat = PlayerManager.Instance.MyCatBag[i].MyCat;
 				_button.GetComponent<Image>().sprite = _cat.CatSprite;
-				_button.GetComponent<InfirmaryInventoryButton>().Hp.text = _cat.health.ToString() + " / " + _cat.GetHealth().ToString();
+				_button.GetComponent<InfirmaryInventoryButton>().id = i;
 				_button.GetComponent<InfirmaryInventoryButton>().HpBar.value = (_cat.health*100)/ _cat.GetHealth();
+				if (_cat.Dead)
+				{
+					_button.GetComponent<InfirmaryInventoryButton>().Price.text = InfirmaryBuilding.RevivePrice.ToString();
+					_button.GetComponent<InfirmaryInventoryButton>().Dead.SetActive(true);
+					_button.GetComponent<InfirmaryInventoryButton>().Hp.text = "Dead";
+				}
+				else
+				{
+					_button.GetComponent<InfirmaryInventoryButton>().Price.text = InfirmaryBuilding.RecoverPrice.ToString();
+					_button.GetComponent<InfirmaryInventoryButton>().Dead.SetActive(false);
+					_button.GetComponent<InfirmaryInventoryButton>().Hp.text = _cat.health.ToString() + " / " + _cat.GetHealth().ToString();
+				}
 			}
 		}
 	}
 	
 	#endregion
-	//DeckPart
+	//Infirmary part
 	#region
 
 	public void InfirmaryCatUse(int i)
 	{
-		PlayerManager.Instance.UseCat(i, true);
-		CatImage.GetComponent<CatDeckButton>().OnClick();
-		CatsDeck = PlayerManager.Instance.MyCatBag[i].MyCat;
-		CatImage.GetComponent<CatDeckButton>().ReceieveCat(i);
+		if (InfirmaryBuilding.myInfirmary.Count < 4)
+		{
+			PlayerManager.Instance.UseCat(i, true);
+			InfirmaryBuilding.AddCatToInfirmary(PlayerManager.Instance.MyCatBag[i].MyCat, i);
+			if(PlayerManager.Instance.MyCatBag[i].MyCat.Dead)
+            {
+				PlayerManager.Instance.IncrementCatFood(-1 * InfirmaryBuilding.RevivePrice);
+			}
+            else
+            {
+				PlayerManager.Instance.IncrementCatFood(-1 * InfirmaryBuilding.RecoverPrice);
+			}
+			UpdateInfirmary(true);
+			UpdateInfirmaryInventory();
+		}
 
-		UpdateCatDeckBuilding();
 	}
 	public void InfirmaryDontWannaUseCat(int i)
 	{
-		PlayerManager.Instance.UseCat(i, false);
-
-		UpdateCatDeckBuilding();
+		PlayerManager.Instance.UseCat(InfirmaryBuilding.myInfirmary[i].idInBag, false);
+		InfirmaryBuilding.OutCatToInfirmary(i);
+		UpdateInfirmary(false);
+		UpdateInfirmaryInventory();
 	}
-	
+
+	public void UpdateInfirmary(bool justAddOne)
+	{
+		if (InfirmaryBuilding.myInfirmary.Count > 0)
+		{
+
+			for (int i = InfirmaryBag.transform.childCount; i > 0; i--)
+			{
+				Destroy(InfirmaryBag.transform.GetChild(i - 1).gameObject);
+
+			}
+			if (InfirmaryBuilding.myInfirmary.Count > 0)
+			{
+				for (int i = 0; i < InfirmaryBuilding.myInfirmary.Count; i++)
+				{
+					GameObject _button = Instantiate(InfirmaryPrefb, InfirmaryBag.transform);
+					InstaCat _cat = InfirmaryBuilding.myInfirmary[i].CatInInfirmary;
+					_button.GetComponent<Image>().sprite = _cat.CatSprite;
+					_button.GetComponent<NurceButton>().id = i;
+					_button.GetComponent<NurceButton>().health = _cat.health;
+					_button.GetComponent<NurceButton>().maxHealth = _cat.GetHealth();
+					_button.GetComponent<NurceButton>().dead = _cat.Dead;
+					_button.GetComponent<NurceButton>().TimeBeforeRecover = InfirmaryBuilding.TimeBeforeRecover;
+					_button.GetComponent<NurceButton>().TimeBeforeAlive = InfirmaryBuilding.TimeBeforeAlive;
+					_button.GetComponent<NurceButton>().StartTime = InfirmaryBuilding.myInfirmary[i].StartTime;
+
+				}
+			}
+			if (InfirmaryBuilding.myInfirmary.Count > 0 && InfirmaryBuilding.myInfirmary.Count < 4)
+			{
+				for (int i = InfirmaryBuilding.myInfirmary.Count; i < 4; i++)
+				{
+					GameObject _button = Instantiate(NoCatInInfirmaryPrefb, InfirmaryBag.transform);
+				}
+			}
+			return;
+		}
+		for (int i = InfirmaryBag.transform.childCount; i > 0; i--)
+		{
+			Destroy(InfirmaryBag.transform.GetChild(i - 1).gameObject);
+
+		}
+		for (int i = InfirmaryBuilding.myInfirmary.Count; i < 4; i++)
+		{
+			GameObject _button = Instantiate(NoCatInInfirmaryPrefb, InfirmaryBag.transform);
+		}
+
+	}
+
+	//added
+	public void AddCatInInfirmary(int catID)
+	{
+		if (!InfirmaryBuilding.CatIn)
+		{
+			InfirmaryBuilding.CatIn = true;
+			PlayerManager.Instance.UseCat(catID, true);
+			InfirmaryCat.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[catID].MyCat.CatSprite;
+			InfirmaryCat.GetComponent<CatInfirmaryButton>().id = catID;
+			UpdateInfirmaryCatInventory();
+		}
+	}
+	public void OutCatInInfirmary(int catID)
+	{
+		if (InfirmaryBuilding.CatIn)
+		{
+			InfirmaryBuilding.CatIn = false;
+			PlayerManager.Instance.UseCat(catID, false);
+			InfirmaryCat.GetComponent<Image>().sprite = InfirmaryNoCatSprite;
+			UpdateInfirmaryCatInventory();
+		}
+	}
+
+
+	public void OpenInfirmaryInventoryPart()
+	{
+		InfirmaryCatMenu.SetActive(true);
+		InfirmaryHealMenu.SetActive(false);
+		UpdateInfirmaryCatInventory();
+	}
+	public void OpenInfirmaryLevelPart()
+	{
+		InfirmaryCatMenu.SetActive(false);
+		InfirmaryHealMenu.SetActive(true);
+	}
+
+	public void UpdateInfirmaryCatInventory()
+	{
+		if (PlayerManager.Instance.MyCatBag.Count < 1)
+		{
+			return;
+		}
+		for (int i = InfirmaryCatBag.transform.childCount; i > 0; i--)
+		{
+			Destroy(InfirmaryCatBag.transform.GetChild(i - 1).gameObject);
+		}
+		for (int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
+		{
+			if (PlayerManager.Instance.MyCatBag[i].InUse == false && PlayerManager.Instance.MyCatBag[i].MyCat.Dead == false)
+			{
+				GameObject _button = Instantiate(InfirmaryInventoryPrefab, InfirmaryCatBag.transform);
+				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
+				_button.GetComponent<CatInfirmaryInventoryButton>().id = i;
+			}
+		}
+		UIRevivingTime.text = "Reviving Time : " + InfirmaryBuilding.TimeBeforeAlive.ToString() +"s";
+		UIHealingTime.text = "Healing Time : " + InfirmaryBuilding.TimeBeforeRecover.ToString() +"s";
+		UIPvRecover.text = "HP recovered : " + InfirmaryBuilding.HpRecover.ToString() +"s";
+		//specifique au catfood
+
+		if (InfirmaryBuilding.CatIn)
+		{
+			UIRevivingTimeBonus.text = "( -" + InfirmaryBuilding.catBonusTime.ToString() + " )";
+			UIHealingTimeBonus.text = "( -" + InfirmaryBuilding.catBonusTime.ToString() + " )";
+		}
+	}
+
 	#endregion
 
 	#endregion

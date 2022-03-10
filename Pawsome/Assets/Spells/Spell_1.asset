@@ -21,4 +21,4 @@ MonoBehaviour:
   manaCost: 0
   attackRange: 0
   productionPrice: 0
-  productionTime: 0
+  productionTime: 20
