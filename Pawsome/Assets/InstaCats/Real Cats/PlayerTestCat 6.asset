@@ -45,7 +45,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c1bf18ea972de5447806f54a33e31011, type: 2}
   - {fileID: 11400000, guid: 0fba443fc21fa0c4b8b9ee8ac2935d79, type: 2}
   Temp: 
-  health: 120
+  health: 70
   mana: 0
   initiative: 0
   attack: 0
