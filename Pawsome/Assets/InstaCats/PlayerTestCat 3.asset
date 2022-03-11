@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catName: cat 3
   CatSprite: {fileID: 21300000, guid: 33c3e16a154b10146a721cae091c72f7, type: 3}
+  largePortrait: {fileID: 0}
+  CatCircleSprite: {fileID: 21300000, guid: 33c3e16a154b10146a721cae091c72f7, type: 3}
   DeadCatSprite: {fileID: 21300000, guid: ed3067e5db0263743b1a028f301c8387, type: 3}
-  mesh: {fileID: 0}
+  material: {fileID: 0}
   catClass: 2
   deckSize: 8
   baseHealth: 100
@@ -30,6 +32,8 @@ MonoBehaviour:
   bonusDefense: 0
   baseMovePoints: 3
   bonusMovePoints: 0
+  basePower: 0
+  bonusPower: 0
   Dead: 0
   spells: []
   Temp: 0d000000100000000b0000000c0000001200000006000000

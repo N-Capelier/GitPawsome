@@ -9,6 +9,7 @@ public class InstaCat : ScriptableObject
 	[Space]
 	public Sprite CatSprite;
 	public Sprite largePortrait;
+	public Sprite CatCircleSprite;
 	public Sprite DeadCatSprite;
 	[Space]
 	public Material material;

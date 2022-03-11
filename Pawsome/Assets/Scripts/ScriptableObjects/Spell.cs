@@ -13,6 +13,7 @@ public class Spell : ScriptableObject
 {
 	public string spellName;
 	public Sprite spellSprite;
+	public Sprite spellCardSprite;
 	public Sprite spellRangeSprite;
 	public Sprite notificationSprite;
 	public string description;

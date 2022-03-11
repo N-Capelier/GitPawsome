@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class SpellGenerator : MonoBehaviour
 {
+    public List<InstaCat> FakeCatBag = new List<InstaCat>();
+    public List<CatBag> MyCatBag = new List<CatBag>();
     public bool CatIn = false;
+
+    private void Start()
+    {
+        foreach (InstaCat element in FakeCatBag)
+        {
+            AddCat(element);
+        }
+    }
     public bool TryProduce(int price)
     {
         if(price < PlayerManager.Instance.CatFood)
@@ -21,5 +31,17 @@ public class SpellGenerator : MonoBehaviour
             PlayerManager.Instance.AddSpell(SpellManager.Instance.Spells[SpellId]);
             BuildingManager.Instance.UpdateSpellDeckBuilding();
         }
+    }
+
+    public void AddCat(InstaCat newCat)
+    {
+        MyCatBag.Add(new CatBag(newCat, false));
+    }
+
+    public void UseCat(int CatIndice, bool WannaUse)
+    {
+        MyCatBag[CatIndice].InUse = WannaUse;
+        return;
+
     }
 }
