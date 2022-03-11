@@ -63,6 +63,10 @@ public class SuperClaw : Spell
 		}
 
 		if (attacked)
+        {
 			BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, spellSprite, spellName, $"{_caster.InstaCat.name} scratched {_targetEntity.InstaCat.name} and pushed him."));
+			_caster.animationHandler.Attack();
+		}
+			
 	}
 }

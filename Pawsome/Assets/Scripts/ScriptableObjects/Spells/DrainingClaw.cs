@@ -38,6 +38,7 @@ public class DrainingClaw : Spell
 			return;
 
 		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _entity, true, notificationSprite, spellName, $"{_caster.InstaCat.name} drained {_entity.InstaCat.name}."));
+		_caster.animationHandler.Attack();
 
 		_entity.TakeDamage(20, _caster);
 		_caster.HealMana(1);

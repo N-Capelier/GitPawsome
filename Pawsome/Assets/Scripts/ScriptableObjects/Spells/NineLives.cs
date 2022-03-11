@@ -13,6 +13,7 @@ public class NineLives : Spell
 	public override void ExecuteSpell(Entity _caster, Vector2Int _target)
 	{
 		FindObjectOfType<AudioManager>().Play("Buff");
+		_caster.animationHandler.StatsUp();
 		_caster.hasNineLives = true;
 		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, notificationSprite, spellName, $"{_caster.InstaCat.name} has 9 lives and cannot die."));
 	}
