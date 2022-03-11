@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Super Claw
   spellSprite: {fileID: 21300000, guid: c4ea5e2d40a1d394fbef2d5a7d4804ca, type: 3}
+  spellCardSprite: {fileID: 21300000, guid: fd70baf1e742c0746b470cd978206754, type: 3}
   spellRangeSprite: {fileID: 21300000, guid: f1df7089a2e0b9f40b7016d6b5714117, type: 3}
   notificationSprite: {fileID: 21300000, guid: c4ea5e2d40a1d394fbef2d5a7d4804ca, type: 3}
   description: 'Deal 20 damages to the target and push them 2 blocks away in the

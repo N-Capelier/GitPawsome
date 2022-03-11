@@ -139,7 +139,7 @@ public class BuildingManager : Singleton<BuildingManager>
 		{
 			CatFoodBuilding.CatIn = true;
 			PlayerManager.Instance.UseCat(catID, true);
-			CatFoodCat.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[catID].MyCat.CatSprite;
+			CatFoodCat.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[catID].MyCat.CatCircleSprite;
 			CatFoodCat.GetComponent<CatFoodButton>().id = catID;
 			UpdateCatFoodInventory();
 		}
@@ -183,7 +183,7 @@ public class BuildingManager : Singleton<BuildingManager>
 			if (PlayerManager.Instance.MyCatBag[i].InUse == false && PlayerManager.Instance.MyCatBag[i].MyCat.Dead == false)
 			{
 				GameObject _button = Instantiate(CatFoodInventoryPrefab, CatFoodCatBag.transform);
-				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
+				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatCircleSprite;
 				_button.GetComponent<CatFoodInventoryButton>().id = i;
 			}
 		}
@@ -267,7 +267,7 @@ public class BuildingManager : Singleton<BuildingManager>
 		for (int i = 0; i < SpellManager.Instance.Spells.Count; i++)
 		{
 			GameObject _button = Instantiate(SpellPrefb, SpellCollection.transform);
-			_button.GetComponent<Image>().sprite = SpellManager.Instance.Spells[i].spellSprite;
+			_button.GetComponent<Image>().sprite = SpellManager.Instance.Spells[i].spellCardSprite;
 			_button.GetComponent<SpellButton>().id = i;
 			_button.GetComponentInChildren<TextMeshProUGUI>().text = SpellManager.Instance.Spells[i].productionPrice.ToString();
 		}
@@ -294,7 +294,7 @@ public class BuildingManager : Singleton<BuildingManager>
 		{
 			SpellBuilding.CatIn = true;
 			PlayerManager.Instance.UseCat(catID, true);
-			GeneratorCat.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[catID].MyCat.CatSprite;
+			GeneratorCat.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[catID].MyCat.CatCircleSprite;
 			GeneratorCat.GetComponent<GeneratorButton>().id = catID;
 			UpdateGeneratorInventory();
 		}
@@ -336,7 +336,7 @@ public class BuildingManager : Singleton<BuildingManager>
 			if (PlayerManager.Instance.MyCatBag[i].InUse == false && PlayerManager.Instance.MyCatBag[i].MyCat.Dead == false)
 			{
 				GameObject _button = Instantiate(GeneratorInventoryPrefab, GeneratorCatBag.transform);
-				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
+				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatCircleSprite;
 				_button.GetComponent<GeneratorInventoryButton>().id = i;
 			}
 		}
@@ -385,7 +385,7 @@ public class BuildingManager : Singleton<BuildingManager>
 			if (DeckBuildingBuilding.MyCatBag[i].InUse == false && DeckBuildingBuilding.MyCatBag[i].MyCat.Dead == false)
 			{
 				GameObject _button = Instantiate(CatCardPrefb, CatBag.transform);
-				_button.GetComponent<Image>().sprite = DeckBuildingBuilding.MyCatBag[i].MyCat.CatSprite;
+				_button.GetComponent<Image>().sprite = DeckBuildingBuilding.MyCatBag[i].MyCat.CatCircleSprite;
 				_button.GetComponent<CatInventoryButton>().id = i;
 				_button.GetComponent<CatInventoryButton>().Name.text = DeckBuildingBuilding.MyCatBag[i].MyCat.catName;
 			}
@@ -412,7 +412,7 @@ public class BuildingManager : Singleton<BuildingManager>
 					if (PlayerManager.Instance.MyBagSpell[i].MySpell.spellClass == CatsDeck.catClass || PlayerManager.Instance.MyBagSpell[i].MySpell.spellClass == Archetype.Common)
 					{
 						GameObject _button = Instantiate(SpellCardPrefb, spellBag.transform);
-						_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyBagSpell[i].MySpell.spellSprite;
+						_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyBagSpell[i].MySpell.spellCardSprite;
 						_button.GetComponentInChildren<TextMeshProUGUI>().text = "x" + PlayerManager.Instance.MyBagSpell[i].InBag.ToString();
 						_button.GetComponent<SpellInventoryButton>().id = i;
 						_button.GetComponent<SpellInventoryButton>().spellLink = PlayerManager.Instance.MyBagSpell[i].MySpell;
@@ -476,7 +476,7 @@ public class BuildingManager : Singleton<BuildingManager>
 
 			return;
 		}
-		CatImage.GetComponent<Image>().sprite = CatsDeck.CatSprite;
+		CatImage.GetComponent<Image>().sprite = CatsDeck.CatCircleSprite;
 		UICatName.text = CatsDeck.catName;
 		UICatClass.text = CatsDeck.catClass.ToString();
 		UpdateSpellDeck(false);
@@ -498,7 +498,7 @@ public class BuildingManager : Singleton<BuildingManager>
 			{
 				GameObject _button = Instantiate(DeckSpellPrefab, CatSpells.transform);
 
-				_button.GetComponent<Image>().sprite = CatsDeck.spells[i].spellSprite;
+				_button.GetComponent<Image>().sprite = CatsDeck.spells[i].spellCardSprite;
 
 				_button.GetComponent<SpellDeckButton>().idInBag = CatsDeck.Temp[i];
 			}
@@ -602,7 +602,8 @@ public class BuildingManager : Singleton<BuildingManager>
 			{
 				GameObject _button = Instantiate(InfirmaryInventoryPrefb, InfirmaryInventoryBag.transform);
 				InstaCat _cat = PlayerManager.Instance.MyCatBag[i].MyCat;
-				_button.GetComponent<Image>().sprite = _cat.CatSprite;
+				_button.GetComponent<Image>().sprite = _cat.CatCircleSprite;
+;
 				_button.GetComponent<InfirmaryInventoryButton>().id = i;
 				_button.GetComponent<InfirmaryInventoryButton>().HpBar.value = (_cat.health*100)/ _cat.GetHealth();
 				if (_cat.Dead)
@@ -615,7 +616,7 @@ public class BuildingManager : Singleton<BuildingManager>
 				else
 				{
 					_button.GetComponent<InfirmaryInventoryButton>().Price.text = InfirmaryBuilding.RecoverPrice.ToString();
-					_button.GetComponent<Image>().sprite = _cat.CatSprite;
+					_button.GetComponent<Image>().sprite = _cat.CatCircleSprite;
 					_button.GetComponent<InfirmaryInventoryButton>().Hp.text = _cat.health.ToString() + " / " + _cat.GetHealth().ToString();
 				}
 			}
@@ -675,7 +676,7 @@ public class BuildingManager : Singleton<BuildingManager>
 					}
                     else
                     {
-						_button.GetComponent<Image>().sprite = _cat.CatSprite;
+						_button.GetComponent<Image>().sprite = _cat.CatCircleSprite;
                     }
 					_button.GetComponent<NurceButton>().id = i;
 					_button.GetComponent<NurceButton>().health = _cat.health;
@@ -720,7 +721,7 @@ public class BuildingManager : Singleton<BuildingManager>
 		{
 			InfirmaryBuilding.CatIn = true;
 			PlayerManager.Instance.UseCat(catID, true);
-			InfirmaryCat.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[catID].MyCat.CatSprite;
+			InfirmaryCat.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[catID].MyCat.CatCircleSprite;
 			InfirmaryCat.GetComponent<CatInfirmaryButton>().id = catID;
 			UpdateInfirmaryCatInventory();
 			UpdateInfirmary(false);
@@ -766,7 +767,7 @@ public class BuildingManager : Singleton<BuildingManager>
 			if (PlayerManager.Instance.MyCatBag[i].InUse == false && PlayerManager.Instance.MyCatBag[i].MyCat.Dead == false)
 			{
 				GameObject _button = Instantiate(InfirmaryInventoryPrefab, InfirmaryCatBag.transform);
-				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
+				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatCircleSprite;
 				_button.GetComponent<CatInfirmaryInventoryButton>().id = i;
 			}
 		}

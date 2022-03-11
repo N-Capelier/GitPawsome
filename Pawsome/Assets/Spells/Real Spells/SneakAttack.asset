@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Sneak Attack
   spellSprite: {fileID: 21300000, guid: 34b8cb434b660234581fb20b08de4e43, type: 3}
+  spellCardSprite: {fileID: 21300000, guid: 11e1236b22a4a05498db9e7219fd7b00, type: 3}
   spellRangeSprite: {fileID: 21300000, guid: 6c597f76fb8bbf2438c583f42016ba8b, type: 3}
   notificationSprite: {fileID: 21300000, guid: 34b8cb434b660234581fb20b08de4e43, type: 3}
   description: Teleport next to an enemy or allied unit

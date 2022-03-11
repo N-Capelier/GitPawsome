@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Scratchy Lick
   spellSprite: {fileID: 21300000, guid: 431de57a9da438045a921d56767f62b6, type: 3}
+  spellCardSprite: {fileID: 21300000, guid: 17c3844b8fbb9e047a5d3a2f948d3fdd, type: 3}
   spellRangeSprite: {fileID: 21300000, guid: 4adddecb2eb40454ca01a3e8f9b3bfb6, type: 3}
   notificationSprite: {fileID: 21300000, guid: 431de57a9da438045a921d56767f62b6, type: 3}
   description: Deal 10 damages & remove 1 Mana to the target for the next turn

@@ -15,6 +15,7 @@ MonoBehaviour:
   catName: Venus
   CatSprite: {fileID: 21300000, guid: be62716e0f1bac843b98d9d605343cc4, type: 3}
   largePortrait: {fileID: 21300000, guid: 62eb39ea783ce6e418f29b9492aecd00, type: 3}
+  CatCircleSprite: {fileID: 21300000, guid: 33c3e16a154b10146a721cae091c72f7, type: 3}
   DeadCatSprite: {fileID: 21300000, guid: ed3067e5db0263743b1a028f301c8387, type: 3}
   material: {fileID: 2100000, guid: d4284a9a5a47161489a5abea8562c29f, type: 2}
   catClass: 1

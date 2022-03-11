@@ -15,6 +15,7 @@ MonoBehaviour:
   catName: Hamilton
   CatSprite: {fileID: 21300000, guid: e0bd6529462a14946b5051560f07b23f, type: 3}
   largePortrait: {fileID: 21300000, guid: dd250e4c09d77f449b97a4dcd2038bd0, type: 3}
+  CatCircleSprite: {fileID: 21300000, guid: 335d23d6143a5124bbf48267bf92cd0a, type: 3}
   DeadCatSprite: {fileID: 21300000, guid: 6d84fc894ef30ef488bc6af24507cee2, type: 3}
   material: {fileID: 2100000, guid: c3785d3d7d212634186c3c88f55dcb0b, type: 2}
   catClass: 2

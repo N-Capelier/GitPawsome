@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Draining Claw
   spellSprite: {fileID: 21300000, guid: cc24bb15c5fb33a4eb37a67d0a2b6ff8, type: 3}
+  spellCardSprite: {fileID: 21300000, guid: cca69d5348ff16047a4bae4111a06bb3, type: 3}
   spellRangeSprite: {fileID: 21300000, guid: 89ae1908f4368974a80a0c148cc2bf87, type: 3}
   notificationSprite: {fileID: 21300000, guid: cc24bb15c5fb33a4eb37a67d0a2b6ff8, type: 3}
   description: Deals 10 damages to units in range, the caster earns 1 mana for each
