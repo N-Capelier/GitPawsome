@@ -22,12 +22,12 @@ public class EntityUI : MonoBehaviour
 
     public void UpdateHealth()
     {
-        healthFiller.fillAmount = linkedEntity.InstaCat.health / linkedEntity.InstaCat.baseHealth;
+        healthFiller.fillAmount = (float)linkedEntity.InstaCat.health / (float)linkedEntity.InstaCat.GetHealth();
     }
 
     public void UpdateMana()
     {
-        manafiller.fillAmount = linkedEntity.InstaCat.mana / linkedEntity.InstaCat.baseMana;
+        manafiller.fillAmount = (float)linkedEntity.InstaCat.mana / (float)linkedEntity.InstaCat.GetMana();
     }
 
 }

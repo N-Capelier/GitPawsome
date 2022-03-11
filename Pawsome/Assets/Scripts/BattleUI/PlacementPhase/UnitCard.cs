@@ -78,8 +78,7 @@ public class UnitCard : MonoBehaviour
         //Set Stats Value
         defStatDisplay.statValueDisplay.text = unit.baseDefense.ToString();
         atkStatDisplay.statValueDisplay.text = unit.baseAttack.ToString();
-        //TODO: implement power display
-        //powStatDisplay.statValueDisplay.text = unit.basePower.ToString();
+        powStatDisplay.statValueDisplay.text = unit.basePower.ToString();
         moveStatDisplay.statValueDisplay.text = unit.movePoints.ToString();
 
         //HighLight
