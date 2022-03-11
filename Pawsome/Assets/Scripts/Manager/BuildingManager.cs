@@ -372,7 +372,7 @@ public class BuildingManager : Singleton<BuildingManager>
 	#region
 	public void UpdateCatDeckBuilding()
 	{
-		if (PlayerManager.Instance.MyCatBag.Count < 1)
+		if (DeckBuildingBuilding.MyCatBag.Count < 1)
 		{
 			return;
 		}
@@ -380,14 +380,14 @@ public class BuildingManager : Singleton<BuildingManager>
 		{
 			Destroy(CatBag.transform.GetChild(i - 1).gameObject);
 		}
-		for (int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
+		for (int i = 0; i < DeckBuildingBuilding.MyCatBag.Count; i++)
 		{
-			if (PlayerManager.Instance.MyCatBag[i].InUse == false && PlayerManager.Instance.MyCatBag[i].MyCat.Dead == false)
+			if (DeckBuildingBuilding.MyCatBag[i].InUse == false && DeckBuildingBuilding.MyCatBag[i].MyCat.Dead == false)
 			{
 				GameObject _button = Instantiate(CatCardPrefb, CatBag.transform);
-				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
+				_button.GetComponent<Image>().sprite = DeckBuildingBuilding.MyCatBag[i].MyCat.CatSprite;
 				_button.GetComponent<CatInventoryButton>().id = i;
-				_button.GetComponent<CatInventoryButton>().Name.text = PlayerManager.Instance.MyCatBag[i].MyCat.catName;
+				_button.GetComponent<CatInventoryButton>().Name.text = DeckBuildingBuilding.MyCatBag[i].MyCat.catName;
 			}
 		}
 	}
@@ -444,16 +444,16 @@ public class BuildingManager : Singleton<BuildingManager>
 	#region
 	public void CatUse(int i)
 	{
-		PlayerManager.Instance.UseCat(i, true);
+		DeckBuildingBuilding.UseCat(i, true);
 		CatImage.GetComponent<CatDeckButton>().OnClick();
-		CatsDeck = PlayerManager.Instance.MyCatBag[i].MyCat;
+		CatsDeck = DeckBuildingBuilding.MyCatBag[i].MyCat;
 		CatImage.GetComponent<CatDeckButton>().ReceieveCat(i);
 		UpdateSpellDeckBuilding();
 		UpdateCatDeckBuilding();
 	}
 	public void DontWannaUseCat(int i)
 	{
-		PlayerManager.Instance.UseCat(i, false);
+		DeckBuildingBuilding.UseCat(i, false);
 		UpdateSpellDeckBuilding();
 		UpdateCatDeckBuilding();
 	}
