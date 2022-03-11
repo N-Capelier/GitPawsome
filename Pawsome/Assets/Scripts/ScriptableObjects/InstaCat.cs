@@ -8,8 +8,9 @@ public class InstaCat : ScriptableObject
 	public string catName;
 	[Space]
 	public Sprite CatSprite;
+	public Sprite largePortrait;
 	[Space]
-	public Mesh mesh;
+	public Material material;
 	[Space]
 	public Archetype catClass;
 	[Space]
@@ -32,6 +33,9 @@ public class InstaCat : ScriptableObject
 	[Space]
 	public int baseMovePoints;
 	public int bonusMovePoints;
+	[Space]
+	public int basePower;
+	public int bonusPower;
 	[Space]
 	public bool Dead = false;
 

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: NineLives
   m_EditorClassIdentifier: 
   spellName: Nine Lives
-  spellSprite: {fileID: 21300000, guid: 77b97ce3d300a5149bbe2d1b30a7f3f2, type: 3}
-  spellRangeSprite: {fileID: 0}
-  description: 
+  spellSprite: {fileID: 21300000, guid: 9d2e1f0b5318fd34290cd96d93a050ad, type: 3}
+  spellRangeSprite: {fileID: 21300000, guid: 42b3353a3214a074a873952844228e9d, type: 3}
+  notificationSprite: {fileID: 21300000, guid: 9d2e1f0b5318fd34290cd96d93a050ad, type: 3}
+  description: Target's Hp cannot go below 1 HP during this turn
   particleEffect: {fileID: 3185347752070244587, guid: 08039d7113aac7c47a83684e2b881771, type: 3}
   spellClass: 0
   attackDamages: 0

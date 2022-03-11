@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: WoolBall
   m_EditorClassIdentifier: 
   spellName: Wool Ball
-  spellSprite: {fileID: 21300000, guid: a72f510498b152d44982886bb7d9d270, type: 3}
-  spellRangeSprite: {fileID: 0}
-  description: 
+  spellSprite: {fileID: 21300000, guid: f73a4a23d1e281e46b3e919c0ae023d4, type: 3}
+  spellRangeSprite: {fileID: 21300000, guid: 4adddecb2eb40454ca01a3e8f9b3bfb6, type: 3}
+  notificationSprite: {fileID: 21300000, guid: f73a4a23d1e281e46b3e919c0ae023d4, type: 3}
+  description: Deal 20 damage to the target in sight
   particleEffect: {fileID: 2371583623375551179, guid: 4f21aad082b01b249b745d4bf082800c, type: 3}
   spellClass: 2
   attackDamages: 0

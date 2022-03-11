@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: CatCall
   m_EditorClassIdentifier: 
   spellName: Cat Call
-  spellSprite: {fileID: 21300000, guid: c19b76a47cb49384c9c2a25c24c21d1c, type: 3}
-  spellRangeSprite: {fileID: 0}
-  description: 
+  spellSprite: {fileID: 21300000, guid: bb92e8628278f7148ba742f142554e60, type: 3}
+  spellRangeSprite: {fileID: 21300000, guid: 4adddecb2eb40454ca01a3e8f9b3bfb6, type: 3}
+  notificationSprite: {fileID: 21300000, guid: bb92e8628278f7148ba742f142554e60, type: 3}
+  description: Attract another unit next to the caster
   particleEffect: {fileID: 4271609673118988229, guid: 5b02e71802fbb4c43a5c8ea845516265, type: 3}
   spellClass: 1
   attackDamages: 0

@@ -59,5 +59,6 @@ public class FierceGrowl : Spell
 		}
 
 		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, spellSprite, spellName, $"{_caster.InstaCat.catName} feared {_targetEntity.InstaCat.catName}."));
+		_caster.animationHandler.Spell();
 	}
 }

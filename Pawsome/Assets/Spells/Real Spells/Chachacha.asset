@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Chachacha
   m_EditorClassIdentifier: 
   spellName: Chachacha
-  spellSprite: {fileID: 21300000, guid: a52a4f49cf494a44ba810eb6ccbdb31f, type: 3}
-  spellRangeSprite: {fileID: 0}
-  description: 
+  spellSprite: {fileID: 21300000, guid: 46df6e5b4caf9b14bbfdf34dd4980e30, type: 3}
+  spellRangeSprite: {fileID: 21300000, guid: ad79b689a5eccff46aaacd95c8f5c717, type: 3}
+  notificationSprite: {fileID: 21300000, guid: 46df6e5b4caf9b14bbfdf34dd4980e30, type: 3}
+  description: During 3 turns. Heal for 20 HP all units starting their turn on the
+    area
   particleEffect: {fileID: 0}
   spellClass: 0
   attackDamages: 0

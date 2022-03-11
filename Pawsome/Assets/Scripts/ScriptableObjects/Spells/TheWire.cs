@@ -16,7 +16,12 @@ public class TheWire : Spell
 		FindObjectOfType<AudioManager>().Play("Slash");
 		Vector2Int _casterPos = _caster.GetGridPosition();
 
-		if(_casterPos.x < _target.x && !LevelGrid.Instance.cells[_casterPos.x + 1, _casterPos.y].isWall && LevelGrid.Instance.cells[_casterPos.x + 1, _casterPos.y].entityOnCell == null)
+		Entity _targetEntity = LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell;
+		var lookingVector = (Vector2)(_target - _caster.GetGridPosition());
+
+		_caster.models.transform.forward = lookingVector.normalized;
+
+		if (_casterPos.x < _target.x && !LevelGrid.Instance.cells[_casterPos.x + 1, _casterPos.y].isWall && LevelGrid.Instance.cells[_casterPos.x + 1, _casterPos.y].entityOnCell == null)
 		{
 			_caster.MoveAlongPath(new Vector2Int[] { new Vector2Int(_casterPos.x + 1, _casterPos.y) });
 			attacked = true;
@@ -38,6 +43,9 @@ public class TheWire : Spell
 		}
 
 		if (attacked)
+        {
 			BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, spellSprite, spellName, $"{_caster.InstaCat.catName} catched a wire!"));
+			_caster.animationHandler.Attack();
+		}
 	}
 }

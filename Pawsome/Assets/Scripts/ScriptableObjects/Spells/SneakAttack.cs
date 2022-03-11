@@ -63,6 +63,9 @@ public class SneakAttack : Spell
 		}
 
 		if (tp)
+        {
 			BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, spellSprite, spellName, $"{_caster.InstaCat.catName} reached {_targetEntity.InstaCat.catName}."));
+			_caster.animationHandler.StatsUp();
+		}
 	}
 }

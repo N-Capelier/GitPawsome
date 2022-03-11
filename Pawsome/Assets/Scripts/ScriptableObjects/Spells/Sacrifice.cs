@@ -16,10 +16,13 @@ public class Sacrifice : Spell
 		FindObjectOfType<AudioManager>().Play("Buff");
 		Entity _targetEntity = LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell;
 
+
 		if (_targetEntity == null)
 			return;
 
 		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, notificationSprite, spellName, $"{_caster.InstaCat.catName} protects {_targetEntity.InstaCat.catName}."));
+		_targetEntity.animationHandler.StatsUp();
+		_caster.animationHandler.Spell();
 
 		_targetEntity.redirectedDamages = _caster;
 	}

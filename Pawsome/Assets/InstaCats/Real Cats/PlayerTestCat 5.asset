@@ -12,23 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab692e4c5629f347ab9fcee926ea81f, type: 3}
   m_Name: PlayerTestCat 5
   m_EditorClassIdentifier: 
-  catName: cat 2
-  CatSprite: {fileID: 21300000, guid: 7272344ecee03434b99cf2269068e41b, type: 3}
-  mesh: {fileID: 0}
+  catName: Venus
+  CatSprite: {fileID: 21300000, guid: be62716e0f1bac843b98d9d605343cc4, type: 3}
+  largePortrait: {fileID: 21300000, guid: 62eb39ea783ce6e418f29b9492aecd00, type: 3}
+  material: {fileID: 2100000, guid: d4284a9a5a47161489a5abea8562c29f, type: 2}
   catClass: 1
   deckSize: 8
-  baseHealth: 120
-  bonusHealth: 40
-  baseMana: 5
-  bonusMana: 5
+  baseHealth: 80
+  bonusHealth: 0
+  baseMana: 6
+  bonusMana: 0
   baseInitiative: 2
   bonusInitiative: 0
-  baseAttack: 0
+  baseAttack: 5
   bonusAttack: 0
-  baseDefense: 0
+  baseDefense: 8
   bonusDefense: 0
-  baseMovePoints: 3
+  baseMovePoints: 4
   bonusMovePoints: 0
+  basePower: 5
+  bonusPower: 0
+  Dead: 0
   spells:
   - {fileID: 11400000, guid: 3ccbdfe45737b8a4dbc81f8de688edf3, type: 2}
   - {fileID: 11400000, guid: f4d92720e7cbf9a43888a87b152aba45, type: 2}

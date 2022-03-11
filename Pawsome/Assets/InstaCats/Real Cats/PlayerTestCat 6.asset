@@ -12,23 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab692e4c5629f347ab9fcee926ea81f, type: 3}
   m_Name: PlayerTestCat 6
   m_EditorClassIdentifier: 
-  catName: cat 3
-  CatSprite: {fileID: 21300000, guid: 1158e5af278389c44a8abdd3f7a96780, type: 3}
-  mesh: {fileID: 0}
+  catName: Hamilton
+  CatSprite: {fileID: 21300000, guid: dd250e4c09d77f449b97a4dcd2038bd0, type: 3}
+  largePortrait: {fileID: 21300000, guid: e0bd6529462a14946b5051560f07b23f, type: 3}
+  material: {fileID: 2100000, guid: c3785d3d7d212634186c3c88f55dcb0b, type: 2}
   catClass: 2
   deckSize: 8
-  baseHealth: 100
-  bonusHealth: 20
-  baseMana: 5
-  bonusMana: 5
+  baseHealth: 70
+  bonusHealth: 0
+  baseMana: 6
+  bonusMana: 0
   baseInitiative: 8
   bonusInitiative: 0
-  baseAttack: 0
+  baseAttack: 3
   bonusAttack: 0
-  baseDefense: 0
+  baseDefense: 3
   bonusDefense: 0
-  baseMovePoints: 3
+  baseMovePoints: 870
   bonusMovePoints: 0
+  basePower: 0
+  bonusPower: 0
+  Dead: 0
   spells:
   - {fileID: 11400000, guid: 3ccbdfe45737b8a4dbc81f8de688edf3, type: 2}
   - {fileID: 11400000, guid: f4d92720e7cbf9a43888a87b152aba45, type: 2}

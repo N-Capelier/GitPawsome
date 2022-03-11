@@ -38,6 +38,7 @@ public class Flash : Spell
 			return;
 
 		BattleInformationManager.Instance.Notifiate(new NotificationProps(_entity, _caster, true, notificationSprite, spellName, $"{_caster.InstaCat.catName} sweeped {_entity.InstaCat.catName}."));
+		_caster.animationHandler.Spell();
 
 		_entity.TakeDamage(20, _caster);
 		_entity.TakeManaDamage(1);

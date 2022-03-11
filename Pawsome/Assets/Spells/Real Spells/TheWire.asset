@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TheWire
   m_EditorClassIdentifier: 
   spellName: The Wire
-  spellSprite: {fileID: 21300000, guid: 38f3d712aaabc5240b80793af32a3ce6, type: 3}
-  spellRangeSprite: {fileID: 0}
-  description: 
+  spellSprite: {fileID: 21300000, guid: f73a4a23d1e281e46b3e919c0ae023d4, type: 3}
+  spellRangeSprite: {fileID: 21300000, guid: 4adddecb2eb40454ca01a3e8f9b3bfb6, type: 3}
+  notificationSprite: {fileID: 21300000, guid: f73a4a23d1e281e46b3e919c0ae023d4, type: 3}
+  description: Caster is attracted next to the unit hit
   particleEffect: {fileID: 4271609673118988229, guid: 5b02e71802fbb4c43a5c8ea845516265, type: 3}
   spellClass: 0
   attackDamages: 0
