@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         //FindObjectOfType<AudioManager>().Play("MainThemeMusic");
-        Play("MainThemeMusic");
+        Play("BattleMusic");
     }
 
     public void Play (string name)

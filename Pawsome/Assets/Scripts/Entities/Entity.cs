@@ -9,8 +9,10 @@ public abstract class Entity : MonoBehaviour
 	[SerializeField] float moveDuration = 10f;
 
 	[Header("References")]
-	[SerializeField] MeshRenderer objectRenderer;
+	[SerializeField] SkinnedMeshRenderer objectRenderer;
+	public GameObject models;
 	[SerializeField] GameObject possessionRenderer;
+	public AnimationHandler animationHandler;
 
 	[SerializeField] GameObject damageParticle;
 	[SerializeField] GameObject healParticle;
@@ -114,24 +116,26 @@ public abstract class Entity : MonoBehaviour
 
 	IEnumerator MoveAlongPathCoroutine(Vector2Int[] _path)
 	{
+		animationHandler.StartMove();
+
 		for (int i = 1; i < _path.Length; i++)
 		{
 			//Set renderer direction
 			if(_path[i].x > transform.position.x) //East
 			{
-				objectRenderer.transform.forward = new Vector3(1f, 0f, 0f);
+				models.transform.forward = new Vector3(1f, 0f, 0f);
 			}
 			else if (_path[i].x < transform.position.x) //West
 			{
-				objectRenderer.transform.forward = new Vector3(-1f, 0f, 0f);
+				models.transform.forward = new Vector3(-1f, 0f, 0f);
 			}
 			else if (_path[i].y > transform.position.z) //North
 			{
-				objectRenderer.transform.forward = new Vector3(0f, 0f, 1f);
+				models.transform.forward = new Vector3(0f, 0f, 1f);
 			}
 			else if (_path[i].y < transform.position.z) //South
 			{
-				objectRenderer.transform.forward = new Vector3(0f, 0f, -1f);
+				models.transform.forward = new Vector3(0f, 0f, -1f);
 			}
 
 			float _completion = 0f;
@@ -150,6 +154,7 @@ public abstract class Entity : MonoBehaviour
 
 		LevelGrid.Instance.cells[_path[_path.Length - 1].x, _path[_path.Length - 1].y].entityOnCell = this;
 
+		animationHandler.EndMove();
 		yield return null;
 	}
 
@@ -207,6 +212,7 @@ public abstract class Entity : MonoBehaviour
 		else
 		{
 			instaCat.health -= _damages;
+			animationHandler.Hit();
 			HealthChanged?.Invoke();
 			return;
 		}
