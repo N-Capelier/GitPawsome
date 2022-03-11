@@ -64,7 +64,7 @@ public class UnitCard : MonoBehaviour
         linkedUnit = unit;
 
         //Set base unit Infos
-        portrait.sprite = unit.CatSprite;
+        portrait.sprite = unit.largePortrait;
         nameDisplay.text = unit.catName;
         manaValueDisplay.text = unit.baseMana.ToString();
         hpValueDisplay.text = unit.baseHealth.ToString();

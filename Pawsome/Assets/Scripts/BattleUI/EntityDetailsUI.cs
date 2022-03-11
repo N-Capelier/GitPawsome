@@ -116,7 +116,7 @@ public class EntityDetailsUI : MonoBehaviour
 
 
         //Set Enity Presentation Elements
-        portrait.sprite = newTarget.InstaCat.CatSprite;
+        portrait.sprite = newTarget.InstaCat.largePortrait;
         border.color = BattleUIMode.GetBorderColor(newTarget);
         classIcon.sprite = mode.GetClassIcon(newTarget.InstaCat);
         entityName.text = newTarget.InstaCat.catName;

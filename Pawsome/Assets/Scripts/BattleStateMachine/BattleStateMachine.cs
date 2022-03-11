@@ -50,6 +50,9 @@ public class BattleStateMachine : MonoStateMachine
 
 	#endregion
 
+	[HideInInspector] public List<(InstaCat, InstaCat)> playerDeadCats = new List<(InstaCat, InstaCat)>();
+	[HideInInspector] public List<(InstaCat, InstaCat)> enemyDeadCats = new List<(InstaCat, InstaCat)>();
+
 	public void PlayNextTurn()
 	{
 		if(turnIndex > -1)
@@ -65,6 +68,21 @@ public class BattleStateMachine : MonoStateMachine
 
 		entities[turnIndex].isPlaying = true;
 		EnterTurn?.Invoke();
+
+		if(entities.Count <= 3)
+		{
+			if(playerDeadCats.Count >= 3 || enemyDeadCats.Count >= 3)
+			{
+				foreach((InstaCat cat, InstaCat refCat) cat in playerDeadCats)
+				{
+					cat.refCat.Dead = true;
+					cat.refCat.baseHealth = cat.cat.health;
+					cat.refCat.baseMana = cat.cat.mana;
+				}
+
+				UnityEngine.SceneManagement.SceneManager.LoadScene("Lounge");
+			}
+		}
 
 		if (entities[turnIndex].isPlayerEntity)
 		{
@@ -82,6 +100,15 @@ public class BattleStateMachine : MonoStateMachine
 		{
 			if (entities[i] == _entity)
 			{
+				if(_entity.isPlayerEntity)
+				{
+					playerDeadCats.Add((_entity.InstaCat, _entity.InstaCatRef));
+				}
+				else
+				{
+					enemyDeadCats.Add((_entity.InstaCat, _entity.InstaCatRef));
+				}
+
 				entities.RemoveAt(i);
 				return;
 			}

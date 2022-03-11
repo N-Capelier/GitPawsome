@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     public static AudioManager instance;
-    // Start is called before the first frame update
+
     void Awake()
     {
         if (instance == null)
@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+
         foreach(Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -25,13 +26,12 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
-        
     }
     private void Start()
     {
-        //FindObjectOfType<AudioManager>().Play("MainThemeMusic");
-        Play("BattleMusic");
-    }
+		//FindObjectOfType<AudioManager>().Play("MainThemeMusic");
+		Play("LobbyMusic");
+	}
 
     public void Play (string name)
     {

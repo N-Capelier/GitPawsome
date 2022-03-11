@@ -16,17 +16,17 @@ public class BattleInformationManager : Singleton<BattleInformationManager>
 
 	public InstaCat[] GetInstaCats()
 	{
-		if(PlayerManager.Instance != null)
-		{
-			List<CatBag> t = PlayerManager.Instance.MyCatBag;
-			List<InstaCat> list = new List<InstaCat>();
-			foreach(CatBag catBag in t)
-			{
-				list.Add(catBag.MyCat);
-			}
+		//if(PlayerManager.Instance != null)
+		//{
+		//	List<CatBag> t = PlayerManager.Instance.MyCatBag;
+		//	List<InstaCat> list = new List<InstaCat>();
+		//	foreach(CatBag catBag in t)
+		//	{
+		//		list.Add(catBag.MyCat);
+		//	}
 
-			return list.ToArray();
-		}
+		//	return list.ToArray();
+		//}
 		return fakeInstaCatArray;
 	}
 
