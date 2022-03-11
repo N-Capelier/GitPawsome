@@ -31,7 +31,7 @@ public class SpinningClaw : Spell
 			if (_entity != null)
 			{
 				_entity.TakeDamage(10, _caster);
-				BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _entity, true, notificationSprite, spellName, $"{_caster.InstaCat.name} scratched {_entity.InstaCat.name}."));
+				BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _entity, true, notificationSprite, spellName, $"{_caster.InstaCat.catName} scratched {_entity.InstaCat.catName}."));
 			}
 		}
 	}

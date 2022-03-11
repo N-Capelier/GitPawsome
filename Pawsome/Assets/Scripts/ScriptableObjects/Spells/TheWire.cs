@@ -38,6 +38,6 @@ public class TheWire : Spell
 		}
 
 		if (attacked)
-			BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, spellSprite, spellName, $"{_caster.InstaCat.name} catched a wire!"));
+			BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, spellSprite, spellName, $"{_caster.InstaCat.catName} catched a wire!"));
 	}
 }

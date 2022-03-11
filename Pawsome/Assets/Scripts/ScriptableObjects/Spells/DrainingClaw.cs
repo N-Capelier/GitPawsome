@@ -37,7 +37,7 @@ public class DrainingClaw : Spell
 		if (_entity == null)
 			return;
 
-		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _entity, true, notificationSprite, spellName, $"{_caster.InstaCat.name} drained {_entity.InstaCat.name}."));
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _entity, true, notificationSprite, spellName, $"{_caster.InstaCat.catName} drained {_entity.InstaCat.catName}."));
 
 		_entity.TakeDamage(20, _caster);
 		_caster.HealMana(1);

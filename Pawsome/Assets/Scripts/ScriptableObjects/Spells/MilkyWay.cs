@@ -15,6 +15,6 @@ public class MilkyWay : Spell
 		FindObjectOfType<AudioManager>().Play("DrinkingMilk");
 		_caster.Heal(20);
 
-		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, notificationSprite, spellName, $"{_caster.InstaCat.name} drank some good milk."));
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, notificationSprite, spellName, $"{_caster.InstaCat.catName} drank some good milk."));
 	}
 }

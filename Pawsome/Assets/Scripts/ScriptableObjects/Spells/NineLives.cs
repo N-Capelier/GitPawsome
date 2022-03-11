@@ -14,6 +14,6 @@ public class NineLives : Spell
 	{
 		FindObjectOfType<AudioManager>().Play("Buff");
 		_caster.hasNineLives = true;
-		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, notificationSprite, spellName, $"{_caster.InstaCat.name} has 9 lives and cannot die."));
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, notificationSprite, spellName, $"{_caster.InstaCat.catName} has 9 lives and cannot die."));
 	}
 }

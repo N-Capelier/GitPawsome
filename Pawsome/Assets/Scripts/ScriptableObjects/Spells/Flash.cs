@@ -37,7 +37,7 @@ public class Flash : Spell
 		if (_entity == null)
 			return;
 
-		BattleInformationManager.Instance.Notifiate(new NotificationProps(_entity, _caster, true, notificationSprite, spellName, $"{_caster.InstaCat.name} sweeped {_entity.InstaCat.name}."));
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_entity, _caster, true, notificationSprite, spellName, $"{_caster.InstaCat.catName} sweeped {_entity.InstaCat.catName}."));
 
 		_entity.TakeDamage(20, _caster);
 		_entity.TakeManaDamage(1);

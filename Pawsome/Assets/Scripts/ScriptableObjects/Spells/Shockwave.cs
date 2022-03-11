@@ -42,7 +42,7 @@ public class Shockwave : Spell
 		{
 			foreach (Entity _orbitedCat in _entities)
 			{
-				BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _orbitedCat, true, notificationSprite, spellName, $"{_caster.InstaCat.name} put {_orbitedCat.InstaCat.name} in orbit!"));
+				BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _orbitedCat, true, notificationSprite, spellName, $"{_caster.InstaCat.catName} put {_orbitedCat.InstaCat.catName} in orbit!"));
 			}
 		}
 	}

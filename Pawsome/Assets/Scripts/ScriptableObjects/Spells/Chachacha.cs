@@ -12,6 +12,6 @@ public class Chachacha : Spell
 	{
 		FindObjectOfType<AudioManager>().Play("ZoneHeal");
 		_caster.chachacha = 3;
-		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, notificationSprite, spellName, $"{_caster.InstaCat.name} is dancing the Chachacha!"));
+		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, notificationSprite, spellName, $"{_caster.InstaCat.catName} is dancing the Chachacha!"));
 	}
 }
