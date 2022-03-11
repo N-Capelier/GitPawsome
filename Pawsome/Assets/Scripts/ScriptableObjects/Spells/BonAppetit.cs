@@ -13,6 +13,7 @@ public class BonAppetit : Spell
 	{
 		FindObjectOfType<AudioManager>().Play("ZoneHeal");
 		LevelGrid.Instance.cells[_target.x, _target.y].bonAppetit = 2;
+		_caster.animationHandler.Spell();
 		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, notificationSprite, spellName, $"{_caster.InstaCat.name} placed some catfood on the ground.")); ;
 	}
 }

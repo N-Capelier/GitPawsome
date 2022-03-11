@@ -63,9 +63,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8479571074173389293, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
   m_PrefabInstance: {fileID: 6533126847014018126}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &503040632125899117 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6652235060871519523, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
+--- !u!114 &5607984309472864483 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1691598934558815405, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
+  m_PrefabInstance: {fileID: 6533126847014018126}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3388722014404400547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93052a5aef2c80c46a14978cc5ea6301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!137 &1381598513976312406 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5297984441599303192, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
   m_PrefabInstance: {fileID: 6533126847014018126}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3334745377355625028 stripped
@@ -96,8 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 0.1
-  objectRenderer: {fileID: 503040632125899117}
+  objectRenderer: {fileID: 1381598513976312406}
   possessionRenderer: {fileID: 3334745377355625028}
+  animationHandler: {fileID: 5607984309472864483}
   damageParticle: {fileID: 6933426842010074772}
   healParticle: {fileID: 5705128152734678973}
   deathIcon: {fileID: 21300000, guid: ef9a0ef28b87a0748a833270f9242e0e, type: 3}

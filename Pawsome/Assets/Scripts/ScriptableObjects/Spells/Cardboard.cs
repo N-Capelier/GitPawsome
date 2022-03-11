@@ -14,6 +14,7 @@ public class Cardboard : Spell
 	{
 		FindObjectOfType<AudioManager>().Play("CardConstruction");
 		_caster.SetInvincibility();
+		_caster.animationHandler.Spell();
 		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, null, false, notificationSprite, spellName, $"{_caster} is hiding in a cardboard."));
 	}
 }

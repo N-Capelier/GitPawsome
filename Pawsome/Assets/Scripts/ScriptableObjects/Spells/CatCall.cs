@@ -15,6 +15,9 @@ public class CatCall : Spell
 	{
 		FindObjectOfType<AudioManager>().Play("Buff");
 		Entity _targetEntity = LevelGrid.Instance.cells[_target.x, _target.y].entityOnCell;
+		var lookingVector = (Vector2)(_target - _caster.GetGridPosition());
+
+		_caster.models.transform.forward = lookingVector.normalized;
 
 		if (_targetEntity == null)
 			return;
@@ -39,5 +42,6 @@ public class CatCall : Spell
 		}
 
 		BattleInformationManager.Instance.Notifiate(new NotificationProps(_caster, _targetEntity, true, notificationSprite, spellName, $"{_caster.InstaCat.name} attracted {_targetEntity.InstaCat.name}."));
+		_caster.animationHandler.Attack();
 	}
 }
