@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_BackgroundColor
+  m_Name: M_BackgroundColor Battle
   m_Shader: {fileID: -6465566751694194690, guid: 39d42eefff0bd6f4c8461bf99839c77b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -80,8 +80,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_0e9e715d2ba24a3786922a896955d949: 4.32
-    - Vector1_6777c738e0d148faa00225b1d93c54ff: 0.75
+    - Vector1_0e9e715d2ba24a3786922a896955d949: 7.68
+    - Vector1_6777c738e0d148faa00225b1d93c54ff: -2.26
     - Vector1_86a21ed8cbac42d19f7385d96183d5ed: 0.15
     - _AlphaClip: 0
     - _Blend: 0
