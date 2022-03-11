@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: PlayerTestCat 2
   m_EditorClassIdentifier: 
   catName: cat 2
-  CatSprite: {fileID: 21300000, guid: ef4becbee8bfc6a47a3566c02292b8e3, type: 3}
+  CatSprite: {fileID: 21300000, guid: 99a7f2563f6ee7e44b70f0088d4c0335, type: 3}
+  DeadCatSprite: {fileID: 21300000, guid: c362f13bcf71e0c4ab46d079e6605bde, type: 3}
   mesh: {fileID: 0}
   catClass: 1
   deckSize: 8
@@ -30,15 +31,9 @@ MonoBehaviour:
   baseMovePoints: 3
   bonusMovePoints: 0
   Dead: 0
-  spells:
-  - {fileID: 11400000, guid: e0b70684084da624a9c0155a70154999, type: 2}
-  - {fileID: 11400000, guid: be6b10e689b4c27498ae7a5a55a784b7, type: 2}
-  - {fileID: 11400000, guid: a79b6d4304911a14f83e810fb2a0b6e1, type: 2}
-  - {fileID: 11400000, guid: 908b5ed3f6e076347a687bf3cea7c3b1, type: 2}
-  - {fileID: 11400000, guid: 65d3e5f1b959a784ea14338ccf420fcf, type: 2}
-  - {fileID: 11400000, guid: a6a141f067d1dad44a0d3608afb96d86, type: 2}
-  Temp: 
-  health: 120
+  spells: []
+  Temp: 0500000007000000090000000e0000000f000000
+  health: 0
   mana: 0
   initiative: 0
   attack: 0

@@ -9,6 +9,7 @@ public class InstaCat : ScriptableObject
 	[Space]
 	public Sprite CatSprite;
 	public Sprite largePortrait;
+	public Sprite DeadCatSprite;
 	[Space]
 	public Material material;
 	[Space]
@@ -78,13 +79,13 @@ public class InstaCat : ScriptableObject
 	{
 		return baseMovePoints + bonusMovePoints;
 	}
-	public void Heal(int amount)
-    {
-		if(health + amount > GetHealth())
-        {
-			health = GetHealth();
-			return;
-        }
-		health += amount;
+	public void Heal(int amount)
+    {
+		if(health + amount > GetHealth())
+        {
+			health = GetHealth();
+			return;
+        }
+		health += amount;
     }
 }

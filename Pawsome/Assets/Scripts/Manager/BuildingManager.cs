@@ -62,6 +62,8 @@ public class BuildingManager : Singleton<BuildingManager>
 	//CatDeck
 	public GameObject CatUI;
 	public GameObject CatImage;
+	public TextMeshProUGUI UICatName;
+	public TextMeshProUGUI UICatClass;
 	public GameObject CatSpells;
 	
 	[Header("Infirmary")]
@@ -72,7 +74,6 @@ public class BuildingManager : Singleton<BuildingManager>
 	//infirmary
 	public GameObject InfirmaryBag;
 	public GameObject InfirmaryPrefb;
-	public GameObject InfirmaryDeadPrefb;
 	public GameObject NoCatInInfirmaryPrefb;
 	//Cat In Building Adds
 	public GameObject InfirmaryCatMenu;
@@ -93,6 +94,7 @@ public class BuildingManager : Singleton<BuildingManager>
 	}
 	void Start()
 	{
+
 	}
 
 
@@ -131,8 +133,6 @@ public class BuildingManager : Singleton<BuildingManager>
 		}
 		UIProductionTimeBonus.text = "";
 	}
-
-	// Cat in build adds
 	public void AddCatInCatFood(int catID)
     {
 		if (!CatFoodBuilding.CatIn)
@@ -174,30 +174,29 @@ public class BuildingManager : Singleton<BuildingManager>
 		{
 			return;
 		}
-		//change bag
 		for (int i = CatFoodCatBag.transform.childCount; i > 0; i--)
 		{
-			//change bag
 			Destroy(CatFoodCatBag.transform.GetChild(i - 1).gameObject);
 		}
 		for (int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
 		{
 			if (PlayerManager.Instance.MyCatBag[i].InUse == false && PlayerManager.Instance.MyCatBag[i].MyCat.Dead == false)
 			{
-				//change bag && prefab
 				GameObject _button = Instantiate(CatFoodInventoryPrefab, CatFoodCatBag.transform);
 				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
-				//changeComonenet
 				_button.GetComponent<CatFoodInventoryButton>().id = i;
 			}
 		}
 
-		//specifique au catfood
 
 		if (CatFoodBuilding.CatIn)
 		{
-			UIProductionTimeBonus.text = "( -" + CatFoodBuilding.CreationTime.ToString() + " )";
+			UIProductionTimeBonus.text = "( -" + CatFoodBuilding.CatSpeedBoost.ToString() + " )";
+			return;
 		}
+
+		UIProductionTimeBonus.text = "";
+
 	}
 
 	#endregion
@@ -388,6 +387,7 @@ public class BuildingManager : Singleton<BuildingManager>
 				GameObject _button = Instantiate(CatCardPrefb, CatBag.transform);
 				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[i].MyCat.CatSprite;
 				_button.GetComponent<CatInventoryButton>().id = i;
+				_button.GetComponent<CatInventoryButton>().Name.text = PlayerManager.Instance.MyCatBag[i].MyCat.catName;
 			}
 		}
 	}
@@ -407,11 +407,17 @@ public class BuildingManager : Singleton<BuildingManager>
 		{
 			if (PlayerManager.Instance.MyBagSpell[i].InBag > 0)
 			{
-				GameObject _button = Instantiate(SpellCardPrefb, spellBag.transform);
-				_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyBagSpell[i].MySpell.spellSprite;
-				_button.GetComponentInChildren<TextMeshProUGUI>().text = "x" + PlayerManager.Instance.MyBagSpell[i].InBag.ToString();
-				_button.GetComponent<SpellInventoryButton>().id = i;
-				_button.GetComponent<SpellInventoryButton>().spellLink = PlayerManager.Instance.MyBagSpell[i].MySpell;
+				if (CatsDeck != null)
+				{
+					if (PlayerManager.Instance.MyBagSpell[i].MySpell.spellClass == CatsDeck.catClass || PlayerManager.Instance.MyBagSpell[i].MySpell.spellClass == Archetype.Common)
+					{
+						GameObject _button = Instantiate(SpellCardPrefb, spellBag.transform);
+						_button.GetComponent<Image>().sprite = PlayerManager.Instance.MyBagSpell[i].MySpell.spellSprite;
+						_button.GetComponentInChildren<TextMeshProUGUI>().text = "x" + PlayerManager.Instance.MyBagSpell[i].InBag.ToString();
+						_button.GetComponent<SpellInventoryButton>().id = i;
+						_button.GetComponent<SpellInventoryButton>().spellLink = PlayerManager.Instance.MyBagSpell[i].MySpell;
+					}
+				}
 			}
 		}
 	}
@@ -442,13 +448,13 @@ public class BuildingManager : Singleton<BuildingManager>
 		CatImage.GetComponent<CatDeckButton>().OnClick();
 		CatsDeck = PlayerManager.Instance.MyCatBag[i].MyCat;
 		CatImage.GetComponent<CatDeckButton>().ReceieveCat(i);
-
+		UpdateSpellDeckBuilding();
 		UpdateCatDeckBuilding();
 	}
 	public void DontWannaUseCat(int i)
 	{
 		PlayerManager.Instance.UseCat(i, false);
-
+		UpdateSpellDeckBuilding();
 		UpdateCatDeckBuilding();
 	}
 	public void UpdateCatDeck(bool NoCat)
@@ -461,6 +467,8 @@ public class BuildingManager : Singleton<BuildingManager>
 		if (NoCat)
 		{
 			CatImage.GetComponent<Image>().sprite = NoCatPrefab;
+			UICatName.text = "";
+			UICatClass.text = "";
 			for (int i = 0; i < 8; i++)
 			{
 				GameObject _button = Instantiate(NoSpellPrefab, CatSpells.transform);
@@ -469,6 +477,8 @@ public class BuildingManager : Singleton<BuildingManager>
 			return;
 		}
 		CatImage.GetComponent<Image>().sprite = CatsDeck.CatSprite;
+		UICatName.text = CatsDeck.catName;
+		UICatClass.text = CatsDeck.catClass.ToString();
 		UpdateSpellDeck(false);
 	}
 	#endregion
@@ -597,14 +607,15 @@ public class BuildingManager : Singleton<BuildingManager>
 				_button.GetComponent<InfirmaryInventoryButton>().HpBar.value = (_cat.health*100)/ _cat.GetHealth();
 				if (_cat.Dead)
 				{
+
+					_button.GetComponent<Image>().sprite = _cat.DeadCatSprite;
 					_button.GetComponent<InfirmaryInventoryButton>().Price.text = InfirmaryBuilding.RevivePrice.ToString();
-					_button.GetComponent<InfirmaryInventoryButton>().Dead.SetActive(true);
 					_button.GetComponent<InfirmaryInventoryButton>().Hp.text = "Dead";
 				}
 				else
 				{
 					_button.GetComponent<InfirmaryInventoryButton>().Price.text = InfirmaryBuilding.RecoverPrice.ToString();
-					_button.GetComponent<InfirmaryInventoryButton>().Dead.SetActive(false);
+					_button.GetComponent<Image>().sprite = _cat.CatSprite;
 					_button.GetComponent<InfirmaryInventoryButton>().Hp.text = _cat.health.ToString() + " / " + _cat.GetHealth().ToString();
 				}
 			}
@@ -658,11 +669,23 @@ public class BuildingManager : Singleton<BuildingManager>
 				{
 					GameObject _button = Instantiate(InfirmaryPrefb, InfirmaryBag.transform);
 					InstaCat _cat = InfirmaryBuilding.myInfirmary[i].CatInInfirmary;
-					_button.GetComponent<Image>().sprite = _cat.CatSprite;
+					if(_cat.Dead)
+                    {
+						_button.GetComponent<Image>().sprite = _cat.DeadCatSprite;
+					}
+                    else
+                    {
+						_button.GetComponent<Image>().sprite = _cat.CatSprite;
+                    }
 					_button.GetComponent<NurceButton>().id = i;
 					_button.GetComponent<NurceButton>().health = _cat.health;
 					_button.GetComponent<NurceButton>().maxHealth = _cat.GetHealth();
 					_button.GetComponent<NurceButton>().dead = _cat.Dead;
+					if(InfirmaryBuilding.CatIn)
+					{
+						_button.GetComponent<NurceButton>().TimeBeforeRecover = InfirmaryBuilding.TimeBeforeRecover - InfirmaryBuilding.catBonusTime;
+						_button.GetComponent<NurceButton>().TimeBeforeAlive = InfirmaryBuilding.TimeBeforeAlive - InfirmaryBuilding.catBonusTime;
+					}
 					_button.GetComponent<NurceButton>().TimeBeforeRecover = InfirmaryBuilding.TimeBeforeRecover;
 					_button.GetComponent<NurceButton>().TimeBeforeAlive = InfirmaryBuilding.TimeBeforeAlive;
 					_button.GetComponent<NurceButton>().StartTime = InfirmaryBuilding.myInfirmary[i].StartTime;
@@ -700,6 +723,7 @@ public class BuildingManager : Singleton<BuildingManager>
 			InfirmaryCat.GetComponent<Image>().sprite = PlayerManager.Instance.MyCatBag[catID].MyCat.CatSprite;
 			InfirmaryCat.GetComponent<CatInfirmaryButton>().id = catID;
 			UpdateInfirmaryCatInventory();
+			UpdateInfirmary(false);
 		}
 	}
 	public void OutCatInInfirmary(int catID)
@@ -710,6 +734,7 @@ public class BuildingManager : Singleton<BuildingManager>
 			PlayerManager.Instance.UseCat(catID, false);
 			InfirmaryCat.GetComponent<Image>().sprite = InfirmaryNoCatSprite;
 			UpdateInfirmaryCatInventory();
+			UpdateInfirmary(false);
 		}
 	}
 
@@ -754,7 +779,11 @@ public class BuildingManager : Singleton<BuildingManager>
 		{
 			UIRevivingTimeBonus.text = "( -" + InfirmaryBuilding.catBonusTime.ToString() + " )";
 			UIHealingTimeBonus.text = "( -" + InfirmaryBuilding.catBonusTime.ToString() + " )";
+			return;
 		}
+
+		UIRevivingTimeBonus.text = "";
+		UIHealingTimeBonus.text = "";
 	}
 
 	#endregion
