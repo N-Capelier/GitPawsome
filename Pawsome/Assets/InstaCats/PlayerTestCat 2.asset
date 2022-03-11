@@ -31,17 +31,9 @@ MonoBehaviour:
   baseMovePoints: 3
   bonusMovePoints: 0
   Dead: 0
-  spells:
-  - {fileID: 11400000, guid: d3070d8fecc51974791ae1c47226dba1, type: 2}
-  - {fileID: 11400000, guid: d3070d8fecc51974791ae1c47226dba1, type: 2}
-  - {fileID: 11400000, guid: 243a5e3fff459ab4dba83d0718054058, type: 2}
-  - {fileID: 11400000, guid: a17d53bcc5a9d2443a03c619c0e161ef, type: 2}
-  - {fileID: 11400000, guid: 3ccbdfe45737b8a4dbc81f8de688edf3, type: 2}
-  - {fileID: 11400000, guid: f704941c89643ba498c334c9bc1d3aa9, type: 2}
-  - {fileID: 11400000, guid: d81894fdb772042419dd9c9da5f263ba, type: 2}
-  - {fileID: 11400000, guid: f4d92720e7cbf9a43888a87b152aba45, type: 2}
-  Temp: 0100000001000000020000000500000007000000090000000e0000000f000000
-  health: 120
+  spells: []
+  Temp: 0500000007000000090000000e0000000f000000
+  health: 0
   mana: 0
   initiative: 0
   attack: 0

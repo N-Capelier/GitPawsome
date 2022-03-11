@@ -31,6 +31,12 @@ public class GameManager : Singleton<GameManager>
         UICatBell.text = PlayerManager.Instance.CatBell.ToString();
     }
     
-
+    public void EndBattle()
+    {
+        for (int i = 0; i < PlayerManager.Instance.MyCatBag.Count; i++)
+        {
+            PlayerManager.Instance.MyCatBag[i].MyCat.spells.Clear();
+        }
+    }
 
 }

@@ -757,6 +757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069dd97302796014f87e7015afdc2c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Me: {fileID: 5666902755987548713}
   id: 0
   HpBar: {fileID: 5527594460162144012}
   TimeBar: {fileID: 5426626204488358921}

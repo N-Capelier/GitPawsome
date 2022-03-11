@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class NurceButton : MonoBehaviour
 {
-    
+    public Image Me;
     public int id;
     public Slider HpBar;
     public Slider TimeBar;
@@ -40,8 +40,10 @@ public class NurceButton : MonoBehaviour
         {
             if (Time.time - StartTime > TimeBeforeAlive)
             {
+                Me.sprite = BuildingManager.Instance.InfirmaryBuilding.myInfirmary[id].CatInInfirmary.CatSprite;
                 BuildingManager.Instance.InfirmaryBuilding.GetComponent<Infirmary>().myInfirmary[id].CatInInfirmary.Dead = false;
                 dead = false;
+                Hp.text = health.ToString() + " / " + maxHealth.ToString();
                 StartTime = Time.time;
             }
 

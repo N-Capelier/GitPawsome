@@ -33,7 +33,7 @@ MonoBehaviour:
   Dead: 0
   spells: []
   Temp: 
-  health: 90
+  health: 0
   mana: 0
   initiative: 0
   attack: 0

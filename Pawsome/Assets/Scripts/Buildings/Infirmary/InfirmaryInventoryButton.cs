@@ -10,7 +10,6 @@ public class InfirmaryInventoryButton : MonoBehaviour
     public Slider HpBar;
     public TextMeshProUGUI Hp;
     public TextMeshProUGUI Price;
-    public GameObject Dead;
     
     public void OnClick()
     {
