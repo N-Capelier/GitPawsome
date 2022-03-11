@@ -143,8 +143,8 @@ public class EntityPlacingState : MonoState
 
 	//}
 
-	//public override void OnStateExit()
-	//{
-
-	//}
+	public override void OnStateExit()
+	{
+		LevelGrid.Instance.HideAllInteractors();
+	}
 }

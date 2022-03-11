@@ -78,8 +78,6 @@ public class PlayerTurnState : MonoState
 			return;
 		}
 
-		activeEntity.TakeManaDamage(activeSpell.manaCost);
-
 		ReachFinder _reachFinder = new ReachFinder(LevelGrid.Instance, true);
 
 		CellInteractor _interactor = LevelGrid.Instance.cells[(int)activeEntity.transform.position.x, (int)activeEntity.transform.position.z].interactor;
@@ -107,6 +105,7 @@ public class PlayerTurnState : MonoState
 
 				LevelGrid.Instance.HideAllInteractors();
 
+				activeEntity.TakeManaDamage(activeSpell.manaCost);
 				activeSpell.ExecuteSpell(activeEntity, _attackableCell);
 
 				activeEntity.DiscardSpell(equipedSpell);
@@ -174,6 +173,10 @@ public class PlayerTurnState : MonoState
 			MovementSub(false);
 			return;
 		}
+
+		Debug.Log(LevelGrid.Instance.Exist(new Vector2Int((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y)));
+		Debug.Log(fsm.entities[fsm.turnIndex]);
+			
 
 		if (_interactor.levelCell.entityOnCell == fsm.entities[fsm.turnIndex])
 		{

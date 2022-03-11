@@ -38,6 +38,8 @@ public class LevelGrid : Singleton<LevelGrid>
 				if(x + y <= 3)
 				{
 					_cellInteractor.levelCell.isPlayerStartCell = true;
+					_cellInteractor.SetRendererAlpha(.3f);
+					_cellInteractor.SetRendererColor(Color.blue);
 				}
 			}
 		}
