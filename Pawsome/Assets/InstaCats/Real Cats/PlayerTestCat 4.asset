@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab692e4c5629f347ab9fcee926ea81f, type: 3}
   m_Name: PlayerTestCat 4
   m_EditorClassIdentifier: 
-  catName: Coby
+  catName: Cody
   CatSprite: {fileID: 21300000, guid: ef4becbee8bfc6a47a3566c02292b8e3, type: 3}
   largePortrait: {fileID: 21300000, guid: d8301806fe59eff42b70bbe2631a0531, type: 3}
   material: {fileID: 2100000, guid: 3c38115b6577aa545aaa8ae736233045, type: 2}

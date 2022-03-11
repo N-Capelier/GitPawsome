@@ -28,7 +28,7 @@ MonoBehaviour:
   bonusAttack: 0
   baseDefense: 3
   bonusDefense: 0
-  baseMovePoints: 870
+  baseMovePoints: 5
   bonusMovePoints: 0
   basePower: 0
   bonusPower: 0
