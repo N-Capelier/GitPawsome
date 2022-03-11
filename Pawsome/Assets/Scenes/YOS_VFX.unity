@@ -1329,6 +1329,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HaloDefense
       objectReference: {fileID: 0}
+    - target: {fileID: 4506534486928929079, guid: 08039d7113aac7c47a83684e2b881771, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506534486928929079, guid: 08039d7113aac7c47a83684e2b881771, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08039d7113aac7c47a83684e2b881771, type: 3}
 --- !u!1001 &9209717200374564761
