@@ -129,12 +129,12 @@ public class EntityDetailsUI : MonoBehaviour
         moveDisplay.statValueDisplay.text = newTarget.InstaCat.movePoints.ToString();
 
         //Bar Values
-        healthBar.UpdateFillable(newTarget.InstaCat.health, newTarget.InstaCat.baseHealth);
-        manaBar.UpdateFillable(newTarget.InstaCat.mana, newTarget.InstaCat.baseMana);
+        healthBar.UpdateFillable((float)newTarget.InstaCat.health, (float)newTarget.InstaCat.GetHealth());
+        manaBar.UpdateFillable((float)newTarget.InstaCat.mana, (float)newTarget.InstaCat.GetMana());
     } 
 
     //TODO: Implement status UI logic once status are implemented
 
-    void OnHealthChanged() => healthBar.UpdateFillable(currentDisplayedEntity.InstaCat.health, currentDisplayedEntity.InstaCat.baseHealth);
-    void OnManaChanged() => healthBar.UpdateFillable(currentDisplayedEntity.InstaCat.health, currentDisplayedEntity.InstaCat.baseHealth);
+    void OnHealthChanged() => healthBar.UpdateFillable((float)currentDisplayedEntity.InstaCat.health, (float)currentDisplayedEntity.InstaCat.GetHealth());
+    void OnManaChanged() => manaBar.UpdateFillable((float)currentDisplayedEntity.InstaCat.mana, (float)currentDisplayedEntity.InstaCat.GetMana());
 }

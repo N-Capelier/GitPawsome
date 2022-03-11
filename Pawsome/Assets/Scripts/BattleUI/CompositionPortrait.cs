@@ -64,7 +64,7 @@ public class CompositionPortrait : MonoBehaviour
         var instaCat = linkedEntity.InstaCat;
 
         healthDisplay.text = instaCat.health.ToString();
-        healthFiller.fillAmount = instaCat.health / instaCat.baseHealth;
+        healthFiller.fillAmount = (float)instaCat.health / (float)instaCat.GetHealth();
     }
 
     void UpdateMana()
@@ -72,7 +72,7 @@ public class CompositionPortrait : MonoBehaviour
         var instaCat = linkedEntity.InstaCat;
 
         manaDisplay.text = instaCat.mana.ToString();
-        manaFiller.fillAmount = instaCat.mana / instaCat.baseMana;
+        manaFiller.fillAmount = (float)instaCat.mana / (float)instaCat.GetMana();
     }
 
     void UpdatePortaitsGraphics()
