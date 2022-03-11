@@ -23,5 +23,5 @@ MonoBehaviour:
   attackDamages: 0
   healAmount: 0
   manaCost: 4
-  productionPrice: 0
-  productionTime: 0
+  productionPrice: 12
+  productionTime: 10
