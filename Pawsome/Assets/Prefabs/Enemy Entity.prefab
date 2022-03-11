@@ -74,6 +74,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93052a5aef2c80c46a14978cc5ea6301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8987565956797710581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2742810775478656187, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
+  m_PrefabInstance: {fileID: 6533126847014018126}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &1381598513976312406 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5297984441599303192, guid: 17506de7ae048e2409bfcb069b109e8e, type: 3}
@@ -106,8 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1b9bf1dc7c7ee4ba3b6a3eb56e2f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDuration: 0.1
+  moveDuration: 0.3
   objectRenderer: {fileID: 1381598513976312406}
+  models: {fileID: 8987565956797710581}
   possessionRenderer: {fileID: 3334745377355625028}
   animationHandler: {fileID: 5607984309472864483}
   damageParticle: {fileID: 6933426842010074772}

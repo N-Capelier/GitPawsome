@@ -183,10 +183,38 @@ public class BattleStateMachine : MonoStateMachine
 		yield return null;
 	}
 
-	public IEnumerator AttackTarget(Entity _caster, Entity _target)
+	public void AttackTarget(Entity _caster, Entity _target)
+	{
+		StartCoroutine(AttackTargetCoroutine(_caster, _target));
+	}
+
+	IEnumerator AttackTargetCoroutine(Entity _caster, Entity _target)
 	{
 		yield return new WaitForSeconds(3f);
 
 		_target.TakeDamage(20, _caster);
+	}
+
+	public void HealTarget(Entity _caster, Entity _target)
+	{
+		StartCoroutine(HealTargetCoroutine(_caster, _target));
+	}
+
+	IEnumerator HealTargetCoroutine(Entity _caster, Entity _target)
+	{
+		yield return new WaitForSeconds(1.2f);
+
+		_target.Heal(10);
+	}
+
+	public void WaitAndPlayNextTurn()
+	{
+		StartCoroutine(WaitAndPlayNextTurnCoroutine());
+	}
+
+	IEnumerator WaitAndPlayNextTurnCoroutine()
+	{
+		yield return new WaitForSeconds(1.4f);
+		PlayNextTurn();
 	}
 }

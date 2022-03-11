@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -9,7 +7,6 @@ public class PlayerTurnState : MonoState
 	Vector2Int[] movableCells;
 	Vector2Int[] attackableCells;
 	bool alreadyMoved = false;
-	bool alreadyAttacked = false;
 	PlayerEntity activeEntity;
 	Spell activeSpell;
 	int equipedSpell;
@@ -30,6 +27,9 @@ public class PlayerTurnState : MonoState
 		fsm = StateMachine as BattleStateMachine;
 		activeEntity = fsm.entities[fsm.turnIndex] as PlayerEntity;
 
+		activeEntity.InstaCat.mana = activeEntity.InstaCatRef.GetMana();
+		activeEntity.ManaChanged?.Invoke();
+
 		DisplaySpellNames();
 		activeEntity.SetPossessionRenderer(true);
 
@@ -43,7 +43,6 @@ public class PlayerTurnState : MonoState
 		if (!alreadyMoved)
 			MovementSub(true);
 
-		if (!alreadyAttacked)
 			AttackSub(true);
 	}
 
@@ -61,11 +60,6 @@ public class PlayerTurnState : MonoState
 	{
 		AttackSub(false);
 
-		if (alreadyAttacked)
-		{
-			return;
-		}
-
 		MovementSub(false);
 
 		equipedSpell = _spellIndex;
@@ -76,6 +70,16 @@ public class PlayerTurnState : MonoState
 
 	private void DrawAttackableCells()
 	{
+		if(activeSpell.manaCost > activeEntity.InstaCat.mana)
+		{
+			AttackSub(true);
+			if (!alreadyMoved)
+				MovementSub(true);
+			return;
+		}
+
+		activeEntity.TakeManaDamage(activeSpell.manaCost);
+
 		ReachFinder _reachFinder = new ReachFinder(LevelGrid.Instance, true);
 
 		CellInteractor _interactor = LevelGrid.Instance.cells[(int)activeEntity.transform.position.x, (int)activeEntity.transform.position.z].interactor;
@@ -100,7 +104,6 @@ public class PlayerTurnState : MonoState
 			if(_attackableCell == interactor.levelCell.position)
 			{
 				BattleInputManager.PrimaryInteraction -= OnClickAttackableCell;
-				alreadyAttacked = true;
 
 				LevelGrid.Instance.HideAllInteractors();
 
@@ -115,7 +118,6 @@ public class PlayerTurnState : MonoState
 
 		LevelGrid.Instance.HideAllInteractors(); ///Debugging
 
-		if (!alreadyAttacked)
 			AttackSub(true);
 
 		if (!alreadyMoved)
@@ -223,10 +225,7 @@ public class PlayerTurnState : MonoState
 			MovementSub(true);
 		}
 
-		if (!alreadyAttacked)
-		{
 			AttackSub(true);
-		}
 	}
 
 	#endregion

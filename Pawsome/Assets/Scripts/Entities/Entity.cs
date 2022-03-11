@@ -107,10 +107,8 @@ public abstract class Entity : MonoBehaviour
 
 	public void MoveAlongPath(Vector2Int[] _path)
 	{
-		if(LevelGrid.Instance.cells[_path[0].x, _path[0].y] != null)
-		{
-			LevelGrid.Instance.cells[_path[0].x, _path[0].y].entityOnCell = null; //May cause a null ref, or an armagedon
-		}
+		if(LevelGrid.Instance.Exist(new Vector2Int(_path[0].x, _path[0].y)))
+			LevelGrid.Instance.cells[_path[0].x, _path[0].y].entityOnCell = null; //May cause a null ref, or an Armageddon
 		moveAlongPathCoroutine = StartCoroutine(MoveAlongPathCoroutine(_path));
 	}
 
