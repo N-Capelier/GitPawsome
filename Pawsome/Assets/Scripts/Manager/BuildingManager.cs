@@ -72,7 +72,6 @@ public class BuildingManager : Singleton<BuildingManager>
 	//infirmary
 	public GameObject InfirmaryBag;
 	public GameObject InfirmaryPrefb;
-	public GameObject InfirmaryDeadPrefb;
 	public GameObject NoCatInInfirmaryPrefb;
 	//Cat In Building Adds
 	public GameObject InfirmaryCatMenu;

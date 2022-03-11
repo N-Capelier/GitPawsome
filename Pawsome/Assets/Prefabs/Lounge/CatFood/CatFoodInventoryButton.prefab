@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3625835767170130528}
   - component: {fileID: 5853189359782693315}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: CatFoodInventoryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

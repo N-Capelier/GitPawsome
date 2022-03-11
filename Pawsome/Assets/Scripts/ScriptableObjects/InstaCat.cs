@@ -8,6 +8,7 @@ public class InstaCat : ScriptableObject
 	public string catName;
 	[Space]
 	public Sprite CatSprite;
+	public Sprite DeadCatSprite;
 	[Space]
 	public Mesh mesh;
 	[Space]
