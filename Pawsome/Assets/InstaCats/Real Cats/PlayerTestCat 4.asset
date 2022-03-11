@@ -12,23 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab692e4c5629f347ab9fcee926ea81f, type: 3}
   m_Name: PlayerTestCat 4
   m_EditorClassIdentifier: 
-  catName: cat 1
-  CatSprite: {fileID: 21300000, guid: e0bd6529462a14946b5051560f07b23f, type: 3}
-  mesh: {fileID: 0}
+  catName: Coby
+  CatSprite: {fileID: 21300000, guid: ef4becbee8bfc6a47a3566c02292b8e3, type: 3}
+  largePortrait: {fileID: 21300000, guid: d8301806fe59eff42b70bbe2631a0531, type: 3}
+  material: {fileID: 2100000, guid: 3c38115b6577aa545aaa8ae736233045, type: 2}
   catClass: 0
   deckSize: 8
-  baseHealth: 80
-  bonusHealth: 10
-  baseMana: 5
-  bonusMana: 5
+  baseHealth: 60
+  bonusHealth: 0
+  baseMana: 7
+  bonusMana: 0
   baseInitiative: 4
   bonusInitiative: 0
-  baseAttack: 0
+  baseAttack: 3
   bonusAttack: 0
-  baseDefense: 0
+  baseDefense: 3
   bonusDefense: 0
-  baseMovePoints: 3
+  baseMovePoints: 5
   bonusMovePoints: 0
+  basePower: 8
+  bonusPower: 0
+  Dead: 0
   spells:
   - {fileID: 11400000, guid: 76333f0b4192a0e48b4279424b239e87, type: 2}
   - {fileID: 11400000, guid: d7c37a59dc19844458736d609ae5f6a1, type: 2}
@@ -39,7 +43,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3ccbdfe45737b8a4dbc81f8de688edf3, type: 2}
   - {fileID: 11400000, guid: f4d92720e7cbf9a43888a87b152aba45, type: 2}
   Temp: 
-  health: 62
+  health: 60
   mana: 0
   initiative: 0
   attack: 0

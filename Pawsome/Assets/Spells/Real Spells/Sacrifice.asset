@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Sacrifice
   m_EditorClassIdentifier: 
   spellName: Sacrifice
-  spellSprite: {fileID: 21300000, guid: b26f462da6e70bc4d8c264a1f0ded1af, type: 3}
-  spellRangeSprite: {fileID: 0}
-  description: 
+  spellSprite: {fileID: 21300000, guid: fba9d9e1b0ddd4b44b2b01ddb56ccb0c, type: 3}
+  spellRangeSprite: {fileID: 21300000, guid: f1df7089a2e0b9f40b7016d6b5714117, type: 3}
+  notificationSprite: {fileID: 21300000, guid: fba9d9e1b0ddd4b44b2b01ddb56ccb0c, type: 3}
+  description: Redirect to the caster damages taken by the target until next turn
   particleEffect: {fileID: 1043626092897839257, guid: 882b6225900975c4ca014fbf63b61d07, type: 3}
   spellClass: 1
   attackDamages: 0

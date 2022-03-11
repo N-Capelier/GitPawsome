@@ -53,6 +53,7 @@ public abstract class Entity : MonoBehaviour
 		instaCat = Instantiate(_instaCat);
 		instaCatRef = _instaCat;
 
+		objectRenderer.material = instaCat.material;
 		instaCat.health = instaCat.GetHealth();
 		instaCat.mana = instaCat.GetMana();
 		instaCat.initiative = instaCat.GetInitiative();

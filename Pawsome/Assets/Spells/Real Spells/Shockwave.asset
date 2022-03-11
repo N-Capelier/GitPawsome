@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Shockwave
   m_EditorClassIdentifier: 
   spellName: Shockwave
-  spellSprite: {fileID: 21300000, guid: f8516c7d15e69df4fae4b82c93869c9f, type: 3}
-  spellRangeSprite: {fileID: 0}
-  description: 
+  spellSprite: {fileID: 21300000, guid: 7a18edc51f9259643a11044d3588b715, type: 3}
+  spellRangeSprite: {fileID: 21300000, guid: 3527a60522d29e944a9f6f12224d9742, type: 3}
+  notificationSprite: {fileID: 21300000, guid: 7a18edc51f9259643a11044d3588b715, type: 3}
+  description: Deal 30 damages to all units in range & 20 damages to the caster
   particleEffect: {fileID: 1043626092897839257, guid: 882b6225900975c4ca014fbf63b61d07, type: 3}
   spellClass: 2
   attackDamages: 30
