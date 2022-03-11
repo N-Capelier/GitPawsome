@@ -158,4 +158,10 @@ public class PathFinder
 		grid = _grid;
 		allowDiagonals = _canUseDiagonals;
 	}
+
+	public PathFinder()
+	{
+		grid = LevelGrid.Instance;
+		allowDiagonals = false;
+	}
 }

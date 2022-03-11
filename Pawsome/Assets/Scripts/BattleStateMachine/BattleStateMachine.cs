@@ -182,4 +182,11 @@ public class BattleStateMachine : MonoStateMachine
 	{
 		yield return null;
 	}
+
+	public IEnumerator AttackTarget(Entity _caster, Entity _target)
+	{
+		yield return new WaitForSeconds(3f);
+
+		_target.TakeDamage(20, _caster);
+	}
 }

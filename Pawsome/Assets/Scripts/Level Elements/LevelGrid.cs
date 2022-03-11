@@ -11,7 +11,7 @@ public class LevelGrid : Singleton<LevelGrid>
 
 	[Header("References")]
 	[SerializeField] GameObject cellInteractorPrefab;
-	
+
 	public LevelCell[,] cells;
 
 	private void Start()
@@ -91,6 +91,16 @@ public class LevelGrid : Singleton<LevelGrid>
 	#endregion
 
 	#region Get elements
+
+	public bool Exist(Vector2Int _cell)
+	{
+		if (_cell.x >= GetWidth() || _cell.y >= GetWidth() || _cell.x < 0 || _cell.y < 0)
+		{
+			return false;
+		}
+		else
+			return true;
+	}
 
 	public int GetWidth()
 	{

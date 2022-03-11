@@ -1489,6 +1489,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1307372629582890805, guid: 3080a4571f905a9418b3838d0e88a265, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1307372629582890806, guid: 3080a4571f905a9418b3838d0e88a265, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -1587,9 +1591,9 @@ MonoBehaviour:
   - {fileID: 924182433}
   playerCats: []
   AICats:
-  - {fileID: 11400000, guid: bc0b4c6d4498f1d4a9a1858e957fbf81, type: 2}
-  - {fileID: 11400000, guid: c27f73c46456b534f919dde5a9f4a7d5, type: 2}
-  - {fileID: 11400000, guid: c1eff58d12887084298f7b233cbfffdf, type: 2}
+  - {fileID: 11400000, guid: 30df7a74277c97a48b66298c34afd26b, type: 2}
+  - {fileID: 11400000, guid: fa53b28e55298a541afab997f480d735, type: 2}
+  - {fileID: 11400000, guid: 9c1400ebc28bf73478b2101bcdde0c4f, type: 2}
   coinFlipAnimationDuration: 3
   playerInfo:
     playerName: Player
