@@ -19,7 +19,7 @@ MonoBehaviour:
   notificationSprite: {fileID: 21300000, guid: 78ba8e6329384d040aa519dd1cc73de9, type: 3}
   description: During 2 turn, mark a block. all units starting their turn on the
     area earn 1 Mana
-  particleEffect: {fileID: 0}
+  particleEffect: {fileID: 611084705517397071, guid: fe9f9cfea82a1f44a94f9aa49f32464a, type: 3}
   spellClass: 0
   attackDamages: 0
   healAmount: 0

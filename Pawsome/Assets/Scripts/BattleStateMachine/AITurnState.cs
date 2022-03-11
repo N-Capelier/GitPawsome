@@ -15,6 +15,8 @@ public class AITurnState : MonoState
 		fsm = StateMachine as BattleStateMachine;
 		activeEntity = fsm.entities[fsm.turnIndex] as EnemyEntity;
 
+		fsm.FixGridEntities();
+
 		//fsm.PlayNextTurn();
 
 		for (int x = 0; x < LevelGrid.Instance.GetWidth(); x++)
@@ -45,6 +47,8 @@ public class AITurnState : MonoState
 
 	void Dps()
 	{
+		fsm.FixGridEntities();
+
 		ReachFinder rf = new ReachFinder(LevelGrid.Instance, true);
 		int _ran = Random.Range(0, 5);
 		if(_ran < 4) //attack
@@ -146,6 +150,8 @@ public class AITurnState : MonoState
 
 	void Tank()
 	{
+		fsm.FixGridEntities();
+
 		ReachFinder rf = new ReachFinder(LevelGrid.Instance, true);
 		int _ran = Random.Range(0, 5);
 		if (_ran < 4) //attack
@@ -247,6 +253,8 @@ public class AITurnState : MonoState
 
 	void Support()
 	{
+		fsm.FixGridEntities();
+
 		ReachFinder rf = new ReachFinder(LevelGrid.Instance, true);
 		int _ran = Random.Range(0, 5);
 		if (_ran < 4) //attack
@@ -344,6 +352,9 @@ public class AITurnState : MonoState
 				BattleInformationManager.Instance.Notifiate(new NotificationProps(activeEntity, targetEntity, true, null, "Strike", $"{activeEntity.InstaCat.catName} scratched {targetEntity.InstaCat.catName}."));
 			}
 		}
+
+		fsm.FixGridEntities();
+
 		fsm.WaitAndPlayNextTurn();
 	}
 
@@ -362,8 +373,8 @@ public class AITurnState : MonoState
 
 	//}
 
-	//public override void OnStateExit()
-	//{
-
-	//}
+	public override void OnStateExit()
+	{
+		fsm.FixGridEntities();
+	}
 }

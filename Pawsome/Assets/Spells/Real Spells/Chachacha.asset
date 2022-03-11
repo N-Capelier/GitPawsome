@@ -19,7 +19,7 @@ MonoBehaviour:
   notificationSprite: {fileID: 21300000, guid: 46df6e5b4caf9b14bbfdf34dd4980e30, type: 3}
   description: During 3 turns. Heal for 20 HP all units starting their turn on the
     area
-  particleEffect: {fileID: 0}
+  particleEffect: {fileID: 4271609673118988229, guid: 5b02e71802fbb4c43a5c8ea845516265, type: 3}
   spellClass: 0
   attackDamages: 0
   healAmount: 0

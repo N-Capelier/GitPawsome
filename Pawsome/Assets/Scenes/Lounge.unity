@@ -6765,7 +6765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName: Nyan Cat
-  CatFood: 2000000
+  CatFood: 10
   CatBell: 0
 --- !u!1 &853708973
 GameObject:
@@ -15305,7 +15305,7 @@ Transform:
   - {fileID: 1841324043}
   - {fileID: 2057936972}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1953313787
 GameObject:

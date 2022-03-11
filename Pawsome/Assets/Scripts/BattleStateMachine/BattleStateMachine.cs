@@ -205,9 +205,14 @@ public class BattleStateMachine : MonoStateMachine
 		Entity.CatDeath -= RemoveEntity;
 	}
 
-	public IEnumerator AnimateParticle(GameObject _particle, Vector2Int _position, bool _move, Vector2Int _targetPos)
+	public IEnumerator AnimateParticle(GameObject _particle, Vector2 _position/*, bool _move, Vector2Int _targetPos*/)
 	{
-		yield return null;
+		Vector3 _spawnPos = new Vector3(_position.x, 0f, _position.y);
+		_particle = Instantiate(_particle, _spawnPos, Quaternion.identity);
+
+		yield return new WaitForSeconds(1.1f);
+
+		Destroy(_particle);
 	}
 
 	public void AttackTarget(Entity _caster, Entity _target)
@@ -243,5 +248,22 @@ public class BattleStateMachine : MonoStateMachine
 	{
 		yield return new WaitForSeconds(1.4f);
 		PlayNextTurn();
+	}
+
+	public void FixGridEntities()
+	{
+		for (int x = 0; x < LevelGrid.Instance.GetWidth(); x++)
+		{
+			for (int y = 0; y < LevelGrid.Instance.GetHeigth(); y++)
+			{
+				LevelGrid.Instance.cells[x, y].entityOnCell = null;
+			}
+		}
+
+		foreach(Entity _entity in entities)
+		{
+			Vector2Int _entityPos = _entity.GetGridPosition();
+			LevelGrid.Instance.cells[_entityPos.x, _entityPos.y].entityOnCell = _entity;
+		}
 	}
 }

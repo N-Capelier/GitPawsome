@@ -27,6 +27,8 @@ public class PlayerTurnState : MonoState
 		fsm = StateMachine as BattleStateMachine;
 		activeEntity = fsm.entities[fsm.turnIndex] as PlayerEntity;
 
+		fsm.FixGridEntities();
+
 		activeEntity.InstaCat.mana = activeEntity.InstaCatRef.GetMana();
 		activeEntity.ManaChanged?.Invoke();
 
@@ -70,7 +72,9 @@ public class PlayerTurnState : MonoState
 
 	private void DrawAttackableCells()
 	{
-		if(activeSpell.manaCost > activeEntity.InstaCat.mana)
+		fsm.FixGridEntities();
+
+		if (activeSpell.manaCost > activeEntity.InstaCat.mana)
 		{
 			AttackSub(true);
 			if (!alreadyMoved)
@@ -95,7 +99,9 @@ public class PlayerTurnState : MonoState
 
 	private void OnClickAttackableCell(CellInteractor interactor)
 	{
-		foreach(Vector2Int _attackableCell in attackableCells)
+		fsm.FixGridEntities();
+
+		foreach (Vector2Int _attackableCell in attackableCells)
 		{
 			if (interactor == null)
 				break;
@@ -106,6 +112,7 @@ public class PlayerTurnState : MonoState
 				LevelGrid.Instance.HideAllInteractors();
 
 				activeEntity.TakeManaDamage(activeSpell.manaCost);
+				fsm.StartCoroutine(fsm.AnimateParticle(activeSpell.particleEffect, interactor.levelCell.position));
 				activeSpell.ExecuteSpell(activeEntity, _attackableCell);
 
 				activeEntity.DiscardSpell(equipedSpell);
@@ -114,6 +121,9 @@ public class PlayerTurnState : MonoState
 				break;
 			}
 		}
+
+		fsm.FixGridEntities();
+
 
 		LevelGrid.Instance.HideAllInteractors(); ///Debugging
 
@@ -174,9 +184,7 @@ public class PlayerTurnState : MonoState
 			return;
 		}
 
-		Debug.Log(LevelGrid.Instance.Exist(new Vector2Int((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y)));
-		Debug.Log(fsm.entities[fsm.turnIndex]);
-			
+		fsm.FixGridEntities();
 
 		if (_interactor.levelCell.entityOnCell == fsm.entities[fsm.turnIndex])
 		{
@@ -189,6 +197,8 @@ public class PlayerTurnState : MonoState
 
 	void DrawMovableCells(CellInteractor _interactor)
 	{
+		fsm.FixGridEntities();
+
 		ReachFinder _reachFinder = new ReachFinder(LevelGrid.Instance, false);
 
 		movableCells = _reachFinder.FindDiamondReach((int)_interactor.levelCell.position.x, (int)_interactor.levelCell.position.y, fsm.entities[fsm.turnIndex].InstaCat.movePoints);
@@ -204,6 +214,8 @@ public class PlayerTurnState : MonoState
 
 	private void OnClickMovableCell(CellInteractor interactor)
 	{
+		fsm.FixGridEntities();
+
 		foreach(Vector2Int _movableCell in movableCells)
 		{
 			if (interactor == null)
@@ -220,6 +232,8 @@ public class PlayerTurnState : MonoState
 				break;
 			}
 		}
+
+		fsm.FixGridEntities();
 
 		if (!alreadyMoved)
 		{
@@ -254,6 +268,8 @@ public class PlayerTurnState : MonoState
 		activeEntity.redirectedDamages = null;
 		activeEntity.HealInZone();
 		activeEntity.hasNineLives = false;
+
+		fsm.FixGridEntities();
 
 		activeEntity.SetPossessionRenderer(false);
 
