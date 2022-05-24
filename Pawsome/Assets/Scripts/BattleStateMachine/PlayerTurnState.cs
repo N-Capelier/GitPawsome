@@ -1,6 +1,10 @@
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 public class PlayerTurnState : MonoState
 {
 	BattleStateMachine fsm;

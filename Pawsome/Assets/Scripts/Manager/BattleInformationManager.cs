@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 public class BattleInformationManager : Singleton<BattleInformationManager>
 {
 	public InstaCat[] instaCats;

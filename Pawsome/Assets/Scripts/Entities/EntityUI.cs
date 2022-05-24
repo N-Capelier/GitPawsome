@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Created by Rémi
+/// Last modified by Rémi
+/// </summary>
 public class EntityUI : MonoBehaviour
 {
     public Transform uiTransform;

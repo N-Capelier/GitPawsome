@@ -5,6 +5,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Created by Rémi
+/// Last modified by Rémi
+/// </summary>
 public class UnitPlacementUI : MonoBehaviour
 {
     public BattleInitUIMode mode;

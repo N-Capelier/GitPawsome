@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
 
+/// <summary>
+/// Created by Rémi
+/// Last modified by Rémi
+/// </summary>
 public class TimelinePortrait : MonoBehaviour
 {
     [SerializeField]

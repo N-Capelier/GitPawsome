@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
+/// <summary>
+/// Created by Rémi
+/// Last modified by Rémi
+/// </summary>
 public class CompositionUI : MonoBehaviour
 {
     [Serializable]

@@ -7,6 +7,10 @@ using UnityEngine.EventSystems;
 using System;
 using NaughtyAttributes;
 
+/// <summary>
+/// Created by Rémi
+/// Last modified by Rémi
+/// </summary>
 public class UnitCard : MonoBehaviour
 {
     public enum State { Base, Hover, Selected }

@@ -1,7 +1,10 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-
+/// <summary>
+/// Created by Kévin
+/// Last modified by Kévin
+/// </summary>
 public class SceneManagement : MonoBehaviour
 {
     public static SceneManagement instance;

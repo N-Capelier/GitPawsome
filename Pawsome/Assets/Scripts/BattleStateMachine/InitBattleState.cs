@@ -1,3 +1,7 @@
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 public class InitBattleState : MonoState
 {
 	BattleStateMachine fsm;

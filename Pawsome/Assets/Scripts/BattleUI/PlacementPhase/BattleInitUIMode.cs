@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Created by Rémi
+/// Last modified by Rémi
+/// </summary>
 public class BattleInitUIMode : MonoBehaviour
 {
     public BattleStateMachine fsm;

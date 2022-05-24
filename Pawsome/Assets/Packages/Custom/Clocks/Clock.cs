@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UTPI.Clocks;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 public class Clock
 {
     #region Variables

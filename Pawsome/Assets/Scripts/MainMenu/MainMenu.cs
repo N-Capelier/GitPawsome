@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Created by Kévin
+/// Last modified by Timothé
+/// </summary>
 public class MainMenu : MonoBehaviour
 {
     public GameObject OptionsMenu;

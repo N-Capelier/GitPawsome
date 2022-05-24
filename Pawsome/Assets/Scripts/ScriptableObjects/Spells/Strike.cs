@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 [CreateAssetMenu(fileName = "Strike", menuName = "Spells/Strike", order = 50)]
 public class Strike : Spell
 {

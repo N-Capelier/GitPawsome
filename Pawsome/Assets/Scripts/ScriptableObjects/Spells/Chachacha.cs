@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 [CreateAssetMenu(fileName = "Chachacha", menuName = "Spells/Chachacha", order = 50)]
 public class Chachacha : Spell
 {

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 public class ReachFinder
 {
 	LevelGrid grid;

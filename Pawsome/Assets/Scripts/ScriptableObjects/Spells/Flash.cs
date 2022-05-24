@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 [CreateAssetMenu(fileName = "Flash", menuName = "Spells/Flash", order = 50)]
 public class Flash : Spell
 {

@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 [CreateAssetMenu(fileName = "Shockwave", menuName = "Spells/Shockwave", order = 50)]
 public class Shockwave : Spell
 {

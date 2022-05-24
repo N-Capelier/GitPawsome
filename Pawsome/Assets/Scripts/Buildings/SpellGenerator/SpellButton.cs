@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// Created by Kévin
+/// Last modified by Kévin
+/// </summary>
 public class SpellButton : MonoBehaviour
 {
     public int id;

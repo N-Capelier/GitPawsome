@@ -6,6 +6,10 @@ using TMPro;
 using NaughtyAttributes;
 using System;
 
+/// <summary>
+/// Created by Rémi
+/// Last modified by Rémi
+/// </summary>
 public class CardContainer : MonoBehaviour
 {
     [SerializeField]

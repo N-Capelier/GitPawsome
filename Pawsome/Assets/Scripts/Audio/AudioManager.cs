@@ -2,6 +2,10 @@ using UnityEngine.Audio;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Created by Timothé
+/// Last modified by Timothé
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;

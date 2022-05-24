@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
+/// <summary>
+/// Created by Rémi
+/// Last modified by Rémi
+/// </summary>
 public class AnimationHandler : MonoBehaviour
 {
     [SerializeField] Animator _animator;

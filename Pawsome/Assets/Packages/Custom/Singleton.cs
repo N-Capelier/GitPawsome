@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
-
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 public abstract class Singleton<T> : MonoBehaviour where T : Component
 {
 

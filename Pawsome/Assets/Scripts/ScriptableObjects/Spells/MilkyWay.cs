@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 [CreateAssetMenu(fileName = "MilkyWay", menuName = "Spells/MilkyWay", order = 50)]
 public class MilkyWay : Spell
 {

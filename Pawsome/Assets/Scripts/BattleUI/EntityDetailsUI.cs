@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 using NaughtyAttributes;
 
+/// <summary>
+/// Created by Rémi
+/// Last modified by Rémi
+/// </summary>
 [System.Serializable]
 public struct StatsCouple
 {

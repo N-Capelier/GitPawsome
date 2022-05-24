@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 public static class ListExtensions
 {
 	public static void Shuffle<T>(this IList<T> list)

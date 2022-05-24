@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+/// <summary>
+/// Created by Kévin
+/// Last modified by Kévin
+/// </summary>
 public class BuildingManager : Singleton<BuildingManager>
 {
 	[Header("CatFood")]

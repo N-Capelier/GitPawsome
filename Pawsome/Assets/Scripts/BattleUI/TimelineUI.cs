@@ -6,6 +6,10 @@ using NaughtyAttributes;
 using System;
 using System.Linq;
 
+/// <summary>
+/// Created by Rémi
+/// Last modified by Rémi
+/// </summary>
 public class TimelineUI : MonoBehaviour
 {
     [Header("Global references")]

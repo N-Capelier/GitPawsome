@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Rémi
+/// </summary>
 public class BattleInputManager : MonoBehaviour
 {
     [SerializeField] LayerMask interactionLayer;

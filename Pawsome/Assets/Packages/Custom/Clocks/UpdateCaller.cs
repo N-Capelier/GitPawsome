@@ -2,6 +2,10 @@
 
 namespace UTPI.Clocks
 {
+    /// <summary>
+    /// Created by Nicolas
+    /// Last modified by Nicolas
+    /// </summary>
     public class UpdateCaller : MonoBehaviour
     {
         public static UpdateCaller Instance = null;

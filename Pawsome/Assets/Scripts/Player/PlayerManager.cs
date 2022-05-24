@@ -23,6 +23,10 @@ public class CatBag
     }
 }
 
+/// <summary>
+/// Created by Kévin
+/// Last modified by Kévin
+/// </summary>
 public class PlayerManager : Singleton<PlayerManager>
 {
     public string PlayerName = "Nyan Cat";

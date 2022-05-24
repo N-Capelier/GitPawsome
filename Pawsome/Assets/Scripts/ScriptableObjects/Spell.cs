@@ -8,6 +8,10 @@ public enum Archetype
 	Common
 }
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 //[CreateAssetMenu(fileName = "New Spell", menuName = "Spell", order = 51)]
 public class Spell : ScriptableObject
 {

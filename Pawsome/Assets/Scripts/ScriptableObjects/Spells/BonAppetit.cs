@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 [CreateAssetMenu(fileName = "BonAppetit", menuName = "Spells/BonAppetit", order = 50)]
 public class BonAppetit : Spell
 {

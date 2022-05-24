@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Created by Kévin
+/// Last modified by Kévin
+/// </summary>
 public class SpellGenerator : MonoBehaviour
 {
     public List<InstaCat> FakeCatBag = new List<InstaCat>();

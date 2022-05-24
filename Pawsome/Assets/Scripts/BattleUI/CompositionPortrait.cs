@@ -5,6 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// Created by Rémi
+/// Last modified by Rémi
+/// </summary>
 public class CompositionPortrait : MonoBehaviour
 {
     [SerializeField]

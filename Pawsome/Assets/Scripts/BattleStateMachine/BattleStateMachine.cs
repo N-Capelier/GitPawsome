@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 [Serializable]
 public class PlayerInfo
 {

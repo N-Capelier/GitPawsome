@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Created by Kévin
+/// Last modified by Kévin
+/// </summary>
 public class InfirmiaryInformations
 {
     public InstaCat CatInInfirmary;
@@ -15,7 +18,10 @@ public class InfirmiaryInformations
     }
 }
 
-
+/// <summary>
+/// Created by Kévin
+/// Last modified by Kévin
+/// </summary>
 public class Infirmary : MonoBehaviour
 {
     public int RecoverPrice;

@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Created by Nicolas
+/// Last modified by Nicolas
+/// </summary>
 public abstract class MonoStateMachine : MonoBehaviour
 {
     [Header("State Machine Setup")]
